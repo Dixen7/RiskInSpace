@@ -10,6 +10,9 @@
 
 ## Début du jeu
 
+## D&ébut de tour
+- Tirage d'une carte Bonus/Malus
+
 ### Phase de ravitaillement
 - Attribution des troupes en fonction du nombre de planètes possédées, il peut les mettre où il veut
 
@@ -18,3 +21,5 @@
 
 ### Phase de déplacement
 - 1 seul déplacement autorisé
+
+## Fin de tour
