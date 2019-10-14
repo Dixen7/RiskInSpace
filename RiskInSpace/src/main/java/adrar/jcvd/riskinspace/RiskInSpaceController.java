@@ -2,26 +2,26 @@ package adrar.jcvd.riskinspace;
 
 import java.util.ArrayList;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import adrar.jcvd.riskinspace.repositories.PlanetRepository;
 import adrar.jcvd.riskinspace.repositories.PlayerRepository;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class RiskInSpaceApplicationTests {
+@Controller
+public class RiskInSpaceController {
 
 	@Autowired
 	PlanetRepository planetRepo;
 	@Autowired
 	PlayerRepository playerRepo;
 
-	@Test
+	@GetMapping("/riskinspace")
 	public void Test() {
+
+
 		Fight fight = new Fight();
 		RiskInSpaceService riskService = new RiskInSpaceService();
 
@@ -41,7 +41,4 @@ public class RiskInSpaceApplicationTests {
 			planetRepo.save(planet);
 		}
 	}
-
-
-
 }

@@ -1,6 +1,9 @@
 package adrar.jcvd.riskinspace;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,14 +17,24 @@ public class Player {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	protected int playerId;
-	 @ManyToOne
-	protected Species playerSpeciesId;
+	protected String playerName;
+	@ManyToOne(targetEntity=Species.class)
+	protected Optional<Species> playerSpeciesId;
 	protected int playerMoney;
-	
-	@OneToMany(mappedBy="planetOwner")
-    private ArrayList<Planet> planets ;
 
-	public Player() {}
+	@OneToMany(mappedBy="planetOwner")
+	//private ArrayList<Planet> planets ;
+	private Set<Planet> planets = new HashSet<Planet>();
+
+	public Player(int i, String playerName, Optional<Species> espece) {
+		this.playerId = i;
+		this.playerName = playerName;
+		this.playerSpeciesId = espece;
+	}
+
+	public Player(String playerName) {
+		this.playerName = playerName;
+	}
 
 	public int getPlayerId() {
 		return playerId;
@@ -29,10 +42,20 @@ public class Player {
 	public void setPlayerId(int playerId) {
 		this.playerId = playerId;
 	}
-	public Species getPlayerSpeciesId() {
+
+
+	public String getPlayerName() {
+		return playerName;
+	}
+
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
+	}
+
+	public Optional<Species> getPlayerSpeciesId() {
 		return playerSpeciesId;
 	}
-	public void setPlayerSpeciesId(Species playerSpeciesId) {
+	public void setPlayerSpeciesId(Optional<Species> playerSpeciesId) {
 		this.playerSpeciesId = playerSpeciesId;
 	}
 	public int getPlayerMoney() {
@@ -40,5 +63,9 @@ public class Player {
 	}
 	public void setPlayerMoney(int playerMoney) {
 		this.playerMoney = playerMoney;
+	}
+
+	public String toString() {
+		return this.playerId+","+this.playerName+", "+this.playerSpeciesId;
 	}
 }

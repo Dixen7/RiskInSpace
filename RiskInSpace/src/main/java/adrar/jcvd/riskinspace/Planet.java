@@ -1,10 +1,12 @@
 package adrar.jcvd.riskinspace;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,8 +21,9 @@ public class Planet {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	protected int planetId;
 	protected int planetShipsNbr;
-	 @ManyToOne
-	protected Player planetOwner;
+	protected String planetName;
+	 @ManyToOne(targetEntity=Player.class)
+	protected Optional<Player> planetOwner;
 	protected int planetBonus;
 	protected String planetImage;
 	
@@ -34,6 +37,13 @@ public class Planet {
 	private Set<Planet> planetsNear = new HashSet<Planet>();
 
 	public Planet() {}
+	
+	public Planet(int planetId, String planetName, int planetShipsNbr, Optional<Player> planetOwner) {
+		this.planetId = planetId;
+		this.planetName = planetName;
+		this.planetShipsNbr = planetShipsNbr;
+		this.planetOwner = planetOwner;
+	}
 
 	public int getPlanetId() {
 		return planetId;
@@ -47,10 +57,20 @@ public class Planet {
 	public void setPlanetShipsNbr(int planetShipsNbr) {
 		this.planetShipsNbr = planetShipsNbr;
 	}
-	public Player getPlanetOwner() {
+	
+	
+	public String getPlanetName() {
+		return planetName;
+	}
+
+	public void setPlanetName(String planetName) {
+		this.planetName = planetName;
+	}
+
+	public Optional<Player> getPlanetOwner() {
 		return planetOwner;
 	}
-	public void setPlanetOwner(Player planetOwner) {
+	public void setPlanetOwner(Optional<Player> planetOwner) {
 		this.planetOwner = planetOwner;
 	}
 	public int getPlanetBonus() {
@@ -64,5 +84,9 @@ public class Planet {
 	}
 	public void setPlanetImage(String planetImage) {
 		this.planetImage = planetImage;
+	}
+	
+	public String toString() {
+		return ""+this.planetId + " ";
 	}
 }

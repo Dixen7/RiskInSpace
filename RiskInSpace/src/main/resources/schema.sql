@@ -10,6 +10,7 @@ CREATE TABLE species (
 
 Create table player (
  player_id serial not null,
+ player_name varchar(100),
  player_money int default 0,
  player_species_id int not null,
  primary key (player_id),
@@ -26,8 +27,9 @@ Create table card (
 
 Create table planet (
  planet_id serial not null,
- planet_ships_nbr int not null default 1,
- planet_owner int not null,
+ planet_name varchar(100),
+ planet_ships_nbr int default 1,
+ planet_owner int,
  planet_bonus int,
  planet_image varchar(255),
  primary key (planet_id),
@@ -41,3 +43,5 @@ Create table frontiers (
  CONSTRAINT FK_PLA1 FOREIGN KEY (planet_id1) REFERENCES planet (planet_id), 
  CONSTRAINT FK_PLA2 FOREIGN KEY (planet_id2) REFERENCES planet (planet_id)
 );
+
+Insert into planet(planet_name) values ('X');

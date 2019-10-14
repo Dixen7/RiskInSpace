@@ -1,6 +1,8 @@
 package adrar.jcvd.riskinspace;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,9 +18,15 @@ public class Species {
 	protected String speciesName;
 
 	@OneToMany(mappedBy="playerSpeciesId")
-	private ArrayList<Player> players ;
-
+	//private ArrayList<Player> players ;
+	private Set<Player> players = new HashSet<Player>();
+	
 	public Species() {}
+
+	public Species(int speciesId, String speciesName) {
+		this.speciesId = speciesId;
+		this.speciesName = speciesName;
+	}
 
 
 	public int getSpeciesId() {
@@ -40,5 +48,9 @@ public class Species {
 		SpeciesImage = speciesImage;
 	}
 	protected String SpeciesImage;
+	
+	public String toString() {
+		return this.speciesName;
+	}
 }
 
