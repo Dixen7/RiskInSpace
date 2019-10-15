@@ -1,7 +1,7 @@
 package adrar.jcvd.riskinspace;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,13 +32,9 @@ public class RiskInSpaceController {
 		fight.compareDice(attack,defense);
 		ArrayList<Player> players = riskService.insertPlayer();
 		riskService.orderPlayerTurn(players);
-		ArrayList<Planet> planetList = new ArrayList<Planet>();
+		List<Planet> planetList =  planetRepo.findAll();
 		riskService.placeShip(planetList);
 
-
-		for(int i = 2; i < 30; i++) {
-			Planet planet = new Planet(i, "aaa", 1,playerRepo.findById(1));
-			planetRepo.save(planet);
-		}
+		
 	}
 }
