@@ -20,7 +20,7 @@ public class Fight {
 
 
 
-	public void compareDice(ArrayList<Integer> attDice, ArrayList<Integer> defDice) {
+	public int[] compareDice(ArrayList<Integer> attDice, ArrayList<Integer> defDice) {
 		int numberDice;
 		if(attDice.size() < defDice.size()) {
 			numberDice = attDice.size();
@@ -29,15 +29,22 @@ public class Fight {
 		}else {
 			numberDice = defDice.size();
 		}
+		int[] resFight = {0, 0};
 		for(int i=0;i < numberDice;i++) {
 			if(attDice.get(i) > defDice.get(i)) {
 				System.out.println("Attack Wins");
+				resFight[1]+=1;
 			}else {
 				System.out.println("Def Wins");
+				resFight[0]+=1;
 			}
-
 		}
+		return resFight;
+	}
 
+	public void fight(int attDice, int defDice) {
+		int[] resFight = compareDice(rollDice(attDice), rollDice(defDice));
+		System.out.println("troupes perdues : " + resFight[0]+ " de l'attaquant | " + resFight[1] + " du défenseur");
 	}
 
 

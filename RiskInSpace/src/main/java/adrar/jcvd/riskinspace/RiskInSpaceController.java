@@ -32,10 +32,16 @@ public class RiskInSpaceController {
 		
 		Fight fight = new Fight();
 		riskService.insertPlayer();
+<<<<<<< HEAD
+		int nbrDiceAtt = 3;
+		int nbrDiceDef = 2;
+		fight.fight(nbrDiceAtt,nbrDiceDef);
+=======
 
 		ArrayList<Integer>attack = fight.rollDice(3);
 		ArrayList<Integer>defense = fight.rollDice(2);
 		fight.compareDice(attack,defense);
+>>>>>>> fa0a6b10340e2d009f7de3f1c133bacd84b41ce4
 		List<Player> players = playerRepo.findAll(new Sort(Sort.Direction.DESC, "playerId"));
 		
 		Player player1 = players.get(0);

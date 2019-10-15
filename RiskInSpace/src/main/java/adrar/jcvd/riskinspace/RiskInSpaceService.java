@@ -33,10 +33,9 @@ public class RiskInSpaceService {
 		List<Species> species = speciesService.findAll();
 		
 		Scanner sc = new Scanner(System.in);
-		System.out.println("rentre le nbr de joueurs");
-		int numberPlayer = 2;//sc.nextInt();
+		System.out.println("rentre le nombre de joueurs");
+		int numberPlayer = 2;
 		while(numberPlayer > 0) {
-			//Scanner sc2 = new Scanner(System.in);
 			System.out.println("rentre le nom du joueur");
 			
 			String playerName = sc.nextLine();
