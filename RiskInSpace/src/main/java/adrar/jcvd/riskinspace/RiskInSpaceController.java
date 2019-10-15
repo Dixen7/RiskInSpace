@@ -32,8 +32,11 @@ public class RiskInSpaceController {
 		fight.compareDice(attack,defense);
 		ArrayList<Player> players = riskService.insertPlayer();
 		riskService.orderPlayerTurn(players);
+		Player player1 = players.get(0);
+		Player player2 = players.get(1);
 		List<Planet> planetList =  planetRepo.findAll();
-		riskService.placeShip(planetList);
+		riskService.renamePlanets(planetList);
+		riskService.placeShip(planetList, player1, player2);
 
 		
 	}
