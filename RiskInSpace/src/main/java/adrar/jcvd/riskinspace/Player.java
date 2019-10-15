@@ -2,13 +2,16 @@ package adrar.jcvd.riskinspace;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -18,17 +21,20 @@ public class Player {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	protected int playerId;
 	protected String playerName;
-	@ManyToOne(targetEntity=Species.class)
-	protected Species playerSpeciesId;
+	@ManyToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name ="player_species_id")
+	protected Species species;
 	protected int playerMoney;
 
-	@OneToMany(mappedBy="planetOwner")
-	//private ArrayList<Planet> planets ;
-	private Set<Planet> planets = new HashSet<Planet>();
+	@OneToMany
+	private List<Planet> planets ;
+	
+	
+	public Player() {}
 
 	public Player(String playerName, Species espece) {
 		this.playerName = playerName;
-		this.playerSpeciesId = espece;
+		this.species = espece;
 	}
 
 	public Player(String playerName) {
@@ -51,12 +57,23 @@ public class Player {
 		this.playerName = playerName;
 	}
 
-	public Species getPlayerSpeciesId() {
-		return playerSpeciesId;
+	
+	public Species getSpecies() {
+		return species;
 	}
-	public void setPlayerSpeciesId(Species playerSpeciesId) {
-		this.playerSpeciesId = playerSpeciesId;
+
+	public void setSpecies(Species species) {
+		this.species = species;
 	}
+
+	public List<Planet> getPlanets() {
+		return planets;
+	}
+
+	public void setPlanets(List<Planet> planets) {
+		this.planets = planets;
+	}
+
 	public int getPlayerMoney() {
 		return playerMoney;
 	}
@@ -65,6 +82,6 @@ public class Player {
 	}
 
 	public String toString() {
-		return this.playerId+","+this.playerName+", "+this.playerSpeciesId;
+		return this.playerId+","+this.playerName+", "+this.species;
 	}
 }

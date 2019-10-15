@@ -5,6 +5,7 @@ CREATE DATABASE riskinspace;
 CREATE TABLE species (
  species_id serial NOT NULL,
  species_name VARCHAR(100) NOT NULL,
+ species_image VARCHAR(255),	
  primary key (species_id)
 );
 
@@ -43,6 +44,8 @@ Create table frontiers (
  CONSTRAINT FK_PLA1 FOREIGN KEY (planet_id1) REFERENCES planet (planet_id), 
  CONSTRAINT FK_PLA2 FOREIGN KEY (planet_id2) REFERENCES planet (planet_id)
 );
+
+CREATE SEQUENCE hibernate_sequence START 1;
 
 Insert into species(species_name)
  values

@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,17 +20,17 @@ import adrar.jcvd.riskinspace.repositories.SpeciesRepository;
 public class RiskInSpaceService {
 	
 	@Autowired
-	SpeciesRepository speciesRepo;
+	private SpeciesService speciesService;
 	@Autowired
-	PlanetRepository planetRepo;
+	private PlanetRepository planetRepo;
 	@Autowired
-	PlayerRepository playerRepo;
+	private PlayerRepository playerRepo;
 	
 	//insertion des joueurs
-	public ArrayList<Player> insertPlayer() {
-		ArrayList<Player> players = new ArrayList<Player>();
-		List<Species> species = speciesRepo.findAll();
+	public void insertPlayer() {
 		
+		ArrayList<Player> players = new ArrayList<Player>();
+		List<Species> species = speciesService.findAll();
 		
 		Scanner sc = new Scanner(System.in);
 		System.out.println("rentre le nbr de joueurs");
@@ -46,8 +48,7 @@ public class RiskInSpaceService {
 			playerRepo.save(player);
 			numberPlayer--;
 		}
-		System.out.println(players.toString());
-		return players;
+		
 	}
 	
 	//Génère l'ordre des joueurs

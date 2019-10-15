@@ -22,7 +22,8 @@ public class Planet {
 	protected int planetId;
 	protected int planetShipsNbr;
 	protected String planetName;
-	 @ManyToOne(targetEntity=Player.class)
+	 @ManyToOne(cascade = {CascadeType.ALL})
+	 @JoinColumn(name ="planet_owner")
 	protected Player planetOwner;
 	protected int planetBonus;
 	protected String planetImage;
