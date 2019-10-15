@@ -29,7 +29,7 @@ public class RiskInSpaceService {
 	//insertion des joueurs
 	public void insertPlayer() {
 		
-		ArrayList<Player> players = new ArrayList<Player>();
+		
 		List<Species> species = speciesService.findAll();
 		
 		Scanner sc = new Scanner(System.in);
@@ -42,7 +42,6 @@ public class RiskInSpaceService {
 			int index = (int)(Math.random() * species.size());
 			Species espece = species.get(index);
 			
-			players.add(new Player(playerName,espece));
 			Player player = new Player(playerName,espece);
 			playerRepo.save(player);
 			numberPlayer--;
