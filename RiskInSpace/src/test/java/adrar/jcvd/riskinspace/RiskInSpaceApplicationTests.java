@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import adrar.jcvd.riskinspace.repositories.PlanetRepository;
@@ -25,20 +26,19 @@ public class RiskInSpaceApplicationTests {
 	public void Test() {
 		Fight fight = new Fight();
 		RiskInSpaceService riskService = new RiskInSpaceService();
-
+		riskService.insertPlayer();
 
 		ArrayList<Integer>attack = fight.rollDice(3);
 		ArrayList<Integer>defense = fight.rollDice(2);
 
 		fight.compareDice(attack,defense);
-		ArrayList<Player> players = riskService.insertPlayer();
+		List<Player> players = playerRepo.findAll(new Sort(Sort.Direction.DESC, "player_id"));
 		riskService.orderPlayerTurn(players);
 		Player player1 = players.get(0);
 		Player player2 = players.get(1);
 		List<Planet> planetList =  planetRepo.findAll();
 		riskService.renamePlanets(planetList);
 		riskService.placeShip(planetList, player1, player2);
-
 
 		
 	}

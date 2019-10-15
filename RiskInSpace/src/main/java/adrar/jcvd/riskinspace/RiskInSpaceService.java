@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import adrar.jcvd.riskinspace.repositories.PlanetRepository;
+import adrar.jcvd.riskinspace.repositories.PlayerRepository;
 import adrar.jcvd.riskinspace.repositories.SpeciesRepository;
 
 @Service
@@ -20,6 +21,8 @@ public class RiskInSpaceService {
 	SpeciesRepository speciesRepo;
 	@Autowired
 	PlanetRepository planetRepo;
+	@Autowired
+	PlayerRepository playerRepo;
 	
 	//insertion des joueurs
 	public ArrayList<Player> insertPlayer() {
@@ -33,10 +36,14 @@ public class RiskInSpaceService {
 		while(numberPlayer > 0) {
 			//Scanner sc2 = new Scanner(System.in);
 			System.out.println("rentre le nom du joueur");
+			
 			String playerName = sc.nextLine();
 			int index = (int)(Math.random() * species.size());
 			Species espece = species.get(index);
+			
 			players.add(new Player(playerName,espece));
+			Player player = new Player(playerName,espece);
+			playerRepo.save(player);
 			numberPlayer--;
 		}
 		System.out.println(players.toString());
@@ -44,7 +51,7 @@ public class RiskInSpaceService {
 	}
 	
 	//Génère l'ordre des joueurs
-	public ArrayList<Player> orderPlayerTurn(ArrayList<Player> players) {
+	public List<Player> orderPlayerTurn(List<Player> players) {
 		 Collections.shuffle(players);
 		 System.out.println(players.toString());
 		 return players;
@@ -88,6 +95,7 @@ public class RiskInSpaceService {
 		System.out.println(planetListPlayer2);
 		
 	}
+
 	
 	
 }
