@@ -75,7 +75,7 @@ Insert into planet(planet_name, planet_bonus)
  ('27', 42),
  ('28', 42),
  ('29', 42),
- ('30', 42),
+ ('30', 42);
 
 Insert into frontiers(planet_id1, planet_id2)
  values
@@ -95,7 +95,7 @@ Insert into frontiers(planet_id1, planet_id2)
  (7, 9),
  (8, 9),
  (8, 10),
- (9, 10)
+ (9, 10),
  (9, 16),
  (10, 13),
  (11, 12),
