@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,12 +35,12 @@ public class RiskInSpaceController {
 
 		ArrayList<Integer>attack = fight.rollDice(3);
 		ArrayList<Integer>defense = fight.rollDice(2);
-
 		fight.compareDice(attack,defense);
 		List<Player> players = playerRepo.findAll(new Sort(Sort.Direction.DESC, "playerId"));
-		riskService.orderPlayerTurn(players);
+		
 		Player player1 = players.get(0);
 		Player player2 = players.get(1);
+		riskService.orderPlayerTurn(players);
 		List<Planet> planetList =  planetRepo.findAll();
 		riskService.renamePlanets(planetList);
 		riskService.placeShip(planetList, player1, player2);
