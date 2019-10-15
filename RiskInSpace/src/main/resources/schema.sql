@@ -44,6 +44,32 @@ Create table frontiers (
  CONSTRAINT FK_PLA2 FOREIGN KEY (planet_id2) REFERENCES planet (planet_id)
 );
 
+Insert into species(species_name)
+ values
+ ('Humain'),
+ ('Altarien'),
+ ('Dentrassis'),
+ ('Dauphin'),
+ ('Vogon'),
+ ('Goa''uld'),
+ ('Vulcain'),
+ ('Klingon'),
+ ('Dalek'),
+ ('Seigneur du Temps'),
+ ('Ange Pleureur'),
+ ('Cylon'),
+ ('Wookiee'),
+ ('Ewok'),
+ ('Jawa'),
+ ('Kryptonien'),
+ ('Martien'),
+ ('Autobot'),
+ ('Decepticon'),
+ ('Saiyan'),
+ ('Zerg'),
+ ('Kree'),
+ ('Tusken');
+
 Insert into planet(planet_name, planet_bonus)
  values
  ('1', 42),
