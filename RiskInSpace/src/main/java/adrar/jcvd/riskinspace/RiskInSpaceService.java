@@ -62,7 +62,7 @@ public class RiskInSpaceService {
 		String []planetNames = {"Mercure","Venus","Terre","Mars","Neptune","Pluton","Naboo","Tatooine","Endor","Coruscant","Hoth","Magrathea","Kakrafoon Kappa","Krikket","Bételgeuse","P3X-888","Lantea","Dakara","Celestis","Talos IV","Risa","Qo'noS","Acamar III","Raxacoricofallapatorius","Metebelis III","Alfava Metraxis","Gallifrey","Kobol","Caprica","Gemenon","Leonis","Alpha Corvus","Meirrion","Troy","Solaria","Pandora","Krypton","Alderaan","Aldebaran","Babel","Betazed","Khitomer","Ligon II","Corellia","Dagobah","Mustafar","Yavin IV"};
 		List<String> pla = Arrays.asList(planetNames);
 		Collections.shuffle(pla);
-		for(int i =0; i < pla.size();i++) {
+		for(int i =0; i < planetList.size();i++) {
 			planetList.get(i).setPlanetName(pla.get(i));
 			planetRepo.save(planetList.get(i));
 		}
