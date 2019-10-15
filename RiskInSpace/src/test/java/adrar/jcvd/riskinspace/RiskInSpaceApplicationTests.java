@@ -1,6 +1,7 @@
 package adrar.jcvd.riskinspace;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,14 +33,14 @@ public class RiskInSpaceApplicationTests {
 		fight.compareDice(attack,defense);
 		ArrayList<Player> players = riskService.insertPlayer();
 		riskService.orderPlayerTurn(players);
-		ArrayList<Planet> planetList = new ArrayList<Planet>();
-		riskService.placeShip(planetList);
+		Player player1 = players.get(0);
+		Player player2 = players.get(1);
+		List<Planet> planetList =  planetRepo.findAll();
+		riskService.renamePlanets(planetList);
+		riskService.placeShip(planetList, player1, player2);
 
 
-		for(int i = 2; i < 30; i++) {
-			Planet planet = new Planet(i, "aaa", 1,playerRepo.findById(1));
-			planetRepo.save(planet);
-		}
+		
 	}
 
 

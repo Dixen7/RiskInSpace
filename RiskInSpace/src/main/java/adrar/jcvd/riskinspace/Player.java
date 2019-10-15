@@ -19,15 +19,14 @@ public class Player {
 	protected int playerId;
 	protected String playerName;
 	@ManyToOne(targetEntity=Species.class)
-	protected Optional<Species> playerSpeciesId;
+	protected Species playerSpeciesId;
 	protected int playerMoney;
 
 	@OneToMany(mappedBy="planetOwner")
 	//private ArrayList<Planet> planets ;
 	private Set<Planet> planets = new HashSet<Planet>();
 
-	public Player(int i, String playerName, Optional<Species> espece) {
-		this.playerId = i;
+	public Player(String playerName, Species espece) {
 		this.playerName = playerName;
 		this.playerSpeciesId = espece;
 	}
@@ -52,10 +51,10 @@ public class Player {
 		this.playerName = playerName;
 	}
 
-	public Optional<Species> getPlayerSpeciesId() {
+	public Species getPlayerSpeciesId() {
 		return playerSpeciesId;
 	}
-	public void setPlayerSpeciesId(Optional<Species> playerSpeciesId) {
+	public void setPlayerSpeciesId(Species playerSpeciesId) {
 		this.playerSpeciesId = playerSpeciesId;
 	}
 	public int getPlayerMoney() {

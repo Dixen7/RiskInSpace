@@ -20,9 +20,13 @@ public class RiskInSpaceService {
 	SpeciesRepository speciesRepo;
 	@Autowired
 	PlanetRepository planetRepo;
+	
 	//insertion des joueurs
 	public ArrayList<Player> insertPlayer() {
 		ArrayList<Player> players = new ArrayList<Player>();
+		List<Species> species = speciesRepo.findAll();
+		
+		
 		Scanner sc = new Scanner(System.in);
 		System.out.println("rentre le nbr de joueurs");
 		int numberPlayer = 2;//sc.nextInt();
@@ -30,19 +34,23 @@ public class RiskInSpaceService {
 			//Scanner sc2 = new Scanner(System.in);
 			System.out.println("rentre le nom du joueur");
 			String playerName = sc.nextLine();
-			players.add(new Player(1,playerName,speciesRepo.findById(1)));
+			int index = (int)(Math.random() * species.size());
+			Species espece = species.get(index);
+			players.add(new Player(playerName,espece));
 			numberPlayer--;
 		}
 		System.out.println(players.toString());
 		return players;
 	}
 	
+	//Génère l'ordre des joueurs
 	public ArrayList<Player> orderPlayerTurn(ArrayList<Player> players) {
 		 Collections.shuffle(players);
 		 System.out.println(players.toString());
 		 return players;
 	}
 	
+	//Renomme les planètes aléatoirement en début de jeu
 	public void renamePlanets(List<Planet> planetList) {
 		String []planetNames = {"Terre","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""};
 		List<String> pla = Arrays.asList(planetNames);
@@ -54,15 +62,15 @@ public class RiskInSpaceService {
 	}
 	
 	
-	
-	public void placeShip(List<Planet> planetList, Optional<Player> player1, Optional<Player> player2) {
-		
+	//Attribut les planètes aux joueurs et place 1 troupe sur celles-ci
+	public void placeShip(List<Planet> planetList, Player player1, Player player2) {
 		
 		ArrayList<Planet> planetListPlayer1 = new ArrayList<Planet>();
 		for(int i = 0; i < 15; i++) {
 			int randomIndex = (int) Math.ceil(Math.random()*planetList.size()-1);
 			 Planet randomPlanet = planetList.get(randomIndex);
 			 randomPlanet.setPlanetOwner(player1);
+			 randomPlanet.setPlanetShipsNbr(1);
 			 planetRepo.save(randomPlanet);
 			 planetListPlayer1.add(randomPlanet);
 			 planetList.remove(randomPlanet);
@@ -72,12 +80,12 @@ public class RiskInSpaceService {
 		for(int j = 0; j<planetListPlayer2.size(); j++) {
 			Planet pla = planetListPlayer2.get(j);
 			pla.setPlanetOwner(player2);
+			pla.setPlanetShipsNbr(1);
 			planetRepo.save(pla);
 		}
-		//System.out.println(planetList.toString());
+		
 		System.out.println(planetListPlayer1);
 		System.out.println(planetListPlayer2);
-		
 		
 	}
 	

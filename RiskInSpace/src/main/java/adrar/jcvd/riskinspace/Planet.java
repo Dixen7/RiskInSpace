@@ -23,7 +23,7 @@ public class Planet {
 	protected int planetShipsNbr;
 	protected String planetName;
 	 @ManyToOne(targetEntity=Player.class)
-	protected Optional<Player> planetOwner;
+	protected Player planetOwner;
 	protected int planetBonus;
 	protected String planetImage;
 	
@@ -38,7 +38,7 @@ public class Planet {
 
 	public Planet() {}
 	
-	public Planet(int planetId, String planetName, int planetShipsNbr, Optional<Player> planetOwner) {
+	public Planet(int planetId, String planetName, int planetShipsNbr, Player planetOwner) {
 		this.planetId = planetId;
 		this.planetName = planetName;
 		this.planetShipsNbr = planetShipsNbr;
@@ -67,11 +67,11 @@ public class Planet {
 		this.planetName = planetName;
 	}
 
-	public Optional<Player> getPlanetOwner() {
+	public Player getPlanetOwner() {
 		return planetOwner;
 	}
-	public void setPlanetOwner(Optional<Player> planetOwner) {
-		this.planetOwner = planetOwner;
+	public void setPlanetOwner(Player player1) {
+		this.planetOwner = player1;
 	}
 	public int getPlanetBonus() {
 		return planetBonus;
