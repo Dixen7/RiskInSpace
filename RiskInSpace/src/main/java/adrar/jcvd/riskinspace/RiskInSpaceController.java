@@ -2,6 +2,7 @@ package adrar.jcvd.riskinspace;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.Resource;
 
@@ -28,16 +29,9 @@ public class RiskInSpaceController {
 
 	@GetMapping("/riskinspace")
 	public void Test() {
-
 		
 		Fight fight = new Fight();
 		riskService.insertPlayer();
-
-		int nbrDiceAtt = 3;
-		int nbrDiceDef = 2;
-		fight.fight(nbrDiceAtt,nbrDiceDef);
-
-
 
 		List<Player> players = playerRepo.findAll(new Sort(Sort.Direction.DESC, "playerId"));
 		
@@ -48,8 +42,9 @@ public class RiskInSpaceController {
 		riskService.renamePlanets(planetList);
 		riskService.placeShip(planetList, player1, player2);
 		
+		Planet planetAtt = new Planet();
+		Planet planetDef = new Planet();
 
-
-		
+		fight.fight(3, 2, 3, 2, planetAtt, planetDef);
 	}
 }

@@ -82,6 +82,6 @@ public class Player {
 	}
 
 	public String toString() {
-		return this.playerId+","+this.playerName+", "+this.species;
+		return this.playerId + ", " + this.playerName + ", " + this.species;
 	}
 }
