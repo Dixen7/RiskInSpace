@@ -69,7 +69,7 @@ public class RiskInSpaceService {
 	
 	
 	//Attribut les planètes aux joueurs et place 1 troupe sur celles-ci
-	public void placeShip(List<Planet> planetList, Player player1, Player player2) {
+	public void placeShipInitial(List<Planet> planetList, Player player1, Player player2) {
 		
 		ArrayList<Planet> planetListPlayer1 = new ArrayList<Planet>();
 		for(int i = 0; i < 15; i++) {
@@ -94,6 +94,8 @@ public class RiskInSpaceService {
 		System.out.println(planetListPlayer2);
 		
 	}
+	
+	
 
 	
 	

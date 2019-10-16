@@ -29,24 +29,23 @@ public class RiskInSpaceController {
 	@GetMapping("/riskinspace")
 	public void Test() {
 
+		riskService.insertPlayer();
+		List<Player> players = playerRepo.findAll(new Sort(Sort.Direction.DESC, "playerId"));
+		
+		Player player1 = players.get(1);
+		Player player2 = players.get(0);
+		riskService.orderPlayerTurn(players);
+		List<Planet> planetList =  planetRepo.findAll();
+		riskService.renamePlanets(planetList);
+		riskService.placeShipInitial(planetList, player1, player2);
+		//riskService.placeShip();
 		
 		Fight fight = new Fight();
-		riskService.insertPlayer();
+		
 
 		int nbrDiceAtt = 3;
 		int nbrDiceDef = 2;
 		fight.fight(nbrDiceAtt,nbrDiceDef);
-
-
-
-		List<Player> players = playerRepo.findAll(new Sort(Sort.Direction.DESC, "playerId"));
-		
-		Player player1 = players.get(0);
-		Player player2 = players.get(1);
-		riskService.orderPlayerTurn(players);
-		List<Planet> planetList =  planetRepo.findAll();
-		riskService.renamePlanets(planetList);
-		riskService.placeShip(planetList, player1, player2);
 		
 
 

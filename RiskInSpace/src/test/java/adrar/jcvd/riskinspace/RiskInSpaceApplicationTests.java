@@ -38,7 +38,7 @@ public class RiskInSpaceApplicationTests {
 		Player player2 = players.get(1);
 		List<Planet> planetList =  planetRepo.findAll();
 		riskService.renamePlanets(planetList);
-		riskService.placeShip(planetList, player1, player2);
+		riskService.placeShipInitial(planetList, player1, player2);
 
 		
 	}
