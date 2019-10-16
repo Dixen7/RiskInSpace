@@ -38,7 +38,7 @@ public class RiskInSpaceController {
 		List<Planet> planetList =  planetRepo.findAll();
 		riskService.renamePlanets(planetList);
 		riskService.placeShipInitial(planetList, player1, player2);
-		//riskService.placeShip();
+		
 		
 		Fight fight = new Fight();
 		
@@ -46,9 +46,8 @@ public class RiskInSpaceController {
 		int nbrDiceAtt = 3;
 		int nbrDiceDef = 2;
 		fight.fight(nbrDiceAtt,nbrDiceDef);
-		
 
-
-		
+		riskService.shipsPerTurn(player1);
+	
 	}
 }

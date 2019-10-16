@@ -28,14 +28,14 @@ public class Planet {
 	protected int planetBonus;
 	protected String planetImage;
 	
-	@ManyToMany(cascade={CascadeType.ALL})
-	@JoinTable(name="frontiers",
-		joinColumns={@JoinColumn(name="planet_id1")},
-		inverseJoinColumns={@JoinColumn(name="planet_id2")})
-	private Set<Planet> planets = new HashSet<Planet>();
-
-	@ManyToMany(mappedBy="planets")
-	private Set<Planet> planetsNear = new HashSet<Planet>();
+//	@ManyToMany(cascade={CascadeType.ALL})
+//	@JoinTable(name="frontiers",
+//		joinColumns={@JoinColumn(name="planet_id1")},
+//		inverseJoinColumns={@JoinColumn(name="planet_id2")})
+//	private Set<Planet> planets = new HashSet<Planet>();
+//
+//	@ManyToMany(mappedBy="planets")
+//	private Set<Planet> planetsNear = new HashSet<Planet>();
 
 	public Planet() {}
 	
