@@ -10,9 +10,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import adrar.jcvd.riskinspace.repositories.PlanetRepository;
 import adrar.jcvd.riskinspace.repositories.PlayerRepository;
+
 
 @Controller
 public class RiskInSpaceController {
@@ -49,5 +55,21 @@ public class RiskInSpaceController {
 
 		riskService.shipsPerTurn(player1);
 	
+	}
+	@GetMapping("/")
+	public ModelAndView home() {
+		List<Species> species = speciesService.findAll();
+		ModelAndView view = new ModelAndView("init");
+		view.addObject("species",species);
+		return view;
+		
+	}
+	
+	@RequestMapping(value="/",method = RequestMethod.POST) 
+	public void insertPlayer(@RequestParam(value="name") String name) {
+		/*
+		String playerName = request.getParameter("name");
+		Player player = new Player(playerName,espece);
+		//riskService.insertPlayer();*/
 	}
 }
