@@ -89,9 +89,9 @@ public class RiskInSpaceService {
 		List<Planet> planetListPlayer = planetRepo.findAllByPlanetOwner(player);
 		Planet planetChoose = planetListPlayer.get(2);
 		int planetShip = planetChoose.getPlanetShipsNbr();
-		int planetShipAdd = planetChoose.setPlanetShipsNbr(planetShip + shipsCount); 
+		planetChoose.setPlanetShipsNbr(planetShip + shipsCount); 
 		
-		System.out.println(planetShipAdd);		
+		System.out.println(planetChoose.getPlanetShipsNbr());		
 		
 	}
 
