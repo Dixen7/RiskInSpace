@@ -55,8 +55,8 @@ public class Planet {
 	public int getPlanetShipsNbr() {
 		return planetShipsNbr;
 	}
-	public void setPlanetShipsNbr(int planetShipsNbr) {
-		this.planetShipsNbr = planetShipsNbr;
+	public int setPlanetShipsNbr(int planetShipsNbr) {
+		return this.planetShipsNbr = planetShipsNbr;
 	}
 	
 	

@@ -47,7 +47,7 @@ public class RiskInSpaceController {
 		List<Planet> planetList =  planetRepo.findAll();
 		riskService.renamePlanets(planetList);
 		riskService.placeShip(planetList, player1, player2);
-		riskService.shipsPerTurn(player1);
+		riskService.placeShipsPlayer(player1);
 		
 
 

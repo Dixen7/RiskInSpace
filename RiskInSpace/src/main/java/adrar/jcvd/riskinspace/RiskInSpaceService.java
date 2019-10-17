@@ -105,6 +105,21 @@ public class RiskInSpaceService {
 		return shipsPerTurn;
 							
 	}
+	
+	//methode placement de troupes sur les planettes 
+	public void placeShipsPlayer(Player player) {
+		
+		shipsPerTurn(player);
+		// compteur de vaisseaux par joueur
+		int shipsCount = shipsPerTurn(player);
+		List<Planet> planetListPlayer = planetRepo.findAllByPlanetOwner(player);
+		Planet planetChoose = planetListPlayer.get(2);
+		int planetShip = planetChoose.getPlanetShipsNbr();
+		int planetShipAdd = planetChoose.setPlanetShipsNbr(planetShip + shipsCount); 
+		
+		System.out.println(planetShipAdd);		
+		
+	}
 
 	
 	
