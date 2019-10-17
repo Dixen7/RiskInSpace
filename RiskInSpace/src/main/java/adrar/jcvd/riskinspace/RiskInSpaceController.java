@@ -46,7 +46,7 @@ public class RiskInSpaceController {
 		riskService.placeShipInitial(planetList, player1, player2);
 		riskService.placeShipsPlayer(player1);
 
-		
+
 
 		Fight fight = new Fight();
 
@@ -54,46 +54,46 @@ public class RiskInSpaceController {
 		Planet planetAtt = planetList.get(1);
 		planetAtt.setPlanetOwner(player1);
 		planetAtt.setPlanetShipsNbr(3);
-		
+
 
 		Planet planetDef = planetList.get(2);
 		planetDef.setPlanetOwner(player2);
 		planetDef.setPlanetShipsNbr(2);
 		//
-		
+
 		int nbrAttDice = -1, nbrDefDice = -1;
-		
+
 		Scanner sc = new Scanner(System.in);
 		System.out.println("FIGHT !");
 		System.out.println();
-		
+
 		System.out.println("Attaquant, choisissez le nombre de dés (entre 1 et 3)");
 		while( nbrAttDice < 0 || nbrAttDice > 3) {
 			nbrAttDice = sc.nextInt();
 		}
-		
+
 		System.out.println("Défenseur, choisissez le nombre de dés (entre 1 et 2)");
 		while( nbrDefDice < 0 || nbrDefDice > 2) {
 			nbrDefDice = sc.nextInt();
 		}
-		
+
 		fight.fight(nbrAttDice, nbrDefDice, planetAtt.getPlanetShipsNbr(), planetDef.getPlanetShipsNbr(), planetAtt, planetDef);
-
+		riskService.planetsNear(planetAtt);
 		riskService.shipsPerTurn(player1);
-		System.out.println(planetAtt.getPlanetId() +" " +planetAtt.getPlanets());
-
 	}
-	
+
+
+
 	@GetMapping("/")
 	public ModelAndView home() {
 		List<Species> species = speciesService.findAll();
 		ModelAndView view = new ModelAndView("init");
 		view.addObject("species",species);
 		return view;
-
-		
 	}
-	
+
+
+
 	//@RequestMapping(value="/",method = RequestMethod.POST) 
 	@PostMapping("/")
 	public void insertPlayer(HttpServletRequest request) {
@@ -101,23 +101,22 @@ public class RiskInSpaceController {
 		String playerName2 = "";
 		String playerSpecies1 = "";
 		String playerSpecies2 = "";
-        try {           
+		try {           
 
-            playerName1 = (String) request.getParameter("player-name");
-            playerName2 = (String) request.getParameter("player-name2");
-            playerSpecies1 = (String) request.getParameter("player-species");
-            playerSpecies2 = (String) request.getParameter("player-species2");
-           
-            Species specie1 = speciesService.findOne(Integer.parseInt(playerSpecies1));
-            Species specie2 = speciesService.findOne(Integer.parseInt(playerSpecies2));
-            
-            Player player1 = new Player(playerName1, specie1);
-            Player player2 = new Player(playerName2, specie2);
-            playerRepo.save(player1);
-            playerRepo.save(player2);
-        } catch (Exception e) {
+			playerName1 = (String) request.getParameter("player-name");
+			playerName2 = (String) request.getParameter("player-name2");
+			playerSpecies1 = (String) request.getParameter("player-species");
+			playerSpecies2 = (String) request.getParameter("player-species2");
 
-        }
-		
+			Species specie1 = speciesService.findOne(Integer.parseInt(playerSpecies1));
+			Species specie2 = speciesService.findOne(Integer.parseInt(playerSpecies2));
+
+			Player player1 = new Player(playerName1, specie1);
+			Player player2 = new Player(playerName2, specie2);
+			playerRepo.save(player1);
+			playerRepo.save(player2);
+		} catch (Exception e) {
+
+		}
 	}
 }
