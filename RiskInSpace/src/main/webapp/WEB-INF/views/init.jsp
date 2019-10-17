@@ -13,9 +13,18 @@
 <div id="main">
     <form method="post" action="/">
      	<label for="name">Nom Joueur 1 : </label>
-        <input type="text" name="name" id="name" />
-        <select name="species">
-          <option value="">Choisir une planète à attaquer</option>
+        <input type="text" name="player-name" id="name" />
+        <select name="player-species">
+          <option value="">Sélectionner une race</option>
+          <c:forEach items="${ species }" var="species">
+         	<option value="<c:out value="${species.speciesId }"/>"><c:out value="${ species.speciesName }"/></option>
+         	 </c:forEach>
+         </select>
+         
+         <label for="name">Nom Joueur 2 : </label>
+        <input type="text" name="player-name2" id="name2" />
+        <select name="player-species2">
+          <option value="">Sélectionner une race</option>
           <c:forEach items="${ species }" var="species">
          	<option value="<c:out value="${species.speciesId }"/>"><c:out value="${ species.speciesName }"/></option>
          	 </c:forEach>

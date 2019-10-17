@@ -26,7 +26,7 @@ public class RiskInSpaceService {
 	@Autowired
 	private PlayerRepository playerRepo;
 	
-	//insertion des joueurs
+	/*//insertion des joueurs
 	public void insertPlayer() {
 		
 		
@@ -47,7 +47,7 @@ public class RiskInSpaceService {
 			numberPlayer--;
 		}
 		
-	}
+	}*/
 	
 	//Génère l'ordre des joueurs
 	public List<Player> orderPlayerTurn(List<Player> players) {

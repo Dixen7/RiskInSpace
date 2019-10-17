@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -36,7 +37,6 @@ public class RiskInSpaceController {
 	@GetMapping("/riskinspace")
 	public void Test() {
 
-		riskService.insertPlayer();
 
 		List<Player> players = playerRepo.findAll(new Sort(Sort.Direction.DESC, "playerId"));
 		
@@ -67,8 +67,30 @@ public class RiskInSpaceController {
 		
 	}
 	
-	@RequestMapping(value="/",method = RequestMethod.POST) 
-	public void insertPlayer(@RequestParam(value="name") String name) {
+	//@RequestMapping(value="/",method = RequestMethod.POST) 
+	@PostMapping("/")
+	public void insertPlayer(HttpServletRequest request) {
+		String playerName1 = "";
+		String playerName2 = "";
+		String playerSpecies1 = "";
+		String playerSpecies2 = "";
+        try {           
+
+            playerName1 = (String) request.getParameter("player-name");
+            playerName2 = (String) request.getParameter("player-name2");
+            playerSpecies1 = (String) request.getParameter("player-species");
+            playerSpecies2 = (String) request.getParameter("player-species2");
+           
+            Species specie1 = speciesService.findOne(Integer.parseInt(playerSpecies1));
+            Species specie2 = speciesService.findOne(Integer.parseInt(playerSpecies2));
+            
+            Player player1 = new Player(playerName1, specie1);
+            Player player2 = new Player(playerName2, specie2);
+            playerRepo.save(player1);
+            playerRepo.save(player2);
+        } catch (Exception e) {
+
+        }
 		/*
 		String playerName = request.getParameter("name");
 		Player player = new Player(playerName,espece);
