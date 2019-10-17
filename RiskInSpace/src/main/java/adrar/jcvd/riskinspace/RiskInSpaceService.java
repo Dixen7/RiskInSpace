@@ -96,7 +96,14 @@ public class RiskInSpaceService {
 	}
 
 	
-	
+	// Méthode pour obtenir toutes les planètes adjacentes à la notre
+	public void planetsNear(Planet planet) {
+		ArrayList<Planet> allPlanetsNear = new ArrayList<Planet>();
+		allPlanetsNear.addAll(planet.getPlanets());
+		allPlanetsNear.addAll(planet.getPlanetsNear());
+		System.out.println(planet.getPlanetId());
+		System.out.println(allPlanetsNear);
+	}
 }
 
 
