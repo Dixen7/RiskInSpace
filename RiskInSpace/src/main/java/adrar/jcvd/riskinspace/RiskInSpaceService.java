@@ -4,57 +4,53 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
-
-import javax.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import adrar.jcvd.riskinspace.repositories.PlanetRepository;
 import adrar.jcvd.riskinspace.repositories.PlayerRepository;
-import adrar.jcvd.riskinspace.repositories.SpeciesRepository;
 
 @Service
 public class RiskInSpaceService {
-	
+
 	@Autowired
 	private SpeciesService speciesService;
 	@Autowired
 	private PlanetRepository planetRepo;
 	@Autowired
 	private PlayerRepository playerRepo;
-	
+
 	//insertion des joueurs
 	public void insertPlayer() {
-		
-		
+
 		List<Species> species = speciesService.findAll();
-		
+
 		Scanner sc = new Scanner(System.in);
 		System.out.println("rentre le nombre de joueurs");
 		int numberPlayer = 2;
 		while(numberPlayer > 0) {
 			System.out.println("rentre le nom du joueur");
-			
+
 			String playerName = sc.nextLine();
 			int index = (int)(Math.random() * species.size());
 			Species espece = species.get(index);
-			
+
 			Player player = new Player(playerName,espece);
 			playerRepo.save(player);
 			numberPlayer--;
 		}
-		
 	}
+	
+	
 	
 	//Génère l'ordre des joueurs
 	public List<Player> orderPlayerTurn(List<Player> players) {
-		 Collections.shuffle(players);
-//		 System.out.println(players.toString());
-		 return players;
+		Collections.shuffle(players);
+		//		 System.out.println(players.toString());
+		return players;
 	}
+	
+	
 	
 	//Renomme les planètes aléatoirement en début de jeu
 	public void renamePlanets(List<Planet> planetList) {
@@ -68,18 +64,19 @@ public class RiskInSpaceService {
 	}
 	
 	
+	
 	//Attribut les planètes aux joueurs et place 1 troupe sur celles-ci
 	public void placeShipInitial(List<Planet> planetList, Player player1, Player player2) {
-		
+
 		ArrayList<Planet> planetListPlayer1 = new ArrayList<Planet>();
 		for(int i = 0; i < 15; i++) {
 			int randomIndex = (int) Math.ceil(Math.random()*planetList.size()-1);
-			 Planet randomPlanet = planetList.get(randomIndex);
-			 randomPlanet.setPlanetOwner(player1);
-			 randomPlanet.setPlanetShipsNbr(1);
-			 planetRepo.save(randomPlanet);
-			 planetListPlayer1.add(randomPlanet);
-			 planetList.remove(randomPlanet);
+			Planet randomPlanet = planetList.get(randomIndex);
+			randomPlanet.setPlanetOwner(player1);
+			randomPlanet.setPlanetShipsNbr(1);
+			planetRepo.save(randomPlanet);
+			planetListPlayer1.add(randomPlanet);
+			planetList.remove(randomPlanet);
 		}
 		ArrayList<Planet> planetListPlayer2 = new ArrayList<Planet>();
 		planetListPlayer2.addAll(planetList);
@@ -89,25 +86,19 @@ public class RiskInSpaceService {
 			pla.setPlanetShipsNbr(1);
 			planetRepo.save(pla);
 		}
-
-		
 	}
+	
+	
 	
 	// Donne les troupes selon le nombre de planettes
 	public int shipsPerTurn(Player player) {
-		
+
 		//List<Planet> planetListPlayer = player.getPlanets();
 		List<Planet> planetListPlayer = planetRepo.findAllByPlanetOwner(player);
-		
+
 		int nmbrPlanets = planetListPlayer.size();
 		double shipsTurn = nmbrPlanets / 3;
 		int shipsPerTurn = (int) Math.floor(shipsTurn);
 		return shipsPerTurn;
-							
 	}
-	
-	
-
-	
-	
 }

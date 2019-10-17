@@ -2,11 +2,10 @@ package adrar.jcvd.riskinspace;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Optional;
 
 public class Fight {
 
-	//	Lance 1 dé à 6 faces
+	// Lance X dé(s) à 6 faces et retourne un tableau d'entiers contenant les résultats
 	public ArrayList<Integer> rollDice(int nbrDice) {
 		ArrayList<Integer> Dice = new ArrayList<Integer>();
 		while (nbrDice > 0) {
@@ -21,6 +20,7 @@ public class Fight {
 
 
 	public void fight(int nbrAttDice, int nbrDefDice, int planetShipsAttNbr, int planetShipsDefNbr, Planet planetAtt, Planet planetDef) {
+		System.out.println("troupes sur la planète: " + planetShipsAttNbr + " de l'attaquant | " + planetShipsDefNbr + " du défenseur");
 		System.out.println("troupes : " + nbrAttDice + " de l'attaquant | " + nbrDefDice + " du défenseur");
 		int[] resFight = compareDice(rollDice(nbrAttDice), rollDice(nbrDefDice));
 		nbrAttDice -= resFight[0];
@@ -28,13 +28,22 @@ public class Fight {
 		planetShipsAttNbr -= resFight[0];
 		planetShipsDefNbr -= resFight[1];
 		System.out.println("troupes : " + nbrAttDice + " de l'attaquant | " + nbrDefDice + " du défenseur");
+		if(nbrAttDice <= 0) {
+			System.out.println("L'attaquant n'a plus de troupes");
+		} else if(nbrDefDice <= 0) {
+			System.out.println("Le défenseur n'a plus de troupes");
+		}
+		
 		if (planetShipsDefNbr <= 0) {
 			System.out.println("Le défenseur n'a plus de troupes, le territoire a été vaincu par l'attaquant");
 			System.out.println("owner planetAtt avant = " + planetAtt.getPlanetOwner());
 			System.out.println("owner planetDef avant = " + planetDef.getPlanetOwner());
+			System.out.println();
 			planetDef.setPlanetOwner(planetAtt.getPlanetOwner());
 			System.out.println("owner planetAtt après = " + planetAtt.getPlanetOwner());
 			System.out.println("owner planetDef après = " + planetDef.getPlanetOwner());
+		} else {
+			System.out.println("Le défenseur à réussit à garder sa planète pour cette fois");
 		}
 	}
 
@@ -57,9 +66,6 @@ public class Fight {
 				resFight[0]++;
 			}
 		}
-		// Le défenseur va forcément tout perdre avec ça
-		resFight[1]=2;
-		//
 		return resFight;
 	}
 }
