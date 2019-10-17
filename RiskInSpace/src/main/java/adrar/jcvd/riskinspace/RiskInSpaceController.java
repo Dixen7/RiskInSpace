@@ -10,17 +10,18 @@ import java.util.List;
 import java.util.Scanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import adrar.jcvd.riskinspace.repositories.PlanetRepository;
 import adrar.jcvd.riskinspace.repositories.PlayerRepository;
 
-
-@Controller
+@CrossOrigin(origins = { "http://localhost:3000" })
+@RestController
 public class RiskInSpaceController {
 
 	@Autowired
@@ -82,16 +83,23 @@ public class RiskInSpaceController {
 		riskService.shipsPerTurn(player1);
 		
 		riskService.moveShips(planetAtt, 12);
+		riskService.shipsPerTurn(player1);
+		riskService.shipChose(2, player1);
 	}
 
 
 
+//	@GetMapping("/")
+//	public ModelAndView home() {
+//		List<Species> species = speciesService.findAll();
+//		ModelAndView view = new ModelAndView("init");
+//		view.addObject("species",species);
+//		return view;
+//	}
+	
 	@GetMapping("/")
-	public ModelAndView home() {
-		List<Species> species = speciesService.findAll();
-		ModelAndView view = new ModelAndView("init");
-		view.addObject("species",species);
-		return view;
+	public String home() {
+		return "coucou";
 	}
 
 

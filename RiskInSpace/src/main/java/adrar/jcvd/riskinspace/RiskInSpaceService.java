@@ -47,7 +47,7 @@ public class RiskInSpaceService {
 	public void placeShipInitial(List<Planet> planetList, Player player1, Player player2) {
 
 		ArrayList<Planet> planetListPlayer1 = new ArrayList<Planet>();
-		for(int i = 0; i < 15; i++) {
+		for(int i = 0; i < 10; i++) {
 			int randomIndex = (int) Math.ceil(Math.random()*planetList.size()-1);
 			Planet randomPlanet = planetList.get(randomIndex);
 			randomPlanet.setPlanetOwner(player1);
@@ -86,12 +86,8 @@ public class RiskInSpaceService {
 		shipsPerTurn(player);
 		// compteur de vaisseaux par joueur
 		int shipsCount = shipsPerTurn(player);
-		List<Planet> planetListPlayer = planetRepo.findAllByPlanetOwner(player);
-		Planet planetChoose = planetListPlayer.get(2);
-		int planetShip = planetChoose.getPlanetShipsNbr();
-		planetChoose.setPlanetShipsNbr(planetShip + shipsCount); 
-
-		System.out.println(planetChoose.getPlanetShipsNbr());		
+		shipChose(shipsCount, player);
+	
 
 	}
 
@@ -118,7 +114,16 @@ public class RiskInSpaceService {
 			}
 		}
 		System.out.println("ok");
-		System.out.println(planetsNearOwned);
+//		System.out.println(planetsNearOwned);
+	}
+	
+	public void shipChose(int shipsCount, Player player) {
+		
+		List<Planet> planetListPlayer = planetRepo.findAllByPlanetOwner(player);
+		Planet planetChoose = planetListPlayer.get(2);
+		int planetShip = planetChoose.getPlanetShipsNbr();
+		planetChoose.setPlanetShipsNbr(planetShip + shipsCount); 
+		System.out.println(planetChoose.getPlanetShipsNbr());
 	}
 }
 
