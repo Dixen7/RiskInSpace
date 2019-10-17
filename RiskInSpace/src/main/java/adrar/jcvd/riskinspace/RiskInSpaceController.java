@@ -33,19 +33,23 @@ public class RiskInSpaceController {
 	RiskInSpaceService riskService;
 
 	@GetMapping("/riskinspace")
-	public void Test() {
+	public ModelAndView Riskinspace() {
 
 
 		List<Player> players = playerRepo.findAll(new Sort(Sort.Direction.DESC, "playerId"));
-
+		List<Planet> planetList =  planetRepo.findAll();
+		
+		riskService.renamePlanets(planetList);
 		Player player1 = players.get(1);
 		Player player2 = players.get(0);
 		riskService.orderPlayerTurn(players);
-		List<Planet> planetList =  planetRepo.findAll();
-		riskService.renamePlanets(planetList);
+		
 		riskService.placeShipInitial(planetList, player1, player2);
+		planetList = planetRepo.findAll(new Sort(Sort.Direction.ASC, "planetId"));
+		List<Planet> planetsPlayer1 = planetRepo.findAllByPlanetOwner(player1);
+		List<Planet> planetsPlayer2 = planetRepo.findAllByPlanetOwner(player2);
 		riskService.placeShipsPlayer(player1);
-
+		
 		
 
 		Fight fight = new Fight();
@@ -77,10 +81,18 @@ public class RiskInSpaceController {
 			nbrDefDice = sc.nextInt();
 		}
 		
-		fight.fight(nbrAttDice, nbrDefDice, planetAtt.getPlanetShipsNbr(), planetDef.getPlanetShipsNbr(), planetAtt, planetDef);
+		//fight.fight(nbrAttDice, nbrDefDice, planetAtt.getPlanetShipsNbr(), planetDef.getPlanetShipsNbr(), planetAtt, planetDef);
 
 		riskService.shipsPerTurn(player1);
 		System.out.println(planetAtt.getPlanetId() +" " +planetAtt.getPlanets());
+		System.out.println(planetList);
+		ModelAndView view = new ModelAndView("riskinspace");
+		view.addObject("player1",player1);
+		view.addObject("player2",player2);
+		view.addObject("planets",planetList);
+		view.addObject("planetsPlayer1",planetsPlayer1);
+		view.addObject("planetsPlayer2",planetsPlayer2);
+		return view;
 
 	}
 	
@@ -115,6 +127,8 @@ public class RiskInSpaceController {
             Player player2 = new Player(playerName2, specie2);
             playerRepo.save(player1);
             playerRepo.save(player2);
+            
+            
         } catch (Exception e) {
 
         }
