@@ -52,7 +52,7 @@ public class RiskInSpaceService {
 	//Génère l'ordre des joueurs
 	public List<Player> orderPlayerTurn(List<Player> players) {
 		 Collections.shuffle(players);
-		 System.out.println(players.toString());
+//		 System.out.println(players.toString());
 		 return players;
 	}
 	
@@ -69,7 +69,7 @@ public class RiskInSpaceService {
 	
 	
 	//Attribut les planètes aux joueurs et place 1 troupe sur celles-ci
-	public void placeShip(List<Planet> planetList, Player player1, Player player2) {
+	public void placeShipInitial(List<Planet> planetList, Player player1, Player player2) {
 		
 		ArrayList<Planet> planetListPlayer1 = new ArrayList<Planet>();
 		for(int i = 0; i < 15; i++) {
@@ -89,11 +89,24 @@ public class RiskInSpaceService {
 			pla.setPlanetShipsNbr(1);
 			planetRepo.save(pla);
 		}
-		
-		System.out.println(planetListPlayer1);
-		System.out.println(planetListPlayer2);
+
 		
 	}
+	
+	// Donne les troupes selon le nombre de planettes
+	public int shipsPerTurn(Player player) {
+		
+		//List<Planet> planetListPlayer = player.getPlanets();
+		List<Planet> planetListPlayer = planetRepo.findAllByPlanetOwner(player);
+		
+		int nmbrPlanets = planetListPlayer.size();
+		double shipsTurn = nmbrPlanets / 3;
+		int shipsPerTurn = (int) Math.floor(shipsTurn);
+		return shipsPerTurn;
+							
+	}
+	
+	
 
 	
 	
