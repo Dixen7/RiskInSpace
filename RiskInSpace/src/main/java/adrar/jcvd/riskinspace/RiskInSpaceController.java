@@ -80,6 +80,8 @@ public class RiskInSpaceController {
 		fight.fight(nbrAttDice, nbrDefDice, planetAtt.getPlanetShipsNbr(), planetDef.getPlanetShipsNbr(), planetAtt, planetDef);
 		riskService.planetsNear(planetAtt);
 		riskService.shipsPerTurn(player1);
+		
+		riskService.moveShips(planetAtt, 12);
 	}
 
 

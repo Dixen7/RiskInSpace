@@ -20,16 +20,16 @@ public class RiskInSpaceService {
 	@Autowired
 	private PlayerRepository playerRepo;
 
-	
+
 	//Génère l'ordre des joueurs
 	public List<Player> orderPlayerTurn(List<Player> players) {
 		Collections.shuffle(players);
 		//		 System.out.println(players.toString());
 		return players;
 	}
-	
-	
-	
+
+
+
 	//Renomme les planètes aléatoirement en début de jeu
 	public void renamePlanets(List<Planet> planetList) {
 		String []planetNames = {"Mercure","Venus","Terre","Mars","Neptune","Pluton","Naboo","Tatooine","Endor","Coruscant","Hoth","Magrathea","Kakrafoon Kappa","Krikket","Bételgeuse","P3X-888","Lantea","Dakara","Celestis","Talos IV","Risa","Qo'noS","Acamar III","Raxacoricofallapatorius","Metebelis III","Alfava Metraxis","Gallifrey","Kobol","Caprica","Gemenon","Leonis","Alpha Corvus","Meirrion","Troy","Solaria","Pandora","Krypton","Alderaan","Aldebaran","Babel","Betazed","Khitomer","Ligon II","Corellia","Dagobah","Mustafar","Yavin IV"};
@@ -40,9 +40,9 @@ public class RiskInSpaceService {
 			planetRepo.save(planetList.get(i));
 		}
 	}
-	
-	
-	
+
+
+
 	//Attribut les planètes aux joueurs et place 1 troupe sur celles-ci
 	public void placeShipInitial(List<Planet> planetList, Player player1, Player player2) {
 
@@ -65,9 +65,9 @@ public class RiskInSpaceService {
 			planetRepo.save(pla);
 		}
 	}
-	
-	
-	
+
+
+
 	// Donne les troupes selon le nombre de planettes
 	public int shipsPerTurn(Player player) {
 
@@ -82,7 +82,7 @@ public class RiskInSpaceService {
 
 	//methode placement de troupes sur les planettes 
 	public void placeShipsPlayer(Player player) {
-		
+
 		shipsPerTurn(player);
 		// compteur de vaisseaux par joueur
 		int shipsCount = shipsPerTurn(player);
@@ -90,19 +90,35 @@ public class RiskInSpaceService {
 		Planet planetChoose = planetListPlayer.get(2);
 		int planetShip = planetChoose.getPlanetShipsNbr();
 		planetChoose.setPlanetShipsNbr(planetShip + shipsCount); 
-		
+
 		System.out.println(planetChoose.getPlanetShipsNbr());		
-		
+
 	}
 
-	
+
 	// Méthode pour obtenir toutes les planètes adjacentes à la notre
-	public void planetsNear(Planet planet) {
+	public ArrayList<Planet> planetsNear(Planet planet) {
 		ArrayList<Planet> allPlanetsNear = new ArrayList<Planet>();
 		allPlanetsNear.addAll(planet.getPlanets());
 		allPlanetsNear.addAll(planet.getPlanetsNear());
 		System.out.println(planet.getPlanetId());
 		System.out.println(allPlanetsNear);
+		return allPlanetsNear;
+	}
+
+	// methode deplacement de vesseaux pour chaque fin de tour (A TERMINER)
+
+	public void moveShips(Planet planet, int nbrShips) {
+
+		ArrayList<Planet> allPlanetsNear = planetsNear(planet);
+		ArrayList<Planet> planetsNearOwned = new ArrayList<Planet>();
+		for (int i = 0; i < allPlanetsNear.size(); i++) {
+			if (planet.planetOwner == allPlanetsNear.get(i).planetOwner) {
+				planetsNearOwned.add(allPlanetsNear.get(i));
+			}
+		}
+		System.out.println("ok");
+		System.out.println(planetsNearOwned);
 	}
 }
 
