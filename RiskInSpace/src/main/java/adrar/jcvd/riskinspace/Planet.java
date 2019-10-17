@@ -1,11 +1,16 @@
 package adrar.jcvd.riskinspace;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -21,14 +26,14 @@ public class Planet {
 	protected int planetBonus;
 	protected String planetImage;
 
-	//	@ManyToMany(cascade={CascadeType.ALL})
-	//	@JoinTable(name="frontiers",
-	//		joinColumns={@JoinColumn(name="planet_id1")},
-	//		inverseJoinColumns={@JoinColumn(name="planet_id2")})
-	//	private Set<Planet> planets = new HashSet<Planet>();
-	//
-	//	@ManyToMany(mappedBy="planets")
-	//	private Set<Planet> planetsNear = new HashSet<Planet>();
+	@ManyToMany(cascade={CascadeType.ALL})
+		@JoinTable(name="frontiers",
+			joinColumns={@JoinColumn(name="planet_id1")},
+			inverseJoinColumns={@JoinColumn(name="planet_id2")})
+		private Set<Planet> planets = new HashSet<Planet>();
+	
+		@ManyToMany(mappedBy="planets")
+		private Set<Planet> planetsNear = new HashSet<Planet>();
 
 	public Planet() {}
 
@@ -83,4 +88,22 @@ public class Planet {
 	public String toString() {
 		return ""+this.planetId + " ";
 	}
+
+	public Set<Planet> getPlanets() {
+		return planets;
+	}
+
+	public void setPlanets(Set<Planet> planets) {
+		this.planets = planets;
+	}
+
+	public Set<Planet> getPlanetsNear() {
+		return planetsNear;
+	}
+
+	public void setPlanetsNear(Set<Planet> planetsNear) {
+		this.planetsNear = planetsNear;
+	}
+	
+	
 }

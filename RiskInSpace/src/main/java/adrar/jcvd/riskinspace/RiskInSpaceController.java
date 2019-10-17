@@ -51,6 +51,7 @@ public class RiskInSpaceController {
 		Planet planetAtt = planetList.get(1);
 		planetAtt.setPlanetOwner(player1);
 		planetAtt.setPlanetShipsNbr(3);
+		
 
 		Planet planetDef = planetList.get(2);
 		planetDef.setPlanetOwner(player2);
@@ -76,7 +77,7 @@ public class RiskInSpaceController {
 		fight.fight(nbrAttDice, nbrDefDice, planetAtt.getPlanetShipsNbr(), planetDef.getPlanetShipsNbr(), planetAtt, planetDef);
 
 		riskService.shipsPerTurn(player1);
-
+		System.out.println(planetAtt.getPlanetId() +" " +planetAtt.getPlanets());
 
 	}
 	@GetMapping("/")
