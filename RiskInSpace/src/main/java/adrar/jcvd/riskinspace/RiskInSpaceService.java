@@ -20,28 +20,6 @@ public class RiskInSpaceService {
 	@Autowired
 	private PlayerRepository playerRepo;
 
-	//insertion des joueurs
-	public void insertPlayer() {
-
-		List<Species> species = speciesService.findAll();
-
-		Scanner sc = new Scanner(System.in);
-		System.out.println("rentre le nombre de joueurs");
-		int numberPlayer = 2;
-		while(numberPlayer > 0) {
-			System.out.println("rentre le nom du joueur");
-
-			String playerName = sc.nextLine();
-			int index = (int)(Math.random() * species.size());
-			Species espece = species.get(index);
-
-			Player player = new Player(playerName,espece);
-			playerRepo.save(player);
-			numberPlayer--;
-		}
-	}
-	
-	
 	
 	//Génère l'ordre des joueurs
 	public List<Player> orderPlayerTurn(List<Player> players) {
