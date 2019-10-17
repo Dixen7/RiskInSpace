@@ -49,8 +49,7 @@ public class RiskInSpaceController {
 		List<Planet> planetsPlayer1 = planetRepo.findAllByPlanetOwner(player1);
 		List<Planet> planetsPlayer2 = planetRepo.findAllByPlanetOwner(player2);
 		riskService.placeShipsPlayer(player1);
-		
-		
+
 
 		Fight fight = new Fight();
 
@@ -58,34 +57,37 @@ public class RiskInSpaceController {
 		Planet planetAtt = planetList.get(1);
 		planetAtt.setPlanetOwner(player1);
 		planetAtt.setPlanetShipsNbr(3);
-		
+
 
 		Planet planetDef = planetList.get(2);
 		planetDef.setPlanetOwner(player2);
 		planetDef.setPlanetShipsNbr(2);
 		//
-		
+
 		int nbrAttDice = -1, nbrDefDice = -1;
-		
+
 		Scanner sc = new Scanner(System.in);
 		System.out.println("FIGHT !");
 		System.out.println();
-		
+
 		System.out.println("Attaquant, choisissez le nombre de dés (entre 1 et 3)");
 		while( nbrAttDice < 0 || nbrAttDice > 3) {
 			nbrAttDice = sc.nextInt();
 		}
-		
+
 		System.out.println("Défenseur, choisissez le nombre de dés (entre 1 et 2)");
 		while( nbrDefDice < 0 || nbrDefDice > 2) {
 			nbrDefDice = sc.nextInt();
 		}
-		
-		//fight.fight(nbrAttDice, nbrDefDice, planetAtt.getPlanetShipsNbr(), planetDef.getPlanetShipsNbr(), planetAtt, planetDef);
 
+
+		fight.fight(nbrAttDice, nbrDefDice, planetAtt.getPlanetShipsNbr(), planetDef.getPlanetShipsNbr(), planetAtt, planetDef);
+		riskService.planetsNear(planetAtt);
 		riskService.shipsPerTurn(player1);
+
 		System.out.println(planetAtt.getPlanetId() +" " +planetAtt.getPlanets());
 		System.out.println(planetList);
+		riskService.moveShips(planetAtt, 12);
 		ModelAndView view = new ModelAndView("riskinspace");
 		view.addObject("player1",player1);
 		view.addObject("player2",player2);
@@ -94,18 +96,21 @@ public class RiskInSpaceController {
 		view.addObject("planetsPlayer2",planetsPlayer2);
 		return view;
 
+
 	}
-	
+
+
+
 	@GetMapping("/")
 	public ModelAndView home() {
 		List<Species> species = speciesService.findAll();
 		ModelAndView view = new ModelAndView("init");
 		view.addObject("species",species);
 		return view;
-
-		
 	}
-	
+
+
+
 	//@RequestMapping(value="/",method = RequestMethod.POST) 
 	@PostMapping("/")
 	public void insertPlayer(HttpServletRequest request) {
@@ -113,6 +118,7 @@ public class RiskInSpaceController {
 		String playerName2 = "";
 		String playerSpecies1 = "";
 		String playerSpecies2 = "";
+
         try {           
 
             playerName1 = (String) request.getParameter("player-name");
@@ -133,5 +139,6 @@ public class RiskInSpaceController {
 
         }
 		
+
 	}
 }
