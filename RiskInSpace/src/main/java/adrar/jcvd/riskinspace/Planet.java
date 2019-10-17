@@ -1,17 +1,15 @@
 package adrar.jcvd.riskinspace;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -22,23 +20,23 @@ public class Planet {
 	protected int planetId;
 	protected int planetShipsNbr;
 	protected String planetName;
-	 @ManyToOne(cascade = {CascadeType.ALL})
-	 @JoinColumn(name ="planet_owner")
+	@ManyToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name ="planet_owner")
 	protected Player planetOwner;
 	protected int planetBonus;
 	protected String planetImage;
+
+	@ManyToMany(cascade={CascadeType.ALL})
+		@JoinTable(name="frontiers",
+			joinColumns={@JoinColumn(name="planet_id1")},
+			inverseJoinColumns={@JoinColumn(name="planet_id2")})
+		private Set<Planet> planets = new HashSet<Planet>();
 	
-//	@ManyToMany(cascade={CascadeType.ALL})
-//	@JoinTable(name="frontiers",
-//		joinColumns={@JoinColumn(name="planet_id1")},
-//		inverseJoinColumns={@JoinColumn(name="planet_id2")})
-//	private Set<Planet> planets = new HashSet<Planet>();
-//
-//	@ManyToMany(mappedBy="planets")
-//	private Set<Planet> planetsNear = new HashSet<Planet>();
+		@ManyToMany(mappedBy="planets")
+		private Set<Planet> planetsNear = new HashSet<Planet>();
 
 	public Planet() {}
-	
+
 	public Planet(int planetId, String planetName, int planetShipsNbr, Player planetOwner) {
 		this.planetId = planetId;
 		this.planetName = planetName;
@@ -58,8 +56,8 @@ public class Planet {
 	public int setPlanetShipsNbr(int planetShipsNbr) {
 		return this.planetShipsNbr = planetShipsNbr;
 	}
-	
-	
+
+
 	public String getPlanetName() {
 		return planetName;
 	}
@@ -86,8 +84,26 @@ public class Planet {
 	public void setPlanetImage(String planetImage) {
 		this.planetImage = planetImage;
 	}
-	
+
 	public String toString() {
 		return ""+this.planetId + " ";
 	}
+
+	public Set<Planet> getPlanets() {
+		return planets;
+	}
+
+	public void setPlanets(Set<Planet> planets) {
+		this.planets = planets;
+	}
+
+	public Set<Planet> getPlanetsNear() {
+		return planetsNear;
+	}
+
+	public void setPlanetsNear(Set<Planet> planetsNear) {
+		this.planetsNear = planetsNear;
+	}
+	
+	
 }
