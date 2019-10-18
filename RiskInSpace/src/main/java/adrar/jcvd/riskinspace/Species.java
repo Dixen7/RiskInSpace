@@ -22,8 +22,8 @@ public class Species {
 	protected int speciesId;
 	protected String speciesName;
 	protected String SpeciesImage;
-	@OneToMany
-	private List<Player> players ;
+	//@OneToMany
+	//private List<Player> players ;
 	
 	
 	public Species() {}
@@ -57,15 +57,17 @@ public class Species {
 		SpeciesImage = speciesImage;
 	}
 
-	public List<Player> getPlayers() {
+	/*public List<Player> getPlayers() {
 		return players;
 	}
 
 	public void setPlayers(List<Player> players) {
 		this.players = players;
-	}
+	}*/
 
-	
+	public String toString() {
+		return this.speciesId +" "+this.speciesName;
+	}
 	
 	
 

@@ -90,8 +90,6 @@ public class RiskInSpaceController {
 		return view;
 	}
 
-
-
 	//	@GetMapping("/")
 	//	public ModelAndView home() {
 	//		List<Species> species = speciesService.findAll();
@@ -100,9 +98,12 @@ public class RiskInSpaceController {
 	//		return view;
 	//	}
 
+
 	@GetMapping("/")
-	public String home() {
-		return "coucou";
+	public List<Species> home() {
+		System.out.println(speciesService.findAll());
+		return speciesService.findAll();
+		
 	}
 
 
