@@ -10,7 +10,7 @@
 
 ## Début du jeu
 
-## D&ébut de tour
+## Début de tour
 - Tirage d'une carte Bonus/Malus
 
 ### Phase de ravitaillement
@@ -20,6 +20,6 @@
 - possibilité d'attaquer un territoire adjaçent au sien, et le nombre de fois qu'on veut tant qu'on le peut
 
 ### Phase de déplacement
-- 1 seul déplacement autorisé
+- 1 seul déplacement autorisé entre 2 territoires adjacents (en laissant au moins 1 unité dans chaque territoire)
 
 ## Fin de tour
