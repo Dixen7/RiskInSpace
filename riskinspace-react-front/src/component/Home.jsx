@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Coucou from './Coucou'
+import CreatePlayer from './CreatePlayer'
 
 class Home extends Component {
     render() {
         return (
             <div>
               <h1>Risk In Space</h1>
-              <Coucou/>
+              <CreatePlayer/>
             </div>
         )
     }

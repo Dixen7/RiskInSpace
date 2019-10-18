@@ -104,19 +104,12 @@ public class RiskInSpaceController {
 
 	}
 
-
-
-//	@GetMapping("/")
-//	public ModelAndView home() {
-//		List<Species> species = speciesService.findAll();
-//		ModelAndView view = new ModelAndView("init");
-//		view.addObject("species",species);
-//		return view;
-//	}
 	
 	@GetMapping("/")
-	public String home() {
-		return "coucou";
+	public List<Species> home() {
+		System.out.println(speciesService.findAll());
+		return speciesService.findAll();
+		
 	}
 
 
