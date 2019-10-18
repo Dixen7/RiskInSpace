@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import adrar.jcvd.riskinspace.repositories.PlanetRepository;
@@ -45,10 +44,6 @@ public class RiskInSpaceService {
 
 	//Attribut les planètes aux joueurs et place 1 troupe sur celles-ci
 	public void placeShipInitial(List<Planet> planetList, Player player1, Player player2) {
-
-
-		ArrayList<Planet> planetListPlayer1 = new ArrayList<Planet>();
-
 		List<Planet> copyplanetList = planetList;
 		for(int i = 0; i < 15; i++) {
 			int randomIndex = (int) Math.ceil(Math.random()*copyplanetList.size()-1);
@@ -67,34 +62,28 @@ public class RiskInSpaceService {
 			pla.setPlanetShipsNbr(1);
 			planetRepo.save(pla);
 		}
-		
 	}	
-	
 
 
 
-	// Donne les troupes selon le nombre de planettes
+	// Donne les troupes selon le nombre de planetes
 	public int shipsPerTurn(Player player) {
-
-		//List<Planet> planetListPlayer = player.getPlanets();
 		List<Planet> planetListPlayer = planetRepo.findAllByPlanetOwner(player);
-
 		int nmbrPlanets = planetListPlayer.size();
 		double shipsTurn = nmbrPlanets / 3;
 		int shipsPerTurn = (int) Math.floor(shipsTurn);
 		return shipsPerTurn;
 	}
 
+
+
 	//methode placement de troupes sur les planettes 
-	public void placeShipsPlayer(Player player) {
-
-		shipsPerTurn(player);
+	public void placeShipsPlayer(Player player, int shipsCount) {
 		// compteur de vaisseaux par joueur
-		int shipsCount = shipsPerTurn(player);
+		System.out.println("placeshipsplayer ok");
 		shipChose(shipsCount, player);
-	
-
 	}
+
 
 
 	// Méthode pour obtenir toutes les planètes adjacentes à la notre
@@ -102,15 +91,14 @@ public class RiskInSpaceService {
 		ArrayList<Planet> allPlanetsNear = new ArrayList<Planet>();
 		allPlanetsNear.addAll(planet.getPlanets());
 		allPlanetsNear.addAll(planet.getPlanetsNear());
-		System.out.println(planet.getPlanetId());
-		System.out.println(allPlanetsNear);
+		System.out.println(planet.getPlanetId() + " " + allPlanetsNear);
 		return allPlanetsNear;
 	}
 
+
+
 	// methode deplacement de vesseaux pour chaque fin de tour (A TERMINER)
-
-	public void moveShips(Planet planet, int nbrShips) {
-
+	public void moveShips(Planet planet, Player player, int nbrShips) {
 		ArrayList<Planet> allPlanetsNear = planetsNear(planet);
 		ArrayList<Planet> planetsNearOwned = new ArrayList<Planet>();
 		for (int i = 0; i < allPlanetsNear.size(); i++) {
@@ -118,17 +106,39 @@ public class RiskInSpaceService {
 				planetsNearOwned.add(allPlanetsNear.get(i));
 			}
 		}
-		System.out.println("ok");
-//		System.out.println(planetsNearOwned);
+		placeShipsPlayer(player, nbrShips);
 	}
-	
+
+
+	// méthode pour 
 	public void shipChose(int shipsCount, Player player) {
-		
 		List<Planet> planetListPlayer = planetRepo.findAllByPlanetOwner(player);
 		Planet planetChoose = planetListPlayer.get(2);
 		int planetShip = planetChoose.getPlanetShipsNbr();
-		planetChoose.setPlanetShipsNbr(planetShip + shipsCount); 
+		planetChoose.setPlanetShipsNbr(planetShip + shipsCount);
 		System.out.println(planetChoose.getPlanetShipsNbr());
+	}
+
+
+
+	public void choseEnemy(Planet planet) {
+		ArrayList<Planet> allPlanetsNear = planetsNear(planet);
+		ArrayList<Planet> planetsNearEnemy = new ArrayList<Planet>();
+		for (int i = 0; i < allPlanetsNear.size(); i++) {
+			if (planet.planetOwner != allPlanetsNear.get(i).planetOwner) {
+				planetsNearEnemy.add(allPlanetsNear.get(i));
+			}
+		}
+	}
+	
+	public void checkVictoryCondition(Player player) {
+		List<Planet> planetListPlayer = planetRepo.findAllByPlanetOwner(player);
+		if(planetListPlayer.size() <= 0) {
+			System.out.println(player + " t'es une grosse merde");
+		} else if(planetListPlayer.size() >= 20) {
+			System.out.println(player+" Gagne.");
+		}
+		
 	}
 }
 
