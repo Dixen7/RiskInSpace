@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -101,7 +102,6 @@ public class RiskInSpaceController {
 
 	@GetMapping("/")
 	public List<Species> home() {
-		System.out.println(speciesService.findAll());
 		return speciesService.findAll();
 		
 	}
@@ -110,17 +110,17 @@ public class RiskInSpaceController {
 
 	//@RequestMapping(value="/",method = RequestMethod.POST) 
 	@PostMapping("/")
-	public void insertPlayer(HttpServletRequest request) {
+	public void insertPlayer(@RequestBody String req) {
 		String playerName1 = "";
 		String playerName2 = "";
 		String playerSpecies1 = "";
 		String playerSpecies2 = "";
-
-		try {
-			playerName1 = (String) request.getParameter("player-name");
-			playerName2 = (String) request.getParameter("player-name2");
-			playerSpecies1 = (String) request.getParameter("player-species");
-			playerSpecies2 = (String) request.getParameter("player-species2");
+		System.out.println(req);
+		/*try {
+			playerName1 = (String) request.getParameter("playerName");
+			playerName2 = (String) request.getParameter("playerName2");
+			playerSpecies1 = (String) request.getParameter("playerSpecies");
+			playerSpecies2 = (String) request.getParameter("playerSpecies2");
 
 			Species specie1 = speciesService.findOne(Integer.parseInt(playerSpecies1));
 			Species specie2 = speciesService.findOne(Integer.parseInt(playerSpecies2));
@@ -132,6 +132,6 @@ public class RiskInSpaceController {
 
 
 		} catch (Exception e) {
-		}
+		}*/
 	}
 }
