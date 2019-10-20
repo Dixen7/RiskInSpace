@@ -13,7 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="speciesId")
 @Table(name="species")
 public class Species {
 	@Id
@@ -22,8 +26,8 @@ public class Species {
 	protected int speciesId;
 	protected String speciesName;
 	protected String SpeciesImage;
-	//@OneToMany
-	//private List<Player> players ;
+	@OneToMany(mappedBy="species")
+	private List<Player> players ;
 	
 	
 	public Species() {}
@@ -57,13 +61,13 @@ public class Species {
 		SpeciesImage = speciesImage;
 	}
 
-	/*public List<Player> getPlayers() {
+	public List<Player> getPlayers() {
 		return players;
 	}
 
 	public void setPlayers(List<Player> players) {
 		this.players = players;
-	}*/
+	}
 
 	public String toString() {
 		return this.speciesId +" "+this.speciesName;
