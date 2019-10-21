@@ -34,20 +34,131 @@ body{
 .espace{
   display: flex;
   flex-direction: row;
-  width: 800px;
-  justify-content: space-between;
-  margin: 0 auto;
+  width: auto;
+  justify-content: space-around;
 }
 
 :root {
 
-  --pluto-tilt: rotate(120deg);
-  --pluto-day: 300;
-  --pluto-color: #c3b6aa;
+  --tilt-1: rotate(10deg);
+  --day-1: 180;
+  --color-1: #b3caff;
 
-  --earth-tilt: rotate(10deg);
-  --earth-day: 180;
-  --earth-color: #b3caff;
+  --tilt-2: rotate(10deg);
+  --day-2: 180;
+  --color-2: #b3caff;
+
+  --tilt-3: rotate(10deg);
+  --day-3: 180;
+  --color-3: #b3caff;
+
+  --tilt-4: rotate(10deg);
+  --day-4: 180;
+  --color-4: #b3caff;
+
+  --tilt-5: rotate(10deg);
+  --day-5: 180;
+  --color-5: #b3caff;
+
+  --tilt-6: rotate(10deg);
+  --day-6: 180;
+  --color-6: #b3caff;
+
+  --tilt-7: rotate(10deg);
+  --day-7: 180;
+  --color-7: #b3caff;
+  
+  --tilt-8: rotate(10deg);
+  --day-8: 180;
+  --color-8: #b3caff;
+
+  --tilt-9: rotate(10deg);
+  --day-9: 180;
+  --color-9: #b3caff;
+
+  --tilt-10: rotate(10deg);
+  --day-10: 180;
+  --color-10: #b3caff;
+
+  --tilt-11: rotate(10deg);
+  --day-11: 180;
+  --color-11: #b3caff;
+
+  --tilt-12: rotate(10deg);
+  --day-12: 180;
+  --color-12: #b3caff;
+
+  --tilt-13: rotate(10deg);
+  --day-13: 180;
+  --color-13: #b3caff;
+
+  --tilt-14: rotate(10deg);
+  --day-14: 180;
+  --color-14: #b3caff;
+
+  --tilt-15: rotate(10deg);
+  --day-15: 180;
+  --color-15: #b3caff;
+
+  --tilt-16: rotate(10deg);
+  --day-16: 180;
+  --color-16: #b3caff;
+  
+  --tilt-17: rotate(10deg);
+  --day-17: 180;
+  --color-17: #b3caff;
+
+  --tilt-18: rotate(10deg);
+  --day-18: 180;
+  --color-18: #b3caff;
+
+  --tilt-19: rotate(10deg);
+  --day-19: 180;
+  --color-19: #b3caff;
+
+  --tilt-20: rotate(10deg);
+  --day-20: 180;
+  --color-20: #b3caff;
+
+  --tilt-21: rotate(10deg);
+  --day-21: 180;
+  --color-21: #b3caff;
+
+  --tilt-22: rotate(10deg);
+  --day-22: 180;
+  --color-22: #b3caff;
+
+  --tilt-23: rotate(10deg);
+  --day-23: 180;
+  --color-23: #b3caff;
+
+  --tilt-24: rotate(10deg);
+  --day-24: 180;
+  --color-24: #b3caff;
+
+  --tilt-25: rotate(10deg);
+  --day-25: 180;
+  --color-25: #b3caff;
+
+  --tilt-26: rotate(10deg);
+  --day-26: 180;
+  --color-26: #b3caff;
+
+  --tilt-27: rotate(10deg);
+  --day-27: 180;
+  --color-27: #b3caff;
+
+  --tilt-28: rotate(10deg);
+  --day-28: 180;
+  --color-28: #b3caff;
+
+  --tilt-29: rotate(10deg);
+  --day-29: 180;
+  --color-29: #b3caff;
+
+  --tilt-30: rotate(10deg);
+  --day-30: 180;
+  --color-30: #b3caff;
  }
  @keyframes planetRotate {
   0% {
@@ -63,32 +174,35 @@ body{
   align-items: center;
   position: relative;
   background-color: rgba(255, 255, 255, 0);
+  
  }
- .card--pluto .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -50px 0px 30px 0px black, -5px 0px 10px -4px var(--pluto-color);
+
+
+ .card--1 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-1);
  }
- .card--pluto .planet__atmosphere:hover {
-  box-shadow: inset 20px 0px 20px -2px rgba(255, 255, 255, 0.651), inset -50px 0px 30px 0px rgba(255, 255, 255, 0.473), -5px 0px 10px -4px var(--pluto-color);
+ .card--1 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-1);
  }
- .card--pluto .planet__surface {
+ .card--1 .planet__surface {
   background-image: url(
     https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/pluto.jpg
     );
-  transform: var(--pluto-tilt) scale(1.2);
-  animation: planetRotate calc(var(--pluto-day)*.1s) linear infinite;
+  transform: var(--tilt-1) scale(1.2);
+  animation: planetRotate calc(var(--day-1)*.1s) linear infinite;
  }
- .card--pluto .card__planet::before {
-  transform: var(--pluto-tilt) scale(1.2);
-  border-color: var(--pluto-color);
-  color: var(--pluto-color);
+ .card--1 .card__planet::before {
+  transform: var(--tilt-1) scale(1.2);
+  border-color: var(--color-1);
+  color: var(--color-1);
  }
- .card--pluto .tilt__icon {
-  transform: var(--pluto-tilt);
-  color: var(--pluto-color);
+ .card--1 .tilt__icon {
+  transform: var(--tilt-1);
+  color: var(--color-1);
  }
  .planet__atmosphere {
-  height: 200px;
-  width: 200px;
+  height: 80px;
+  width: 80px;
   position: relative;
   border-radius: 100px;
   overflow: hidden;
@@ -107,26 +221,911 @@ body{
   text-align: center;
   font-size: 16px;
  }
+ article.card--1 {
+  width: 290px;
+}
 
- .card--earth .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -50px 0px 30px 0px black, -5px 0px 10px -4px var(--earth-color);
+
+
+
+
+
+
+
+
+ .card--2 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-2);
  }
- .card--earth .planet__atmosphere:hover {
-  box-shadow: inset 20px 0px 20px -2px rgba(255, 255, 255, 0.651), inset -50px 0px 30px 0px rgba(255, 255, 255, 0.473), -5px 0px 10px -4px var(--earth-color);
+ .card--2 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-2);
  }
- .card--earth .planet__surface {
+ .card--2 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/mars.jpg
+    );
+  transform: var(--tilt-2) scale(1.2);
+  animation: planetRotate calc(var(--day-2)*.1s) linear infinite;
+ }
+ .card--2 .card__planet::before {
+  transform: var(--tilt-2) scale(1.2);
+  border-color: var(--color-2);
+  color: var(--color-2);
+ }
+ .card--2 .tilt__icon {
+  transform: var(--tilt-2);
+  color: var(--color-2);
+ }
+ article.card--2 {
+  width: 290px;
+}
+
+
+
+
+
+
+
+ .card--3 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-3);
+ }
+ .card--3 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-3);
+ }
+ .card--3 .planet__surface {
   background-image: url(
     https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/earth.jpg
     );
-  transform: var(--earth-tilt) scale(1.2);
-  animation: planetRotate calc(var(--earth-day)*.1s) linear infinite;
+  transform: var(--tilt-3) scale(1.2);
+  animation: planetRotate calc(var(--day-3)*.1s) linear infinite;
  }
- .card--earth .card__planet::before {
-  transform: var(--earth-tilt) scale(1.2);
-  border-color: var(--earth-color);
-  color: var(--earth-color);
+ .card--3 .card__planet::before {
+  transform: var(--tilt-3) scale(1.2);
+  border-color: var(--color-3);
+  color: var(--color-3);
  }
- .card--earth .tilt__icon {
-  transform: var(--earth-tilt);
-  color: var(--earth-color);
+ .card--3 .tilt__icon {
+  transform: var(--tilt-3);
+  color: var(--color-3);
  }
+ article.card--3 {
+  width: 290px;
+}
+
+
+
+
+
+ .card--4 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-4);
+ }
+ .card--4 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-4);
+ }
+ .card--4 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/sun.jpg
+    );
+  transform: var(--tilt-4) scale(1.2);
+  animation: planetRotate calc(var(--day-4)*.1s) linear infinite;
+ }
+ .card--4 .card__planet::before {
+  transform: var(--tilt-4) scale(1.2);
+  border-color: var(--color-4);
+  color: var(--color-4);
+ }
+ .card--4 .tilt__icon {
+  transform: var(--tilt-4);
+  color: var(--color-4);
+ }
+ article.card--4 {
+  width: 290px;
+}
+
+
+
+
+
+
+
+ .card--5 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-5);
+ }
+ .card--5 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-5);
+ }
+ .card--5 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/mercury.jpg
+    );
+  transform: var(--tilt-5) scale(1.2);
+  animation: planetRotate calc(var(--day-5)*.1s) linear infinite;
+ }
+ .card--5 .card__planet::before {
+  transform: var(--tilt-5) scale(1.2);
+  border-color: var(--color-5);
+  color: var(--color-5);
+ }
+ .card--5 .tilt__icon {
+  transform: var(--tilt-5);
+  color: var(--color-5);
+ }
+ article.card--5 {
+  width: 290px;
+}
+
+
+
+
+
+
+
+
+ .card--6 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-6);
+ }
+ .card--6 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-6);
+ }
+ .card--6 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/neptune.jpg
+    );
+  transform: var(--tilt-6) scale(1.2);
+  animation: planetRotate calc(var(--day-6)*.1s) linear infinite;
+ }
+ .card--6 .card__planet::before {
+  transform: var(--tilt-6) scale(1.2);
+  border-color: var(--color-6);
+  color: var(--color-6);
+ }
+ .card--6 .tilt__icon {
+  transform: var(--tilt-6);
+  color: var(--color-6);
+ }
+ article.card--6 {
+  width: 290px;
+}
+
+
+
+
+
+
+ .card--7 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-7);
+ }
+ .card--7 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-7);
+ }
+ .card--7 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/uranus.jpg
+    );
+  transform: var(--tilt-7) scale(1.2);
+  animation: planetRotate calc(var(--day-7)*.1s) linear infinite;
+ }
+ .card--7 .card__planet::before {
+  transform: var(--tilt-7) scale(1.2);
+  border-color: var(--color-7);
+  color: var(--color-7);
+ }
+ .card--7 .tilt__icon {
+  transform: var(--tilt-7);
+  color: var(--color-7);
+ }
+ article.card--7 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--8 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-8);
+ }
+ .card--8 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-8);
+ }
+ .card--8 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/saturn.jpg
+    );
+  transform: var(--tilt-8) scale(1.2);
+  animation: planetRotate calc(var(--day-8)*.1s) linear infinite;
+ }
+ .card--8 .card__planet::before {
+  transform: var(--tilt-8) scale(1.2);
+  border-color: var(--color-8);
+  color: var(--color-8);
+ }
+ .card--8 .tilt__icon {
+  transform: var(--tilt-8);
+  color: var(--color-8);
+ }
+ article.card--8 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--9 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-9);
+ }
+ .card--9 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-9);
+ }
+ .card--9 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/jupiter.jpg
+    );
+  transform: var(--tilt-9) scale(1.2);
+  animation: planetRotate calc(var(--day-9)*.1s) linear infinite;
+ }
+ .card--9 .card__planet::before {
+  transform: var(--tilt-9) scale(1.2);
+  border-color: var(--color-9);
+  color: var(--color-9);
+ }
+ .card--9 .tilt__icon {
+  transform: var(--tilt-9);
+  color: var(--color-9);
+ }
+ article.card--9 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--10 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-10);
+ }
+ .card--10 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-10);
+ }
+ .card--10 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/pluto.jpg
+    );
+  transform: var(--tilt-10) scale(1.2);
+  animation: planetRotate calc(var(--day-10)*.1s) linear infinite;
+ }
+ .card--10 .card__planet::before {
+  transform: var(--tilt-10) scale(1.2);
+  border-color: var(--color-10);
+  color: var(--color-10);
+ }
+ .card--10 .tilt__icon {
+  transform: var(--tilt-10);
+  color: var(--color-10);
+ }
+ article.card--10 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--11 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-11);
+ }
+ .card--11 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-11);
+ }
+ .card--11 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/mercury.jpg
+    );
+  transform: var(--tilt-11) scale(1.2);
+  animation: planetRotate calc(var(--day-11)*.1s) linear infinite;
+ }
+ .card--11 .card__planet::before {
+  transform: var(--tilt-11) scale(1.2);
+  border-color: var(--color-11);
+  color: var(--color-11);
+ }
+ .card--11 .tilt__icon {
+  transform: var(--tilt-11);
+  color: var(--color-11);
+ }
+ article.card--11 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--12 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-12);
+ }
+ .card--12 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-12);
+ }
+ .card--12 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/mars.jpg
+    );
+  transform: var(--tilt-12) scale(1.2);
+  animation: planetRotate calc(var(--day-12)*.1s) linear infinite;
+ }
+ .card--12 .card__planet::before {
+  transform: var(--tilt-12) scale(1.2);
+  border-color: var(--color-12);
+  color: var(--color-12);
+ }
+ .card--12 .tilt__icon {
+  transform: var(--tilt-12);
+  color: var(--color-12);
+ }
+ article.card--12 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--13 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-13);
+ }
+ .card--13 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-13);
+ }
+ .card--13 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/saturn.jpg
+    );
+  transform: var(--tilt-13) scale(1.2);
+  animation: planetRotate calc(var(--day-13)*.1s) linear infinite;
+ }
+ .card--13 .card__planet::before {
+  transform: var(--tilt-13) scale(1.2);
+  border-color: var(--color-13);
+  color: var(--color-13);
+ }
+ .card--13 .tilt__icon {
+  transform: var(--tilt-13);
+  color: var(--color-13);
+ }
+ article.card--13 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--14 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-14);
+ }
+ .card--14 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-14);
+ }
+ .card--14 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/pluto.jpg
+    );
+  transform: var(--tilt-14) scale(1.2);
+  animation: planetRotate calc(var(--day-14)*.1s) linear infinite;
+ }
+ .card--14 .card__planet::before {
+  transform: var(--tilt-14) scale(1.2);
+  border-color: var(--color-14);
+  color: var(--color-14);
+ }
+ .card--14 .tilt__icon {
+  transform: var(--tilt-14);
+  color: var(--color-14);
+ }
+ article.card--14 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--15 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-15);
+ }
+ .card--15 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-15);
+ }
+ .card--15 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/sun.jpg
+    );
+  transform: var(--tilt-15) scale(1.2);
+  animation: planetRotate calc(var(--day-15)*.1s) linear infinite;
+ }
+ .card--15 .card__planet::before {
+  transform: var(--tilt-15) scale(1.2);
+  border-color: var(--color-15);
+  color: var(--color-15);
+ }
+ .card--15 .tilt__icon {
+  transform: var(--tilt-15);
+  color: var(--color-15);
+ }
+ article.card--15 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--16 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-16);
+ }
+ .card--16 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-16);
+ }
+ .card--16 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/neptune.jpg
+    );
+  transform: var(--tilt-16) scale(1.2);
+  animation: planetRotate calc(var(--day-16)*.1s) linear infinite;
+ }
+ .card--16 .card__planet::before {
+  transform: var(--tilt-16) scale(1.2);
+  border-color: var(--color-16);
+  color: var(--color-16);
+ }
+ .card--16 .tilt__icon {
+  transform: var(--tilt-16);
+  color: var(--color-16);
+ }
+ article.card--16 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--17 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-17);
+ }
+ .card--17 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-17);
+ }
+ .card--17 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/earth.jpg
+    );
+  transform: var(--tilt-17) scale(1.2);
+  animation: planetRotate calc(var(--day-17)*.1s) linear infinite;
+ }
+ .card--17 .card__planet::before {
+  transform: var(--tilt-17) scale(1.2);
+  border-color: var(--color-17);
+  color: var(--color-17);
+ }
+ .card--17 .tilt__icon {
+  transform: var(--tilt-17);
+  color: var(--color-17);
+ }
+ article.card--17 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--18 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-18);
+ }
+ .card--18 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-18);
+ }
+ .card--18 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/venus.jpg
+    );
+  transform: var(--tilt-18) scale(1.2);
+  animation: planetRotate calc(var(--day-18)*.1s) linear infinite;
+ }
+ .card--18 .card__planet::before {
+  transform: var(--tilt-18) scale(1.2);
+  border-color: var(--color-18);
+  color: var(--color-18);
+ }
+ .card--18 .tilt__icon {
+  transform: var(--tilt-18);
+  color: var(--color-18);
+ }
+ article.card--18 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--19 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-19);
+ }
+ .card--19 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-19);
+ }
+ .card--19 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/uranus.jpg
+    );
+  transform: var(--tilt-19) scale(1.2);
+  animation: planetRotate calc(var(--day-19)*.1s) linear infinite;
+ }
+ .card--19 .card__planet::before {
+  transform: var(--tilt-19) scale(1.2);
+  border-color: var(--color-19);
+  color: var(--color-19);
+ }
+ .card--19 .tilt__icon {
+  transform: var(--tilt-19);
+  color: var(--color-19);
+ }
+ article.card--19 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--20 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-20);
+ }
+ .card--20 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-20);
+ }
+ .card--20 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/pluto.jpg
+    );
+  transform: var(--tilt-20) scale(1.2);
+  animation: planetRotate calc(var(--day-20)*.1s) linear infinite;
+ }
+ .card--20 .card__planet::before {
+  transform: var(--tilt-20) scale(1.2);
+  border-color: var(--color-20);
+  color: var(--color-20);
+ }
+ .card--20 .tilt__icon {
+  transform: var(--tilt-20);
+  color: var(--color-20);
+ }
+ article.card--20 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--21 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-21);
+ }
+ .card--21 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-21);
+ }
+ .card--21 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/mars.jpg
+    );
+  transform: var(--tilt-21) scale(1.2);
+  animation: planetRotate calc(var(--day-21)*.1s) linear infinite;
+ }
+ .card--21 .card__planet::before {
+  transform: var(--tilt-21) scale(1.2);
+  border-color: var(--color-21);
+  color: var(--color-21);
+ }
+ .card--21 .tilt__icon {
+  transform: var(--tilt-21);
+  color: var(--color-21);
+ }
+ article.card--21 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--22 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-22);
+ }
+ .card--22 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-22);
+ }
+ .card--22 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/saturn.jpg
+    );
+  transform: var(--tilt-22) scale(1.2);
+  animation: planetRotate calc(var(--day-22)*.1s) linear infinite;
+ }
+ .card--22 .card__planet::before {
+  transform: var(--tilt-22) scale(1.2);
+  border-color: var(--color-22);
+  color: var(--color-22);
+ }
+ .card--22 .tilt__icon {
+  transform: var(--tilt-22);
+  color: var(--color-22);
+ }
+ article.card--22 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--23 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-23);
+ }
+ .card--23 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-23);
+ }
+ .card--23 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/earth.jpg
+    );
+  transform: var(--tilt-23) scale(1.2);
+  animation: planetRotate calc(var(--day-23)*.1s) linear infinite;
+ }
+ .card--23 .card__planet::before {
+  transform: var(--tilt-23) scale(1.2);
+  border-color: var(--color-23);
+  color: var(--color-23);
+ }
+ .card--23 .tilt__icon {
+  transform: var(--tilt-23);
+  color: var(--color-23);
+ }
+ article.card--23 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--24 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-24);
+ }
+ .card--24 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-24);
+ }
+ .card--24 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/jupiter.jpg
+    );
+  transform: var(--tilt-24) scale(1.2);
+  animation: planetRotate calc(var(--day-24)*.1s) linear infinite;
+ }
+ .card--24 .card__planet::before {
+  transform: var(--tilt-24) scale(1.2);
+  border-color: var(--color-24);
+  color: var(--color-24);
+ }
+ .card--24 .tilt__icon {
+  transform: var(--tilt-24);
+  color: var(--color-24);
+ }
+ article.card--24 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--25 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-25);
+ }
+ .card--25 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-25);
+ }
+ .card--25 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/mercury.jpg
+    );
+  transform: var(--tilt-25) scale(1.2);
+  animation: planetRotate calc(var(--day-25)*.1s) linear infinite;
+ }
+ .card--25 .card__planet::before {
+  transform: var(--tilt-25) scale(1.2);
+  border-color: var(--color-25);
+  color: var(--color-25);
+ }
+ .card--25 .tilt__icon {
+  transform: var(--tilt-25);
+  color: var(--color-25);
+ }
+ article.card--25 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--26 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-26);
+ }
+ .card--26 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-26);
+ }
+ .card--26 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/uranus.jpg
+    );
+  transform: var(--tilt-26) scale(1.2);
+  animation: planetRotate calc(var(--day-26)*.1s) linear infinite;
+ }
+ .card--26 .card__planet::before {
+  transform: var(--tilt-26) scale(1.2);
+  border-color: var(--color-26);
+  color: var(--color-26);
+ }
+ .card--26 .tilt__icon {
+  transform: var(--tilt-26);
+  color: var(--color-26);
+ }
+ article.card--26 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--27 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-27);
+ }
+ .card--27 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-27);
+ }
+ .card--27 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/earth.jpg
+    );
+  transform: var(--tilt-27) scale(1.2);
+  animation: planetRotate calc(var(--day-27)*.1s) linear infinite;
+ }
+ .card--27 .card__planet::before {
+  transform: var(--tilt-27) scale(1.2);
+  border-color: var(--color-27);
+  color: var(--color-27);
+ }
+ .card--27 .tilt__icon {
+  transform: var(--tilt-27);
+  color: var(--color-27);
+ }
+ article.card--27 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--28 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-28);
+ }
+ .card--28 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-28);
+ }
+ .card--28 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/sun.jpg
+    );
+  transform: var(--tilt-28) scale(1.2);
+  animation: planetRotate calc(var(--day-28)*.1s) linear infinite;
+ }
+ .card--28 .card__planet::before {
+  transform: var(--tilt-28) scale(1.2);
+  border-color: var(--color-28);
+  color: var(--color-28);
+ }
+ .card--28 .tilt__icon {
+  transform: var(--tilt-28);
+  color: var(--color-28);
+ }
+ article.card--28 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--29 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-29);
+ }
+ .card--29 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-29);
+ }
+ .card--29 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/venus.jpg
+    );
+  transform: var(--tilt-29) scale(1.2);
+  animation: planetRotate calc(var(--day-29)*.1s) linear infinite;
+ }
+ .card--29 .card__planet::before {
+  transform: var(--tilt-29) scale(1.2);
+  border-color: var(--color-29);
+  color: var(--color-29);
+ }
+ .card--29 .tilt__icon {
+  transform: var(--tilt-29);
+  color: var(--color-29);
+ }
+ article.card--29 {
+  width: 290px;
+}
+
+
+
+
+
+
+.card--30 .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-30);
+ }
+ .card--30 .planet__atmosphere:hover {
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-30);
+ }
+ .card--30 .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/mercury.jpg
+    );
+  transform: var(--tilt-30) scale(1.2);
+  animation: planetRotate calc(var(--day-30)*.1s) linear infinite;
+ }
+ .card--30 .card__planet::before {
+  transform: var(--tilt-30) scale(1.2);
+  border-color: var(--color-30);
+  color: var(--color-30);
+ }
+ .card--30 .tilt__icon {
+  transform: var(--tilt-30);
+  color: var(--color-30);
+ }
+ article.card--30 {
+  width: 290px;
+}

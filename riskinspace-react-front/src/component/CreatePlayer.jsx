@@ -61,7 +61,7 @@ class CreatePlayer extends Component {
           <option value="">Sélectionner une race</option>
           {
             this.state.species.map(
-              specie => <option value={specie.speciesId}>{specie.speciesName}</option>
+              specie => <option key={specie.speciesId} value={specie.speciesId}>{specie.speciesName}</option>
             )
           }
           </select>
@@ -75,7 +75,7 @@ class CreatePlayer extends Component {
           <option value="">Sélectionner une race</option>
           {
             this.state.species.map(
-              specie => <option value={specie.speciesId}>{specie.speciesName}</option>
+              specie => <option key={specie.speciesId} value={specie.speciesId}>{specie.speciesName}</option>
             )
           }
           </select>
