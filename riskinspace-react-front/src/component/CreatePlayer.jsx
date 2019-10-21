@@ -9,31 +9,28 @@ class CreatePlayer extends Component {
     this.state = {
       species: [],
       playerName:'',
-      playerSpecies:'',
+      playerSpecies:0,
       playerName2:'',
-      playerSpecies2:''
+      playerSpecies2:0
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-   onChange = (e) =>
+   onChange = (e) =>{
         this.setState({ [e.target.name]: e.target.value });
+   }
 
 	handleSubmit = (e) =>{
 		e.preventDefault();
 		let players = {
-			playerName: this.state.playerName, 
-			playerSpecies: this.state.playerSpecies, 
-			playerName2: this.state.playerName2, 
-			playerSpecies2: this.state.playerSpecies2
+			"playerName": this.state.playerName, 
+			"playerSpecies": parseInt(this.state.playerSpecies), 
+			"playerName2": this.state.playerName2, 
+			"playerSpecies2": parseInt(this.state.playerSpecies2)
 		};
-	    console.log(players);
-	    axios.post('localhost:8080/createplayer', {
-		    players
-		  })
+	    axios.post('http://localhost:8080/createplayer', players)
 		  .then(function (response) {
 		    console.log(response);
-		    this.props.history.push('/planet');
 		  })
 		  .catch(function (error) {
 		    console.log(error);
@@ -46,7 +43,7 @@ class CreatePlayer extends Component {
   }
 
   refreshCreatePlayer() {
-    RiskinspaceService.home()//HARDCODED
+    RiskinspaceService.home()
     .then(
       response => {
         console.log(response);
@@ -60,12 +57,9 @@ class CreatePlayer extends Component {
       <div className="container-fluid">
       <div className="d-flex justify-content-center">
       <div className="">
-      <form>
-        <div className="form-group">
-          <label htmlFor="name">Nom Joueur 1 : </label>
-          <input type="text" name="playerName" id="playerName" className="form-control"  value={this.state.playerName} onChange={this.onChange} />
-        </div>
-        <div className="form-group">
+      <form onSubmit={this.handleSubmit}>
+      Joueur 1
+      <div className="form-group">
           <select id="playerSpecies" name="playerSpecies"  value={this.state.playerSpecies} onChange={this.onChange}>
           <option value="">Sélectionner une race</option>
           {
@@ -76,10 +70,11 @@ class CreatePlayer extends Component {
           </select>
         </div>
         <div className="form-group">
-          <label htmlFor="name">Nom Joueur 2 : </label>
-          <input type="text" name="playerName2" id="playerName2"  className="form-control" value={this.state.playerName2} onChange={this.onChange}/>
+          <label htmlFor="name">Nom : </label>
+          <input type="text" name="playerName" id="playerName" className="form-control"  value={this.state.playerName} onChange={this.onChange} />
         </div>
-        <div className="form-group">
+		Joueur 2
+         <div className="form-group">
           <select name="playerSpecies2" id="playerSpecies2"  value={this.state.playerSpecies2} onChange={this.onChange}>
           <option value="">Sélectionner une race</option>
           {
@@ -89,7 +84,13 @@ class CreatePlayer extends Component {
           }
           </select>
         </div>
-        <input type="submit" value="jouer" className="btn btn-primary" onSubmit={this.handleSubmit}/>
+        
+        <div className="form-group">
+          <label htmlFor="name">Nom : </label>
+          <input type="text" name="playerName2" id="playerName2"  className="form-control" value={this.state.playerName2} onChange={this.onChange}/>
+        </div>
+       
+        <input type="submit" value="jouer" className="btn btn-primary"/>
       </form>
       </div>
       </div>
