@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import RiskinspaceService from '../service/RiskinspaceService';
 import axios from 'axios'
 class CreatePlayer extends Component {
@@ -28,9 +29,11 @@ class CreatePlayer extends Component {
 			"playerName2": this.state.playerName2, 
 			"playerSpecies2": parseInt(this.state.playerSpecies2)
 		};
+		const { history } = this.props;
 	    axios.post('http://localhost:8080/createplayer', players)
 		  .then(function (response) {
 		    console.log(response);
+		    if(history) history.push('/planet');
 		  })
 		  .catch(function (error) {
 		    console.log(error);
@@ -53,6 +56,7 @@ class CreatePlayer extends Component {
   }
 
   render(){
+  	const { history } = this.props;
     return (
       <div className="container-fluid">
       <div className="d-flex justify-content-center">
@@ -100,4 +104,4 @@ class CreatePlayer extends Component {
 
 }
 
-export default CreatePlayer
+export default withRouter(CreatePlayer)
