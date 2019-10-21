@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './App.css';
 import Home from './component/Home';
 import Planets from './component/Planets';
@@ -7,10 +7,15 @@ import Planets from './component/Planets';
 function App() {
   return (
     <div className="App">
-      <Home />
-     <Planets/>
-      {/* <App2 />
-      <App3 /> */}
+    <h1>Risk In Space</h1>
+    <Router>
+      <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/planet" component={Planets} />
+
+      </Switch>
+    </Router>
+
       
     </div>
     
@@ -18,38 +23,6 @@ function App() {
   );
 }
 
- 
-function App2(){
-  return (
-    <article className="card card--pluto">
-    <div className="card__planet">
-      <div className="planet__atmosphere">
-        <div className="planet__surface"></div>
-      </div>
-    </div>
-    <div className="card__info">
-      <h2 className="info__title">pluto</h2>
-      </div>
-   </article>
-
-  );
-}
-
-function App3(){
-  return (
-    <article className="card card--earth">
-    <div className="card__planet">
-      <div className="planet__atmosphere">
-        <div className="planet__surface"></div>
-      </div>
-    </div>
-    <div className="card__info">
-      <h2 className="info__title">earth</h2>
-      </div>
-   </article>
-
-  );
-}
 
 export default App;
 
