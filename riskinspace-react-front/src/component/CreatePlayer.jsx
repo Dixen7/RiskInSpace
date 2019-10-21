@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RiskinspaceService from '../service/RiskinspaceService';
+import axios from 'axios'
 class CreatePlayer extends Component {
 
   constructor(props) {
@@ -8,6 +9,27 @@ class CreatePlayer extends Component {
     this.state = {
       species: []
     }
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+ handleSubmit(){
+    fetch('http://localhost:8080/createplayer', {
+			method: 'POST',
+			body: JSON.stringify({
+        playerName: document.getElementById('playerName').value,
+        playerSpecies: document.getElementById('playerSpecies').value,
+        playerName2:document.getElementById('playerName2').value,
+        playerSpecies2:document.getElementById('playerSpecies2').value
+			}),
+			headers: {
+				"Content-type": "application/json; charset=UTF-8"
+			}
+    }).then((response) => {
+      console.log(response);
+    }, (error) => {
+      console.log(error);
+    });
+
   }
 
   componentDidMount() {
@@ -32,10 +54,10 @@ class CreatePlayer extends Component {
       <form>
         <div className="form-group">
           <label htmlFor="name">Nom Joueur 1 : </label>
-          <input type="text" name="player-name" id="name" className="form-control"/>
+          <input type="text" name="playerName" id="playerName" className="form-control"/>
         </div>
         <div className="form-group">
-          <select name="player-species">
+          <select id="playerSpecies" name="playerSpecies">
           <option value="">Sélectionner une race</option>
           {
             this.state.species.map(
@@ -46,10 +68,10 @@ class CreatePlayer extends Component {
         </div>
         <div className="form-group">
           <label htmlFor="name">Nom Joueur 2 : </label>
-          <input type="text" name="player-name2" id="name2"  className="form-control"/>
+          <input type="text" name="playerName2" id="playerName2"  className="form-control"/>
         </div>
         <div className="form-group">
-          <select name="player-species2">
+          <select name="playerSpecies2" id="playerSpecies2">
           <option value="">Sélectionner une race</option>
           {
             this.state.species.map(
@@ -58,7 +80,7 @@ class CreatePlayer extends Component {
           }
           </select>
         </div>
-        <input type="submit" value="jouer" className="btn btn-primary" id="jouer" />
+        <input type="submit" value="jouer" className="btn btn-primary" onSubmit={this.handleSubmit}/>
       </form>
       </div>
       </div>
