@@ -29,8 +29,8 @@ public class Player {
 	@JoinColumn(name ="player_species_id")
 	protected Species species;
 	protected int playerMoney;
-
-	@OneToMany
+	
+	@OneToMany(mappedBy="planetOwner")
 	private List<Planet> planets ;
 	
 	

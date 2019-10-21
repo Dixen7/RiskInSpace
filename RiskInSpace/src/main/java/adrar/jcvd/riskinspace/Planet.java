@@ -14,6 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -36,6 +38,7 @@ public class Planet {
 			inverseJoinColumns={@JoinColumn(name="planet_id2")})
 		private Set<Planet> planets = new HashSet<Planet>();
 	
+		
 		@ManyToMany(mappedBy="planets")
 		private Set<Planet> planetsNear = new HashSet<Planet>();
 

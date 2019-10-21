@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RiskinspaceService from '../service/RiskinspaceService';
+import axios from 'axios'
 class CreatePlayer extends Component {
 
   constructor(props) {
@@ -11,27 +12,25 @@ class CreatePlayer extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+ handleSubmit(){
+    fetch('http://localhost:8080/createplayer', {
+			method: 'POST',
+			body: JSON.stringify({
+        playerName: document.getElementById('playerName').value,
+        playerSpecies: document.getElementById('playerSpecies').value,
+        playerName2:document.getElementById('playerName2').value,
+        playerSpecies2:document.getElementById('playerSpecies2').value
+			}),
+			headers: {
+				"Content-type": "application/json; charset=UTF-8"
+			}
+    }).then((response) => {
+      console.log(response);
+    }, (error) => {
+      console.log(error);
+    });
 
-
- async handleSubmit(){
-  	await fetch('https://localhost:8080/', {
-	  method: 'POST',
-	  headers: {
-	    'Accept': 'application/json',
-	    'Content-Type': 'application/json',
-	  },
-	  body: JSON.stringify({
-	    playerName: document.getElementById('playerName').value,
-	    playerSpecies: document.getElementById('playerSpecies').value,
-	    playerName2:document.getElementById('playerName2').value,
-	    playerSpecies2:document.getElementById('playerSpecies2').value
-	  })
-	  
-	});
-	
   }
-
-   
 
   componentDidMount() {
     this.refreshCreatePlayer();
@@ -46,8 +45,6 @@ class CreatePlayer extends Component {
       }
     )
   }
-
- 
 
   render(){
     return (
@@ -83,7 +80,7 @@ class CreatePlayer extends Component {
           }
           </select>
         </div>
-        <input type="submit" value="jouer" className="btn btn-primary" />
+        <input type="submit" value="jouer" className="btn btn-primary" onSubmit={this.handleSubmit}/>
       </form>
       </div>
       </div>

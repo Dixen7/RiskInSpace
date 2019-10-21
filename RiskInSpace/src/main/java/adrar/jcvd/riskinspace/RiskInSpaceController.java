@@ -2,6 +2,7 @@ package adrar.jcvd.riskinspace;
 
 
 
+import java.io.FileReader;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Scanner;
@@ -17,6 +18,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import adrar.jcvd.riskinspace.repositories.PlanetRepository;
 import adrar.jcvd.riskinspace.repositories.PlayerRepository;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 @CrossOrigin(origins = { "http://localhost:3000" })
 @RestController
@@ -91,13 +97,6 @@ public class RiskInSpaceController {
 		return view;
 	}
 
-	//	@GetMapping("/")
-	//	public ModelAndView home() {
-	//		List<Species> species = speciesService.findAll();
-	//		ModelAndView view = new ModelAndView("init");
-	//		view.addObject("species",species);
-	//		return view;
-	//	}
 
 
 	@GetMapping("/")
@@ -108,22 +107,25 @@ public class RiskInSpaceController {
 
 
 
-	//@RequestMapping(value="/",method = RequestMethod.POST) 
-	@PostMapping("/")
-	public void insertPlayer(@RequestBody String req) {
-		String playerName1 = "";
-		String playerName2 = "";
-		String playerSpecies1 = "";
-		String playerSpecies2 = "";
-		System.out.println(req);
-		/*try {
-			playerName1 = (String) request.getParameter("playerName");
-			playerName2 = (String) request.getParameter("playerName2");
-			playerSpecies1 = (String) request.getParameter("playerSpecies");
-			playerSpecies2 = (String) request.getParameter("playerSpecies2");
 
-			Species specie1 = speciesService.findOne(Integer.parseInt(playerSpecies1));
-			Species specie2 = speciesService.findOne(Integer.parseInt(playerSpecies2));
+	//@RequestMapping(value="/",method = RequestMethod.POST) 
+	@PostMapping("/createplayer")
+	public void insertPlayer(@RequestBody String req) throws ParseException {
+
+		System.out.println(req);
+		Object obj = new JSONParser().parse(req);
+		JSONObject jo = (JSONObject) obj; 
+		 String playerName1 = (String) jo.get("playerName");
+		 String playerName2 = (String) jo.get("playerName2");
+		 int playerSpecies = ((Long) jo.get("playerSpecies")).intValue();
+		 int playerSpecies2 = ((Long) jo.get("playerSpecies2")).intValue();
+
+		System.out.println(playerName1);
+		try {
+
+
+			Species specie1 = speciesService.findOne(playerSpecies);
+			Species specie2 = speciesService.findOne(playerSpecies2);
 
 			Player player1 = new Player(playerName1, specie1);
 			Player player2 = new Player(playerName2, specie2);
@@ -132,6 +134,6 @@ public class RiskInSpaceController {
 
 
 		} catch (Exception e) {
-		}*/
+		}
 	}
 }
