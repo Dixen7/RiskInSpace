@@ -105,6 +105,13 @@ public class RiskInSpaceController {
 		return speciesService.findAll();
 		
 	}
+	
+	@GetMapping("/planet")
+	public List<Planet> planet() {
+		System.out.println(planetRepo.findAll());
+		return planetRepo.findAll();
+		
+	}
 
 
 

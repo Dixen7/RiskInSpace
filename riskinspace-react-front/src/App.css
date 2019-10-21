@@ -7,7 +7,7 @@
 }
 
 body{
-  background-image: url(../src/space.png);
+  background-image: url(../src/spaaaaaace.png);
   width: 100%;
   height: 100%;
 }
@@ -30,3 +30,103 @@ body{
 .App-link {
   color: #09d3ac;
 }
+
+.espace{
+  display: flex;
+  flex-direction: row;
+  width: 800px;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+:root {
+
+  --pluto-tilt: rotate(120deg);
+  --pluto-day: 300;
+  --pluto-color: #c3b6aa;
+
+  --earth-tilt: rotate(10deg);
+  --earth-day: 180;
+  --earth-color: #b3caff;
+ }
+ @keyframes planetRotate {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+ }
+ .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0);
+ }
+ .card--pluto .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -50px 0px 30px 0px black, -5px 0px 10px -4px var(--pluto-color);
+ }
+ .card--pluto .planet__atmosphere:hover {
+  box-shadow: inset 20px 0px 20px -2px rgba(255, 255, 255, 0.651), inset -50px 0px 30px 0px rgba(255, 255, 255, 0.473), -5px 0px 10px -4px var(--pluto-color);
+ }
+ .card--pluto .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/pluto.jpg
+    );
+  transform: var(--pluto-tilt) scale(1.2);
+  animation: planetRotate calc(var(--pluto-day)*.1s) linear infinite;
+ }
+ .card--pluto .card__planet::before {
+  transform: var(--pluto-tilt) scale(1.2);
+  border-color: var(--pluto-color);
+  color: var(--pluto-color);
+ }
+ .card--pluto .tilt__icon {
+  transform: var(--pluto-tilt);
+  color: var(--pluto-color);
+ }
+ .planet__atmosphere {
+  height: 200px;
+  width: 200px;
+  position: relative;
+  border-radius: 100px;
+  overflow: hidden;
+ }
+ .planet__surface {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  background-size: cover;
+ }
+  .card__info {
+  width: 100%;
+ }
+ .info__title {
+  text-align: center;
+  font-size: 16px;
+ }
+
+ .card--earth .planet__atmosphere {
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -50px 0px 30px 0px black, -5px 0px 10px -4px var(--earth-color);
+ }
+ .card--earth .planet__atmosphere:hover {
+  box-shadow: inset 20px 0px 20px -2px rgba(255, 255, 255, 0.651), inset -50px 0px 30px 0px rgba(255, 255, 255, 0.473), -5px 0px 10px -4px var(--earth-color);
+ }
+ .card--earth .planet__surface {
+  background-image: url(
+    https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/earth.jpg
+    );
+  transform: var(--earth-tilt) scale(1.2);
+  animation: planetRotate calc(var(--earth-day)*.1s) linear infinite;
+ }
+ .card--earth .card__planet::before {
+  transform: var(--earth-tilt) scale(1.2);
+  border-color: var(--earth-color);
+  color: var(--earth-color);
+ }
+ .card--earth .tilt__icon {
+  transform: var(--earth-tilt);
+  color: var(--earth-color);
+ }
