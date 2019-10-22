@@ -41,9 +41,7 @@ class Planets extends Component {
     render() {
 
       return (
-<<<<<<< HEAD
-        <div class="grid-container">
-=======
+
         <div className="row">
         <div id="pop"></div>
           <div className="col-lg-4">
@@ -60,7 +58,10 @@ class Planets extends Component {
             <p>Race : {this.state.player2Species}</p>
             <p>Nb Planètes : {this.state.planetsPlayer2}</p>
           </div>
->>>>>>> fa50ca8a8fda7c58595df124449af116d90537ee
+        <div className="grid-container">
+
+        
+
           {this.state.planets.map(planet => {
             return (
               <Planet
@@ -68,10 +69,13 @@ class Planets extends Component {
               />
             );
           })}
-          <div>
+         
+        </div>
+        <div>
             <button onClick={this.changePlayer}>Fin de tour</button>
           </div>
         </div>
+        
 
       );
     }
@@ -92,12 +96,7 @@ class Planets extends Component {
 
     render() {
       return (
-<<<<<<< HEAD
         <article className={'card card--'+this.props.id}>
-=======
-        <div className="col-lg-2">
-        <article className={'card card--'+this.props.id} onClick={this.modal}>
->>>>>>> fa50ca8a8fda7c58595df124449af116d90537ee
         <div className="card__planet">
           <div className="planet__atmosphere">
             <div className="planet__surface"></div>
