@@ -102,7 +102,7 @@ public class RiskInSpaceService {
 		ArrayList<Planet> allPlanetsNear = planetsNear(planet);
 		ArrayList<Planet> planetsNearOwned = new ArrayList<Planet>();
 		for (int i = 0; i < allPlanetsNear.size(); i++) {
-			if (planet.planetOwner == allPlanetsNear.get(i).planetOwner) {
+			if (planet.getPlanetOwner() == allPlanetsNear.get(i).getPlanetOwner()) {
 				planetsNearOwned.add(allPlanetsNear.get(i));
 			}
 		}
@@ -125,7 +125,7 @@ public class RiskInSpaceService {
 		ArrayList<Planet> allPlanetsNear = planetsNear(planet);
 		ArrayList<Planet> planetsNearEnemy = new ArrayList<Planet>();
 		for (int i = 0; i < allPlanetsNear.size(); i++) {
-			if (planet.planetOwner != allPlanetsNear.get(i).planetOwner) {
+			if (planet.getPlanetOwner() != allPlanetsNear.get(i).getPlanetOwner()) {
 				planetsNearEnemy.add(allPlanetsNear.get(i));
 			}
 		}
