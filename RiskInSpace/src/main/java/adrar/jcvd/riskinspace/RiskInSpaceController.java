@@ -3,11 +3,14 @@ package adrar.jcvd.riskinspace;
 
 
 import java.io.FileReader;
+import java.util.HashMap;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Scanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -106,8 +109,20 @@ public class RiskInSpaceController {
 	}
 	
 	@GetMapping("/planet")
-	public List<Planet> planet() {
-		return planetRepo.findAll(new Sort(Sort.Direction.ASC, "planetId"));
+	public ResponseEntity<?> planet() {
+		List<Planet> planets = planetRepo.findAll(new Sort(Sort.Direction.ASC, "planetId")); 
+		List<Player> players = playerRepo.findAll(new Sort(Sort.Direction.DESC, "playerId"));
+		Player player1 = players.get(1);
+		Player player2 = players.get(0);
+		int countPlanetPlayer1 = planetRepo.findAllByPlanetOwner(player1).size();
+		int countPlanetPlayer2 = planetRepo.findAllByPlanetOwner(player2).size();
+		HashMap<String, Object> hmap = new HashMap<String, Object>();
+	    hmap.put("planets", planets);
+	    hmap.put("player1", player1);
+	    hmap.put("player2", player2);
+	    hmap.put("countPlanetPlayer1", countPlanetPlayer1);
+	    hmap.put("countPlanetPlayer2", countPlanetPlayer2);
+	    return new ResponseEntity<HashMap<String, Object>>(hmap, HttpStatus.OK);
 		
 	}
 

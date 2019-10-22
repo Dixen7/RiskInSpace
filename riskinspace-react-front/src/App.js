@@ -5,6 +5,7 @@ import Home from './component/Home';
 import Planets from './component/Planets';
 
 function App() {
+
   return (
     <div className="App">
     <h1>Risk In Space</h1>

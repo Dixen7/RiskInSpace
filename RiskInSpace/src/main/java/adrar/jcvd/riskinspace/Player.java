@@ -15,21 +15,24 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="playerId")
+//@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="playerId")
 public class Player {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	protected int playerId;
-	protected String playerName;
+	private int playerId;
+	private String playerName;
 	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name ="player_species_id")
-	protected Species species;
-	protected int playerMoney;
-	
+	@JsonManagedReference
+	private Species species;
+	private int playerMoney;
+	@JsonBackReference
 	@OneToMany(mappedBy="planetOwner")
 	private List<Planet> planets ;
 	

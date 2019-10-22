@@ -6,7 +6,12 @@ class Planets extends Component {
     constructor() {
       super();
       this.state = {
-        planets: []
+        planets: [],
+        player1:'',
+        player2:'',
+        planetsPlayer1:0,
+        planetsPlayer2:0,
+        show:false
       };
     }
 
@@ -15,11 +20,17 @@ class Planets extends Component {
     }
 
     refresh() {
-      RiskinspaceService.planet()//HARDCODED
+      RiskinspaceService.planet()
       .then(
         response => {
           console.log(response);
-          this.setState({ planets: response.data })
+          this.setState({ planets: response.data.planets })
+          this.setState({player1:response.data.player1})
+          this.setState({player2:response.data.player2})
+          this.setState({planetsPlayer1:response.data.countPlanetPlayer1})
+          this.setState({planetsPlayer2:response.data.countPlanetPlayer2})
+          this.setState({player1Species:response.data.player1.species.speciesName})
+          this.setState({player2Species:response.data.player2.species.speciesName})
         }
       )
     }
@@ -27,8 +38,19 @@ class Planets extends Component {
 
 
     render() {
+
       return (
         <div className="row">
+          <div className="col-lg-6">
+            <h2>{this.state.player1.playerName}</h2>
+            <p>Race : {this.state.player1Species}</p>
+            <p>Nb Planètes : {this.state.planetsPlayer1}</p>
+          </div>
+          <div className="col-lg-6">
+            <h2>{this.state.player2.playerName}</h2>
+            <p>Race : {this.state.player2Species}</p>
+            <p>Nb Planètes : {this.state.planetsPlayer2}</p>
+          </div>
           {this.state.planets.map(planet => {
             return (
               <Planet
@@ -39,6 +61,7 @@ class Planets extends Component {
         </div>
       );
     }
+
   }
 
   class Planet extends Component {

@@ -14,6 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -21,23 +22,24 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 public class Planet {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	protected int planetId;
-	protected int planetShipsNbr;
-	protected String planetName;
+	private int planetId;
+	private int planetShipsNbr;
+	private String planetName;
 	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name ="planet_owner")
-	protected Player planetOwner;
-	protected int planetBonus;
-	protected String planetImage;
+	@JsonManagedReference
+	private Player planetOwner;
+	private int planetBonus;
+	private String planetImage;
 	@JsonIgnore
 	@ManyToMany(cascade={CascadeType.ALL})
 	@JoinTable(name="frontiers",
 	joinColumns={@JoinColumn(name="planet_id1")},
 	inverseJoinColumns={@JoinColumn(name="planet_id2")})
-	private Set<Planet> planets = new HashSet<Planet>();
+	private Set<Planet> planetsInitial = new HashSet<Planet>();
 
 	@JsonIgnore
-	@ManyToMany(mappedBy="planets")
+	@ManyToMany(mappedBy="planetsInitial")
 	private Set<Planet> planetsNear = new HashSet<Planet>();
 
 	public Planet() {}
@@ -95,11 +97,11 @@ public class Planet {
 	}
 
 	public Set<Planet> getPlanets() {
-		return planets;
+		return planetsInitial;
 	}
 
 	public void setPlanets(Set<Planet> planets) {
-		this.planets = planets;
+		this.planetsInitial = planets;
 	}
 
 	public Set<Planet> getPlanetsNear() {
