@@ -13,11 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="speciesId")
+//@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="speciesId")
 @Table(name="species")
 public class Species {
 	@Id
@@ -27,6 +28,7 @@ public class Species {
 	protected String speciesName;
 	protected String SpeciesImage;
 	@OneToMany(mappedBy="species")
+	@JsonBackReference
 	private List<Player> players ;
 	
 	

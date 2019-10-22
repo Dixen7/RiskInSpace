@@ -6,6 +6,7 @@ import Planets from './component/Planets';
 import './fonts/Space_Quest_Italic.ttf'
 
 function App() {
+
   return (
     <div className="App">
     <Router>
