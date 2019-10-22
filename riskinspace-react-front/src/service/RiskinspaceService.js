@@ -13,4 +13,3 @@ class RiskinspaceService {
 }
 
 export default new RiskinspaceService()
-

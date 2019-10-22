@@ -17,6 +17,7 @@ class CreatePlayer extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+
    onChange = (e) =>{
         this.setState({ [e.target.name]: e.target.value });
    }
@@ -24,9 +25,9 @@ class CreatePlayer extends Component {
 	handleSubmit = (e) =>{
 		e.preventDefault();
 		let players = {
-			"playerName": this.state.playerName, 
-			"playerSpecies": parseInt(this.state.playerSpecies), 
-			"playerName2": this.state.playerName2, 
+			"playerName": this.state.playerName,
+			"playerSpecies": parseInt(this.state.playerSpecies),
+			"playerName2": this.state.playerName2,
 			"playerSpecies2": parseInt(this.state.playerSpecies2)
 		};
 		const { history } = this.props;
@@ -38,18 +39,20 @@ class CreatePlayer extends Component {
 		  .catch(function (error) {
 		    console.log(error);
 		  });
-
   }
 
   componentDidMount() {
     this.refreshCreatePlayer();
   }
 
+  componentWillUnmount() {
+
+  }
+
   refreshCreatePlayer() {
     RiskinspaceService.home()
     .then(
       response => {
-        console.log(response);
         this.setState({ species: response.data })
       }
     )
@@ -61,6 +64,7 @@ class CreatePlayer extends Component {
       <div className="container-fluid">
       <div className="d-flex justify-content-center">
       <div className="">
+
       <form onSubmit={this.handleSubmit}>
       Joueur 1
       <div className="form-group">
@@ -88,12 +92,12 @@ class CreatePlayer extends Component {
           }
           </select>
         </div>
-        
+
         <div className="form-group">
           <label htmlFor="name">Nom : </label>
           <input type="text" name="playerName2" id="playerName2"  className="form-control" value={this.state.playerName2} onChange={this.onChange}/>
         </div>
-       
+
         <input type="submit" value="jouer" className="btn btn-primary"/>
       </form>
       </div>

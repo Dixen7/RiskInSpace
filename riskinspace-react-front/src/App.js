@@ -12,17 +12,12 @@ function App() {
       <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/planet" component={Planets} />
-
       </Switch>
     </Router>
-
-      
     </div>
-    
 
   );
 }
 
 
 export default App;
-

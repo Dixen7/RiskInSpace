@@ -13,7 +13,7 @@ class Planets extends Component {
     componentDidMount() {
       this.refresh();
     }
-  
+
     refresh() {
       RiskinspaceService.planet()//HARDCODED
       .then(
@@ -25,7 +25,7 @@ class Planets extends Component {
     }
 
 
-  
+
     render() {
       return (
         <div className="row">
@@ -42,7 +42,7 @@ class Planets extends Component {
   }
 
   class Planet extends Component {
-    
+
     render() {
       return (
         <div className="col-lg-2">
