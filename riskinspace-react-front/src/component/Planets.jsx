@@ -42,21 +42,24 @@ class Planets extends Component {
 
       return (
 
-        <div className="row">
+        <div className="">
         <div id="pop"></div>
-          <div className="col-lg-4">
+          <div className="joueur1">
             <h2>{this.state.player1.playerName}</h2>
             <p>Race : {this.state.player1Species}</p>
             <p>Nb Planètes : {this.state.planetsPlayer1}</p>
           </div>
-          <div className="col-lg-4">
+          <div className="tour">
             <h3>Tour de </h3>
             <p>{this.state.currentPlayer}</p>
           </div>
-          <div className="col-lg-4">
+          <div className="joueur2">
             <h2>{this.state.player2.playerName}</h2>
             <p>Race : {this.state.player2Species}</p>
             <p>Nb Planètes : {this.state.planetsPlayer2}</p>
+          </div>
+          <div>
+            <button onClick={this.changePlayer}>Fin de tour</button>
           </div>
         <div className="grid-container">
 
@@ -71,9 +74,7 @@ class Planets extends Component {
           })}
          
         </div>
-        <div>
-            <button onClick={this.changePlayer}>Fin de tour</button>
-          </div>
+
         </div>
         
 
