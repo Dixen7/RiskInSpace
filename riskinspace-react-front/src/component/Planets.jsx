@@ -25,18 +25,14 @@ class Planets extends Component {
     }
 
 
-  
+
     render() {
       return (
         <div className="row">
           {this.state.planets.map(planet => {
             return (
               <Planet
-<<<<<<< HEAD
-               key={planet.planetId} name={planet.planetName}
-=======
                id={planet.planetId} name={planet.planetName} key={planet.planetId}
->>>>>>> 8fed562a30d7d8e88604582ca067135aad23a940
               />
             );
           })}
