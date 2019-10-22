@@ -41,6 +41,41 @@ class Planets extends Component {
     render() {
 
       return (
+<<<<<<< HEAD
+
+        <div className="">
+        <div id="pop"></div>
+          <div className="joueur1">
+            <h2>{this.state.player1.playerName}</h2>
+            <p>Race : {this.state.player1Species}</p>
+            <p>Nb Planètes : {this.state.planetsPlayer1}</p>
+          </div>
+          <div className="tour">
+            <h3>Tour de </h3>
+            <p>{this.state.currentPlayer}</p>
+          </div>
+          <div className="joueur2">
+            <h2>{this.state.player2.playerName}</h2>
+            <p>Race : {this.state.player2Species}</p>
+            <p>Nb Planètes : {this.state.planetsPlayer2}</p>
+          </div>
+          <div>
+            <button onClick={this.changePlayer}>Fin de tour</button>
+          </div>
+        <div className="grid-container">
+
+        
+
+          {this.state.planets.map(planet => {
+            return (
+              <Planet
+               id={planet.planetId} name={planet.planetName} key={planet.planetId} owner={planet.planetOwner.playerName} nbships={planet.planetShipsNbr}
+              />
+            );
+          })}
+         
+        </div>
+=======
         <div className="fluid-container">
           <div className="row">
             <div className="col-lg-4">
@@ -72,6 +107,7 @@ class Planets extends Component {
 
           </div>
 
+>>>>>>> 6df5e7322fda800b8e24279eee1fe251460c8f67
 
         </div>
 
