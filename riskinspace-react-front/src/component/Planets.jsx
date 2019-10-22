@@ -41,41 +41,40 @@ class Planets extends Component {
     render() {
 
       return (
-
-        <div className="row">
-        <div id="pop"></div>
-          <div className="col-lg-4">
-            <h2>{this.state.player1.playerName}</h2>
-            <p>Race : {this.state.player1Species}</p>
-            <p>Nb Planètes : {this.state.planetsPlayer1}</p>
+        <div className="fluid-container">
+          <div className="row">
+            <div className="col-lg-4">
+              <h2>{this.state.player1.playerName}</h2>
+              <p>Race : {this.state.player1Species}</p>
+              <p>Nb Planètes : {this.state.planetsPlayer1}</p>
+            </div>
+            <div className="col-lg-4">
+              <h3>Tour de </h3>
+              <p>{this.state.currentPlayer}</p>
+            </div>
+            <div className="col-lg-4">
+              <h2>{this.state.player2.playerName}</h2>
+              <p>Race : {this.state.player2Species}</p>
+              <p>Nb Planètes : {this.state.planetsPlayer2}</p>
+            </div>
+            <div>
+              <button onClick={this.changePlayer}>Fin de tour</button>
+            </div>
           </div>
-          <div className="col-lg-4">
-            <h3>Tour de </h3>
-            <p>{this.state.currentPlayer}</p>
-          </div>
-          <div className="col-lg-4">
-            <h2>{this.state.player2.playerName}</h2>
-            <p>Race : {this.state.player2Species}</p>
-            <p>Nb Planètes : {this.state.planetsPlayer2}</p>
-          </div>
-        <div className="grid-container">
+          <div className="grid-container">
+            {this.state.planets.map(planet => {
+              return (
+                <Planet
+                 id={planet.planetId} name={planet.planetName} key={planet.planetId} owner={planet.planetOwner.playerName} nbships={planet.planetShipsNbr}
+                />
+              );
+            })}
 
-        
+          </div>
 
-          {this.state.planets.map(planet => {
-            return (
-              <Planet
-               id={planet.planetId} name={planet.planetName} key={planet.planetId} owner={planet.planetOwner.playerName} nbships={planet.planetShipsNbr}
-              />
-            );
-          })}
-         
+
         </div>
-        <div>
-            <button onClick={this.changePlayer}>Fin de tour</button>
-          </div>
-        </div>
-        
+
 
       );
     }
