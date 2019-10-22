@@ -107,8 +107,7 @@ public class RiskInSpaceController {
 	
 	@GetMapping("/planet")
 	public List<Planet> planet() {
-		System.out.println(planetRepo.findAll());
-		return planetRepo.findAll();
+		return planetRepo.findAll(new Sort(Sort.Direction.ASC, "planetId"));
 		
 	}
 

@@ -7,13 +7,30 @@ class CreatePlayer extends Component {
     super(props)
     this.refreshCreatePlayer = this.refreshCreatePlayer.bind(this)
     this.state = {
-      species: []
+      species: [],
+      playerName:'',
+      playerSpecies:'',
+      playerName2:'',
+      playerSpecies2:''
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
- handleSubmit(){
-    fetch('http://localhost:8080/createplayer', {
+  changeHandler = (e) => {
+    this.setState({[e.target.name]: e.target.value})
+  }
+
+ handleSubmit = e =>{
+   e.preventDefault()
+   axios.post('http://localhost:8080/createplayer', this.state)
+     .then((response) => {
+       console.log(response);
+     }, (error) => {
+       console.log(error);
+     })
+   alert(this.state);
+   /*
+    await fetch('http://localhost:8080/createplayer', {
 			method: 'POST',
 			body: JSON.stringify({
         playerName: document.getElementById('playerName').value,
@@ -28,7 +45,8 @@ class CreatePlayer extends Component {
       console.log(response);
     }, (error) => {
       console.log(error);
-    });
+    });*/
+
 
   }
 
@@ -36,11 +54,14 @@ class CreatePlayer extends Component {
     this.refreshCreatePlayer();
   }
 
+  componentWillUnmount() {
+
+  }
+
   refreshCreatePlayer() {
-    RiskinspaceService.home()//HARDCODED
+    RiskinspaceService.home()
     .then(
       response => {
-        console.log(response);
         this.setState({ species: response.data })
       }
     )
@@ -54,28 +75,28 @@ class CreatePlayer extends Component {
       <form>
         <div className="form-group">
           <label htmlFor="name">Nom Joueur 1 : </label>
-          <input type="text" name="playerName" id="playerName" className="form-control"/>
+          <input type="text" name="playerName" id="playerName" className="form-control" onChange={this.changeHandler}/>
         </div>
         <div className="form-group">
-          <select id="playerSpecies" name="playerSpecies">
+          <select id="playerSpecies" name="playerSpecies" onChange={this.changeHandler}>
           <option value="">Sélectionner une race</option>
           {
             this.state.species.map(
-              specie => <option value={specie.speciesId}>{specie.speciesName}</option>
+              specie => <option key={specie.speciesId} value={specie.speciesId}>{specie.speciesName}</option>
             )
           }
           </select>
         </div>
         <div className="form-group">
           <label htmlFor="name">Nom Joueur 2 : </label>
-          <input type="text" name="playerName2" id="playerName2"  className="form-control"/>
+          <input type="text" name="playerName2" id="playerName2"  className="form-control" onChange={this.changeHandler}/>
         </div>
         <div className="form-group">
-          <select name="playerSpecies2" id="playerSpecies2">
+          <select name="playerSpecies2" id="playerSpecies2" onChange={this.changeHandler}>
           <option value="">Sélectionner une race</option>
           {
             this.state.species.map(
-              specie => <option value={specie.speciesId}>{specie.speciesName}</option>
+              specie => <option key={specie.speciesId} value={specie.speciesId}>{specie.speciesName}</option>
             )
           }
           </select>

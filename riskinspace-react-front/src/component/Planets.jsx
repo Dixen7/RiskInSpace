@@ -13,7 +13,7 @@ class Planets extends Component {
     componentDidMount() {
       this.refresh();
     }
-  
+
     refresh() {
       RiskinspaceService.planet()//HARDCODED
       .then(
@@ -32,7 +32,7 @@ class Planets extends Component {
           {this.state.planets.map(planet => {
             return (
               <Planet
-               name={planet.planetName}
+               key={planet.planetId} name={planet.planetName}
               />
             );
           })}
@@ -42,7 +42,7 @@ class Planets extends Component {
   }
 
   class Planet extends Component {
-    
+
     render() {
       return (
         <article className="card card--{this.props.name}">
