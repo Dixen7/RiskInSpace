@@ -28,7 +28,7 @@ class Planets extends Component {
 
     render() {
       return (
-        <div className="row">
+        <div class="grid-container">
           {this.state.planets.map(planet => {
             return (
               <Planet
@@ -45,18 +45,16 @@ class Planets extends Component {
 
     render() {
       return (
-        <div className="col-lg-2">
         <article className={'card card--'+this.props.id}>
         <div className="card__planet">
           <div className="planet__atmosphere">
             <div className="planet__surface"></div>
           </div>
         </div>
-        <div className="card__info">
+        {/* <div className="card__info">
           <h2 className="info__title">{this.props.name}</h2>
-          </div>
+          </div> */}
        </article>
-       </div>
       );
     }
   }

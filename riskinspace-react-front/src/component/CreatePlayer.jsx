@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import RiskinspaceService from '../service/RiskinspaceService';
 import axios from 'axios'
+import robot from '../../src/spaaace.png'
 class CreatePlayer extends Component {
 
   constructor(props) {
@@ -61,7 +62,10 @@ class CreatePlayer extends Component {
   render(){
   	const { history } = this.props;
     return (
+      <div>
+        <canvas id="canvas"></canvas>
       <div className="container-fluid">
+        <h1>Risk In Space</h1>
       <div className="d-flex justify-content-center">
       <div className="">
 
@@ -69,7 +73,7 @@ class CreatePlayer extends Component {
       Joueur 1
       <div className="form-group">
           <select id="playerSpecies" name="playerSpecies"  value={this.state.playerSpecies} onChange={this.onChange}>
-          <option value="">Sélectionner une race</option>
+          <option value="">Selectionner une race</option>
           {
             this.state.species.map(
               specie => <option key={specie.speciesId} value={specie.speciesId}>{specie.speciesName}</option>
@@ -84,7 +88,7 @@ class CreatePlayer extends Component {
 		Joueur 2
          <div className="form-group">
           <select name="playerSpecies2" id="playerSpecies2"  value={this.state.playerSpecies2} onChange={this.onChange}>
-          <option value="">Sélectionner une race</option>
+          <option value="">Selectionner une race</option>
           {
             this.state.species.map(
               specie => <option key={specie.speciesId} value={specie.speciesId}>{specie.speciesName}</option>
@@ -100,6 +104,7 @@ class CreatePlayer extends Component {
 
         <input type="submit" value="jouer" className="btn btn-primary"/>
       </form>
+      </div>
       </div>
       </div>
       </div>
