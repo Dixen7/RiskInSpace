@@ -5,7 +5,6 @@ class Home extends Component {
     render() {
         return (
             <div>
-              <h1>Risk In Space</h1>
               <CreatePlayer/>
             </div>
         )

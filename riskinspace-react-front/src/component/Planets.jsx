@@ -28,11 +28,15 @@ class Planets extends Component {
   
     render() {
       return (
-        <div className="espace">
+        <div className="row">
           {this.state.planets.map(planet => {
             return (
               <Planet
+<<<<<<< HEAD
                key={planet.planetId} name={planet.planetName}
+=======
+               id={planet.planetId} name={planet.planetName} key={planet.planetId}
+>>>>>>> 8fed562a30d7d8e88604582ca067135aad23a940
               />
             );
           })}
@@ -45,7 +49,8 @@ class Planets extends Component {
 
     render() {
       return (
-        <article className="card card--{this.props.name}">
+        <div className="col-lg-2">
+        <article className={'card card--'+this.props.id}>
         <div className="card__planet">
           <div className="planet__atmosphere">
             <div className="planet__surface"></div>
@@ -55,6 +60,7 @@ class Planets extends Component {
           <h2 className="info__title">{this.props.name}</h2>
           </div>
        </article>
+       </div>
       );
     }
   }

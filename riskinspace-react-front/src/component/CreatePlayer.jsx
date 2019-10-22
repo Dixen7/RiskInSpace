@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import RiskinspaceService from '../service/RiskinspaceService';
 import axios from 'axios'
 class CreatePlayer extends Component {
@@ -9,45 +10,35 @@ class CreatePlayer extends Component {
     this.state = {
       species: [],
       playerName:'',
-      playerSpecies:'',
+      playerSpecies:0,
       playerName2:'',
-      playerSpecies2:''
+      playerSpecies2:0
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  changeHandler = (e) => {
-    this.setState({[e.target.name]: e.target.value})
-  }
 
- handleSubmit = e =>{
-   e.preventDefault()
-   axios.post('http://localhost:8080/createplayer', this.state)
-     .then((response) => {
-       console.log(response);
-     }, (error) => {
-       console.log(error);
-     })
-   alert(this.state);
-   /*
-    await fetch('http://localhost:8080/createplayer', {
-			method: 'POST',
-			body: JSON.stringify({
-        playerName: document.getElementById('playerName').value,
-        playerSpecies: document.getElementById('playerSpecies').value,
-        playerName2:document.getElementById('playerName2').value,
-        playerSpecies2:document.getElementById('playerSpecies2').value
-			}),
-			headers: {
-				"Content-type": "application/json; charset=UTF-8"
-			}
-    }).then((response) => {
-      console.log(response);
-    }, (error) => {
-      console.log(error);
-    });*/
+   onChange = (e) =>{
+        this.setState({ [e.target.name]: e.target.value });
+   }
 
-
+	handleSubmit = (e) =>{
+		e.preventDefault();
+		let players = {
+			"playerName": this.state.playerName,
+			"playerSpecies": parseInt(this.state.playerSpecies),
+			"playerName2": this.state.playerName2,
+			"playerSpecies2": parseInt(this.state.playerSpecies2)
+		};
+		const { history } = this.props;
+	    axios.post('http://localhost:8080/createplayer', players)
+		  .then(function (response) {
+		    console.log(response);
+		    if(history) history.push('/planet');
+		  })
+		  .catch(function (error) {
+		    console.log(error);
+		  });
   }
 
   componentDidMount() {
@@ -68,17 +59,16 @@ class CreatePlayer extends Component {
   }
 
   render(){
+  	const { history } = this.props;
     return (
       <div className="container-fluid">
       <div className="d-flex justify-content-center">
       <div className="">
-      <form>
-        <div className="form-group">
-          <label htmlFor="name">Nom Joueur 1 : </label>
-          <input type="text" name="playerName" id="playerName" className="form-control" onChange={this.changeHandler}/>
-        </div>
-        <div className="form-group">
-          <select id="playerSpecies" name="playerSpecies" onChange={this.changeHandler}>
+
+      <form onSubmit={this.handleSubmit}>
+      Joueur 1
+      <div className="form-group">
+          <select id="playerSpecies" name="playerSpecies"  value={this.state.playerSpecies} onChange={this.onChange}>
           <option value="">Sélectionner une race</option>
           {
             this.state.species.map(
@@ -88,11 +78,12 @@ class CreatePlayer extends Component {
           </select>
         </div>
         <div className="form-group">
-          <label htmlFor="name">Nom Joueur 2 : </label>
-          <input type="text" name="playerName2" id="playerName2"  className="form-control" onChange={this.changeHandler}/>
+          <label htmlFor="name">Nom : </label>
+          <input type="text" name="playerName" id="playerName" className="form-control"  value={this.state.playerName} onChange={this.onChange} />
         </div>
-        <div className="form-group">
-          <select name="playerSpecies2" id="playerSpecies2" onChange={this.changeHandler}>
+		Joueur 2
+         <div className="form-group">
+          <select name="playerSpecies2" id="playerSpecies2"  value={this.state.playerSpecies2} onChange={this.onChange}>
           <option value="">Sélectionner une race</option>
           {
             this.state.species.map(
@@ -101,7 +92,13 @@ class CreatePlayer extends Component {
           }
           </select>
         </div>
-        <input type="submit" value="jouer" className="btn btn-primary" onSubmit={this.handleSubmit}/>
+
+        <div className="form-group">
+          <label htmlFor="name">Nom : </label>
+          <input type="text" name="playerName2" id="playerName2"  className="form-control" value={this.state.playerName2} onChange={this.onChange}/>
+        </div>
+
+        <input type="submit" value="jouer" className="btn btn-primary"/>
       </form>
       </div>
       </div>
@@ -111,4 +108,4 @@ class CreatePlayer extends Component {
 
 }
 
-export default CreatePlayer
+export default withRouter(CreatePlayer)
