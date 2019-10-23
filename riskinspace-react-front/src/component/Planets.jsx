@@ -126,7 +126,7 @@ class Planets extends Component {
         {/* <div className="card__info">
           <h2 className="info__title">{this.props.name}</h2>
           </div> */}
-          <Modal show={this.state.show} onHide={this.handleClose} animation={false}>
+          <Modal show={this.state.show} animation={false}>
               <Modal.Title>{this.props.name}</Modal.Title>
             <Modal.Body><br/>Proprietaire : {this.props.owner} <br/>Nb de vaisseaux : {this.props.nbships}</Modal.Body>
             <Modal.Footer>
