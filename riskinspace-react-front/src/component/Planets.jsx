@@ -67,24 +67,22 @@ class Planets extends Component {
           </div>
 
           <div className="findetour">
-          <button id="button1" onClick={this.fightEnd}>
+          <button id="button1" className="risk-button" onClick={this.fightEnd}>
               Fin de Combat
           </button>
-            <button onClick={this.changePlayer}>Fin de tour</button>
+            <button className="risk-button" id="button2" onClick={this.changePlayer}>Fin de tour</button>
           </div>
-        <div id="button2" className="grid-container">
+          <div className="grid-container">
+            {this.state.planets.map(planet => {
+              return (
+                <Planet
+                 id={planet.planetId} name={planet.planetName} key={planet.planetId} owner={planet.planetOwner.playerName} nbships={planet.planetShipsNbr} currentPlayer={this.state.currentPlayer}
+                />
 
-        
+              );
+            })}
+          </div>
 
-          {this.state.planets.map(planet => {
-            return (
-              <Planet
-               id={planet.planetId} name={planet.planetName} key={planet.planetId} owner={planet.planetOwner.playerName} nbships={planet.planetShipsNbr}
-              />
-
-            );
-          })}
-        </div>
         </div>
         
 
@@ -102,6 +100,8 @@ class Planets extends Component {
 
         this.state = {
           show:false,
+          currentPlayer:props.currentPlayer,
+          planetOwner:props.owner
         }
     }
 
@@ -114,7 +114,28 @@ class Planets extends Component {
       this.setState({show:true});
     }
 
+    attack(e){
+      console.log('attack');
+    }
+
+    placeShip(e){
+      console.log('placeShip');
+    }
+
     render() {
+
+      let text;
+      let action;
+      if(this.props.currentPlayer != this.props.owner){
+        text = "Attack";
+        action = this.attack;
+      } else {
+        text = "placer Troupe";
+        action = this.placeShip;
+      }
+
+
+
       return (
         <article className={'card card--'+this.props.id} onClick={this.handleShow}>
         <div className="card__planet">
@@ -127,15 +148,15 @@ class Planets extends Component {
         {/* <div className="card__info">
           <h2 className="info__title">{this.props.name}</h2>
           </div> */}
-          <Modal show={this.state.show} onHide={this.handleClose} animation={false}>
+          <Modal show={this.state.show} animation={false}>
               <Modal.Title>{this.props.name}</Modal.Title>
             <Modal.Body><br/>Proprietaire : {this.props.owner} <br/>Nb de vaisseaux : {this.props.nbships}</Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={this.handleClose}>
-                Close
+              <Button variant="primary" onClick={action}>
+                {text}
               </Button>
               <Button variant="primary" onClick={this.handleClose}>
-                Save Changes
+                Fermer
               </Button>
             </Modal.Footer>
           </Modal>
@@ -145,9 +166,6 @@ class Planets extends Component {
     }
   }
    
-
-
-
 
 
   export default Planets

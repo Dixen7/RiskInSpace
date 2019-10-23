@@ -52,7 +52,7 @@ body{
   top: 150px;
 }
 
-button{
+.risk-button{
 
   position: absolute;
   right: 10px;
