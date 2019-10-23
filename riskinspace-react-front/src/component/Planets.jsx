@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import RiskinspaceService from '../service/RiskinspaceService';
-import PropTypes from 'prop-types';
+import {Button,Modal} from 'react-bootstrap';
 
 class Planets extends Component {
     constructor() {
@@ -41,10 +41,10 @@ class Planets extends Component {
     render() {
 
       return (
-<<<<<<< HEAD
+
 
         <div className="">
-        <div id="pop"></div>
+
           <div className="joueur1">
             <h2>{this.state.player1.playerName}</h2>
             <p>Race : {this.state.player1Species}</p>
@@ -63,52 +63,15 @@ class Planets extends Component {
             <button onClick={this.changePlayer}>Fin de tour</button>
           </div>
         <div className="grid-container">
-
-        
-
           {this.state.planets.map(planet => {
             return (
               <Planet
                id={planet.planetId} name={planet.planetName} key={planet.planetId} owner={planet.planetOwner.playerName} nbships={planet.planetShipsNbr}
               />
+
             );
           })}
-         
         </div>
-=======
-        <div className="fluid-container">
-          <div className="row">
-            <div className="col-lg-4">
-              <h2>{this.state.player1.playerName}</h2>
-              <p>Race : {this.state.player1Species}</p>
-              <p>Nb Planètes : {this.state.planetsPlayer1}</p>
-            </div>
-            <div className="col-lg-4">
-              <h3>Tour de </h3>
-              <p>{this.state.currentPlayer}</p>
-            </div>
-            <div className="col-lg-4">
-              <h2>{this.state.player2.playerName}</h2>
-              <p>Race : {this.state.player2Species}</p>
-              <p>Nb Planètes : {this.state.planetsPlayer2}</p>
-            </div>
-            <div>
-              <button onClick={this.changePlayer}>Fin de tour</button>
-            </div>
-          </div>
-          <div className="grid-container">
-            {this.state.planets.map(planet => {
-              return (
-                <Planet
-                 id={planet.planetId} name={planet.planetName} key={planet.planetId} owner={planet.planetOwner.playerName} nbships={planet.planetShipsNbr}
-                />
-              );
-            })}
-
-          </div>
-
->>>>>>> 6df5e7322fda800b8e24279eee1fe251460c8f67
-
         </div>
 
 
@@ -121,29 +84,56 @@ class Planets extends Component {
 
     constructor(props){
       super(props);
-        this.modal = this.modal.bind(this);
+        this.handleShow = this.handleShow.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+
+        this.state = {
+          show:false,
+        }
     }
 
-    modal(e){
-      alert("Nom planète : "+this.props.name+"<br>Propriétaire : "+this.props.owner+'<br>Nb de vaisseaux : '+this.props.nbships);
-      //document.getElementById('pop').append(text);
+    handleClose(e){
+       e.stopPropagation();
+      this.setState({show:false});
+    }
+
+    handleShow(){
+      this.setState({show:true});
     }
 
     render() {
       return (
-        <article className={'card card--'+this.props.id}>
+        <article className={'card card--'+this.props.id} onClick={this.handleShow}>
         <div className="card__planet">
           <div className="planet__atmosphere">
             <div className="planet__surface"></div>
+
+
           </div>
         </div>
         {/* <div className="card__info">
           <h2 className="info__title">{this.props.name}</h2>
           </div> */}
+          <Modal show={this.state.show} onHide={this.handleClose} animation={false}>
+              <Modal.Title>{this.props.name}</Modal.Title>
+            <Modal.Body><br/>Proprietaire : {this.props.owner} <br/>Nb de vaisseaux : {this.props.nbships}</Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={this.handleClose}>
+                Close
+              </Button>
+              <Button variant="primary" onClick={this.handleClose}>
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal>
        </article>
+
       );
     }
   }
+
+
+
 
 
   export default Planets
