@@ -4,6 +4,8 @@ import RiskinspaceService from '../service/RiskinspaceService';
 import PropTypes from 'prop-types';
 
 class Planets extends Component {
+
+
     constructor() {
       super();
       this.state = {
@@ -14,6 +16,7 @@ class Planets extends Component {
         planetsPlayer2:0,
         currentPlayer:'',
       };
+      
 
     }
 
@@ -38,10 +41,13 @@ class Planets extends Component {
       )
     }
 
+    fightEnd() {
+      alert("bravo");
+    }
+
     render() {
 
       return (
-<<<<<<< HEAD
 
         <div className="">
         <div id="pop"></div>
@@ -59,10 +65,14 @@ class Planets extends Component {
             <p>Race : {this.state.player2Species}</p>
             <p>Nb Planètes : {this.state.planetsPlayer2}</p>
           </div>
-          <div>
+
+          <div className="findetour">
+          <button id="button1" onClick={this.fightEnd}>
+              Fin de Combat
+          </button>
             <button onClick={this.changePlayer}>Fin de tour</button>
           </div>
-        <div className="grid-container">
+        <div id="button2" className="grid-container">
 
         
 
@@ -75,42 +85,9 @@ class Planets extends Component {
           })}
          
         </div>
-=======
-        <div className="fluid-container">
-          <div className="row">
-            <div className="col-lg-4">
-              <h2>{this.state.player1.playerName}</h2>
-              <p>Race : {this.state.player1Species}</p>
-              <p>Nb Planètes : {this.state.planetsPlayer1}</p>
-            </div>
-            <div className="col-lg-4">
-              <h3>Tour de </h3>
-              <p>{this.state.currentPlayer}</p>
-            </div>
-            <div className="col-lg-4">
-              <h2>{this.state.player2.playerName}</h2>
-              <p>Race : {this.state.player2Species}</p>
-              <p>Nb Planètes : {this.state.planetsPlayer2}</p>
-            </div>
-            <div>
-              <button onClick={this.changePlayer}>Fin de tour</button>
-            </div>
-          </div>
-          <div className="grid-container">
-            {this.state.planets.map(planet => {
-              return (
-                <Planet
-                 id={planet.planetId} name={planet.planetName} key={planet.planetId} owner={planet.planetOwner.playerName} nbships={planet.planetShipsNbr}
-                />
-              );
-            })}
-
-          </div>
-
->>>>>>> 6df5e7322fda800b8e24279eee1fe251460c8f67
 
         </div>
-
+        
 
       );
     }
@@ -144,6 +121,7 @@ class Planets extends Component {
       );
     }
   }
+   
 
 
   export default Planets
