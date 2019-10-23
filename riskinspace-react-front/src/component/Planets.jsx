@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import RiskinspaceService from '../service/RiskinspaceService';
-import PropTypes from 'prop-types';
+import {Button,Modal} from 'react-bootstrap';
 
 class Planets extends Component {
 
@@ -50,7 +50,7 @@ class Planets extends Component {
       return (
 
         <div className="">
-        <div id="pop"></div>
+
           <div className="joueur1">
             <h2>{this.state.player1.playerName}</h2>
             <p>Race : {this.state.player1Species}</p>
@@ -81,11 +81,10 @@ class Planets extends Component {
               <Planet
                id={planet.planetId} name={planet.planetName} key={planet.planetId} owner={planet.planetOwner.playerName} nbships={planet.planetShipsNbr}
               />
+
             );
           })}
-         
         </div>
-
         </div>
         
 
@@ -98,30 +97,57 @@ class Planets extends Component {
 
     constructor(props){
       super(props);
-        this.modal = this.modal.bind(this);
+        this.handleShow = this.handleShow.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+
+        this.state = {
+          show:false,
+        }
     }
 
-    modal(e){
-      alert("Nom planète : "+this.props.name+"<br>Propriétaire : "+this.props.owner+'<br>Nb de vaisseaux : '+this.props.nbships);
-      //document.getElementById('pop').append(text);
+    handleClose(e){
+       e.stopPropagation();
+      this.setState({show:false});
+    }
+
+    handleShow(){
+      this.setState({show:true});
     }
 
     render() {
       return (
-        <article className={'card card--'+this.props.id}>
+        <article className={'card card--'+this.props.id} onClick={this.handleShow}>
         <div className="card__planet">
           <div className="planet__atmosphere">
             <div className="planet__surface"></div>
+
+
           </div>
         </div>
         {/* <div className="card__info">
           <h2 className="info__title">{this.props.name}</h2>
           </div> */}
+          <Modal show={this.state.show} onHide={this.handleClose} animation={false}>
+              <Modal.Title>{this.props.name}</Modal.Title>
+            <Modal.Body><br/>Proprietaire : {this.props.owner} <br/>Nb de vaisseaux : {this.props.nbships}</Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={this.handleClose}>
+                Close
+              </Button>
+              <Button variant="primary" onClick={this.handleClose}>
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal>
        </article>
+
       );
     }
   }
    
+
+
+
 
 
   export default Planets

@@ -125,7 +125,32 @@ public class RiskInSpaceController {
 	    return new ResponseEntity<HashMap<String, Object>>(hmap, HttpStatus.OK);
 		
 	}
-
+	
+	@PostMapping("/planet")
+	public void fight(@RequestBody String req) throws ParseException {
+		System.out.println(req);
+		Object obj = new JSONParser().parse(req);
+		JSONObject jo = (JSONObject) obj;
+		List <Planet> planetList = planetRepo.findAll(new Sort(Sort.Direction.ASC, "planetId"));
+		int planetAttacker = ((Long) jo.get("Attacker")).intValue();
+		int planetDefender = ((Long) jo.get("Defender")).intValue();
+		int diceAttacker = ((Long) jo.get("diceAttacker")).intValue();
+		int diceDefender = ((Long) jo.get("diceDefender")).intValue();
+		Planet planetAtt = planetList.get(planetAttacker);
+		Planet planetDef = planetList.get(planetDefender);
+		
+		if((diceAttacker >= 1 && diceAttacker <= 3) && (diceDefender >= 1 && diceDefender <=2)  ) {
+			try{
+				Fight fight = new Fight();
+				fight.fight(diceAttacker, diceAttacker, planetAtt.getPlanetShipsNbr(), planetDef.getPlanetShipsNbr(), planetAtt, planetDef);
+			} 
+			catch (Exception e) {
+			}
+		}
+		
+		
+	}
+	
 
 
 
