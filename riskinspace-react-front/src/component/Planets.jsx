@@ -66,7 +66,7 @@ class Planets extends Component {
             {this.state.planets.map(planet => {
               return (
                 <Planet
-                 id={planet.planetId} name={planet.planetName} key={planet.planetId} owner={planet.planetOwner.playerName} nbships={planet.planetShipsNbr}
+                 id={planet.planetId} name={planet.planetName} key={planet.planetId} owner={planet.planetOwner.playerName} nbships={planet.planetShipsNbr} currentPlayer={this.state.currentPlayer}
                 />
 
               );
@@ -107,9 +107,8 @@ class Planets extends Component {
 
     render() {
 
-      console.log(this.state.currentPlayer);
       let text;
-      if(this.state.currentPlayer != this.state.planetOwner){
+      if(this.props.currentPlayer != this.props.owner){
         text = "Attack";
       } else {
         text = "placer Troupe";
