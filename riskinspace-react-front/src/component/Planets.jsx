@@ -62,16 +62,16 @@ class Planets extends Component {
           <div>
             <button onClick={this.changePlayer}>Fin de tour</button>
           </div>
-        <div className="grid-container">
-          {this.state.planets.map(planet => {
-            return (
-              <Planet
-               id={planet.planetId} name={planet.planetName} key={planet.planetId} owner={planet.planetOwner.playerName} nbships={planet.planetShipsNbr}
-              />
+          <div className="grid-container">
+            {this.state.planets.map(planet => {
+              return (
+                <Planet
+                 id={planet.planetId} name={planet.planetName} key={planet.planetId} owner={planet.planetOwner.playerName} nbships={planet.planetShipsNbr}
+                />
 
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
         </div>
 
 
@@ -89,6 +89,8 @@ class Planets extends Component {
 
         this.state = {
           show:false,
+          currentPlayer:props.currentPlayer,
+          planetOwner:props.owner
         }
     }
 
@@ -101,7 +103,18 @@ class Planets extends Component {
       this.setState({show:true});
     }
 
+
+
     render() {
+
+      console.log(this.state.currentPlayer);
+      let text;
+      if(this.state.currentPlayer != this.state.planetOwner){
+        text = "Attack";
+      } else {
+        text = "placer Troupe";
+      }
+
       return (
         <article className={'card card--'+this.props.id} onClick={this.handleShow}>
         <div className="card__planet">
@@ -118,11 +131,8 @@ class Planets extends Component {
               <Modal.Title>{this.props.name}</Modal.Title>
             <Modal.Body><br/>Proprietaire : {this.props.owner} <br/>Nb de vaisseaux : {this.props.nbships}</Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={this.handleClose}>
-                Close
-              </Button>
               <Button variant="primary" onClick={this.handleClose}>
-                Save Changes
+                {text}
               </Button>
             </Modal.Footer>
           </Modal>
@@ -131,9 +141,6 @@ class Planets extends Component {
       );
     }
   }
-
-
-
 
 
   export default Planets
