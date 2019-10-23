@@ -4,6 +4,8 @@ import RiskinspaceService from '../service/RiskinspaceService';
 import {Button,Modal} from 'react-bootstrap';
 
 class Planets extends Component {
+
+
     constructor() {
       super();
       this.state = {
@@ -14,6 +16,7 @@ class Planets extends Component {
         planetsPlayer2:0,
         currentPlayer:'',
       };
+      
 
     }
 
@@ -38,10 +41,13 @@ class Planets extends Component {
       )
     }
 
+    fightEnd() {
+      alert("bravo");
+    }
+
     render() {
 
       return (
-
 
         <div className="">
 
@@ -59,10 +65,14 @@ class Planets extends Component {
             <p>Race : {this.state.player2Species}</p>
             <p>Nb Planètes : {this.state.planetsPlayer2}</p>
           </div>
-          <div>
+
+          <div className="findetour">
+          <button id="button1" onClick={this.fightEnd}>
+              Fin de Combat
+          </button>
             <button onClick={this.changePlayer}>Fin de tour</button>
           </div>
-          <div className="grid-container">
+          <div id="button2" className="grid-container">
             {this.state.planets.map(planet => {
               return (
                 <Planet
@@ -72,8 +82,9 @@ class Planets extends Component {
               );
             })}
           </div>
-        </div>
 
+        </div>
+        
 
       );
     }
@@ -140,6 +151,7 @@ class Planets extends Component {
       );
     }
   }
+   
 
 
   export default Planets
