@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import adrar.jcvd.riskinspace.repositories.PlanetRepository;
 import adrar.jcvd.riskinspace.repositories.PlayerRepository;
@@ -18,6 +19,8 @@ public class RiskInSpaceService {
 	private PlanetRepository planetRepo;
 	@Autowired
 	private PlayerRepository playerRepo;
+	@Autowired
+	private Fight fight;
 
 
 	//Génère l'ordre des joueurs
@@ -62,6 +65,13 @@ public class RiskInSpaceService {
 			pla.setPlanetShipsNbr(1);
 			planetRepo.save(pla);
 		}
+		
+		System.out.println();
+		System.out.println("planetes du j1");
+		System.out.println(player1.getPlanets());
+		System.out.println();
+		System.out.println("planetes du j2");
+		System.out.println(player2.getPlanets());
 	}	
 
 
@@ -78,10 +88,20 @@ public class RiskInSpaceService {
 
 
 	//methode placement de troupes sur les planettes 
-	public void placeShipsPlayer(Player player, int shipsCount) {
+	public void placeShipsPlayer(Player player, Planet planet) {
 		// compteur de vaisseaux par joueur
-		System.out.println("placeshipsplayer ok");
-		shipChose(shipsCount, player);
+
+		List<Planet> planetListPlayer = planetRepo.findAllByPlanetOwner(player);
+		Planet planetChoose = planet;
+		
+		System.out.println();
+		System.out.println("et là, c'est le drâme");
+		
+		int shipsCount = 5;
+		
+		shipChose(shipsCount, planet);
+		
+		
 	}
 
 
@@ -106,17 +126,18 @@ public class RiskInSpaceService {
 				planetsNearOwned.add(allPlanetsNear.get(i));
 			}
 		}
-		placeShipsPlayer(player, nbrShips);
+		placeShipsPlayer(player, planet);
 	}
 
+	
 
 	// méthode pour 
-	public void shipChose(int shipsCount, Player player) {
-		List<Planet> planetListPlayer = planetRepo.findAllByPlanetOwner(player);
-		Planet planetChoose = planetListPlayer.get(2);
+	public void shipChose(int shipsCount, Planet planetChoose) {
 		int planetShip = planetChoose.getPlanetShipsNbr();
 		planetChoose.setPlanetShipsNbr(planetShip + shipsCount);
-		System.out.println(planetChoose.getPlanetShipsNbr());
+		
+		System.out.println();
+		System.out.println("planète choisie: " + planetChoose);
 	}
 
 
@@ -138,7 +159,61 @@ public class RiskInSpaceService {
 		} else if(planetListPlayer.size() >= 20) {
 			System.out.println(player+" Gagne.");
 		}
+	}
+	
+	public enum PhaseDeJeu {
+		PLACEMENT,
+		COMBAT,
+		DEPLACEMENT;
+	}
+	
+	PhaseDeJeu etat = PhaseDeJeu.PLACEMENT;
+	
+	public void moteurDeJeu() {
+		List<Player> players = playerRepo.findAll(new Sort(Sort.Direction.DESC, "playerId"));
+		Player player = players.get(0);
+		Planet planet = player.getPlanets().get(5);
+				
+		switch (etat) {
 		
+		case PLACEMENT:
+			etat = PhaseDeJeu.COMBAT;
+			
+			System.out.println();
+			System.out.println("Début placement");
+			
+			placeShipsPlayer(player, planet);
+			break;
+			
+			
+			
+		case COMBAT:
+			etat = PhaseDeJeu.DEPLACEMENT;
+			
+			System.out.println();
+			System.out.println("Début combat");
+			
+			fight.fight(0, 0, 0, 0, null, null);
+			break;
+			
+			
+			
+		case DEPLACEMENT:
+			etat = PhaseDeJeu.PLACEMENT;
+			
+			System.out.println();
+			System.out.println("Début deplacement");
+			
+			moveShips(null, null, 0);
+			break;
+
+			
+			
+		default:
+			System.out.println("t'es pas sensé pouvoir aller ici");
+			moteurDeJeu();
+			break;
+		}
 	}
 }
 

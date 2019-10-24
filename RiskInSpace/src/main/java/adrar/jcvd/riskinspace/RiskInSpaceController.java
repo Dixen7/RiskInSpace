@@ -2,10 +2,8 @@ package adrar.jcvd.riskinspace;
 
 
 
-import java.io.FileReader;
 import java.util.HashMap;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import java.util.Scanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -22,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 import adrar.jcvd.riskinspace.repositories.PlanetRepository;
 import adrar.jcvd.riskinspace.repositories.PlayerRepository;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -54,7 +51,7 @@ public class RiskInSpaceController {
 		planetList = planetRepo.findAll(new Sort(Sort.Direction.ASC, "planetId"));
 		List<Planet> planetsPlayer1 = planetRepo.findAllByPlanetOwner(player1);
 		List<Planet> planetsPlayer2 = planetRepo.findAllByPlanetOwner(player2);
-		riskService.placeShipsPlayer(player1, riskService.shipsPerTurn(player1));
+//		riskService.placeShipsPlayer(player1, riskService.shipsPerTurn(player1));
 
 
 		Fight fight = new Fight();
@@ -99,15 +96,22 @@ public class RiskInSpaceController {
 		view.addObject("planetsPlayer2",planetsPlayer2);
 		return view;
 	}
+	
+	
 
 
 
 	@GetMapping("/")
 	public List<Species> home() {
+		List<Player> players = playerRepo.findAll();
+		for(int i = 0; i < players.size(); i++) {
+			Player player = playerRepo.getOne(i);
+			playerRepo.delete(player);
+		}
 		return speciesService.findAll();
-		
+
 	}
-	
+
 	@GetMapping("/planet")
 	public ResponseEntity<?> planet() {
 		List<Planet> planets = planetRepo.findAll(new Sort(Sort.Direction.ASC, "planetId")); 
@@ -117,15 +121,15 @@ public class RiskInSpaceController {
 		int countPlanetPlayer1 = planetRepo.findAllByPlanetOwner(player1).size();
 		int countPlanetPlayer2 = planetRepo.findAllByPlanetOwner(player2).size();
 		HashMap<String, Object> hmap = new HashMap<String, Object>();
-	    hmap.put("planets", planets);
-	    hmap.put("player1", player1);
-	    hmap.put("player2", player2);
-	    hmap.put("countPlanetPlayer1", countPlanetPlayer1);
-	    hmap.put("countPlanetPlayer2", countPlanetPlayer2);
-	    return new ResponseEntity<HashMap<String, Object>>(hmap, HttpStatus.OK);
-		
+		hmap.put("planets", planets);
+		hmap.put("player1", player1);
+		hmap.put("player2", player2);
+		hmap.put("countPlanetPlayer1", countPlanetPlayer1);
+		hmap.put("countPlanetPlayer2", countPlanetPlayer2);
+		return new ResponseEntity<HashMap<String, Object>>(hmap, HttpStatus.OK);
+
 	}
-	
+
 	@PostMapping("/planet")
 	public void fight(@RequestBody String req) throws ParseException {
 		System.out.println(req);
@@ -138,7 +142,7 @@ public class RiskInSpaceController {
 		int diceDefender = ((Long) jo.get("diceDefender")).intValue();
 		Planet planetAtt = planetList.get(planetAttacker);
 		Planet planetDef = planetList.get(planetDefender);
-		
+
 		if((diceAttacker >= 1 && diceAttacker <= 3) && (diceDefender >= 1 && diceDefender <=2)  ) {
 			try{
 				Fight fight = new Fight();
@@ -146,11 +150,13 @@ public class RiskInSpaceController {
 			} 
 			catch (Exception e) {
 			}
-		}
-		
-		
+		}	
 	}
-	
+
+	@GetMapping("/gamephase")
+	public void GamePhase() {
+		riskService.moteurDeJeu();
+	}
 
 
 
@@ -161,10 +167,10 @@ public class RiskInSpaceController {
 		System.out.println(req);
 		Object obj = new JSONParser().parse(req);
 		JSONObject jo = (JSONObject) obj; 
-		 String playerName1 = (String) jo.get("playerName");
-		 String playerName2 = (String) jo.get("playerName2");
-		 int playerSpecies = ((Long) jo.get("playerSpecies")).intValue();
-		 int playerSpecies2 = ((Long) jo.get("playerSpecies2")).intValue();
+		String playerName1 = (String) jo.get("playerName");
+		String playerName2 = (String) jo.get("playerName2");
+		int playerSpecies = ((Long) jo.get("playerSpecies")).intValue();
+		int playerSpecies2 = ((Long) jo.get("playerSpecies2")).intValue();
 
 		System.out.println(playerName1);
 		try {
@@ -181,5 +187,27 @@ public class RiskInSpaceController {
 
 		} catch (Exception e) {
 		}
+		gameStart();
+	}
+
+	@GetMapping("/start")
+	public void gameStart() {
+		List<Player> players = playerRepo.findAll(new Sort(Sort.Direction.DESC, "playerId"));
+		List<Planet> planetList =  planetRepo.findAll();
+		Player player1 = players.get(1);
+		Player player2 = players.get(0);
+		
+		System.out.println("joueur 1");
+		System.out.println(player1);
+		System.out.println();
+		System.out.println("joueur 2");
+		System.out.println(player2);
+		System.out.println();
+		System.out.println("all planetes");
+		System.out.println(planetList);
+		
+		riskService.renamePlanets(planetList);
+		riskService.placeShipInitial(planetList, player1, player2);
+		GamePhase();
 	}
 }

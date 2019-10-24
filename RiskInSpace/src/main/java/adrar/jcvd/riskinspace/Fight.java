@@ -3,6 +3,9 @@ package adrar.jcvd.riskinspace;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class Fight {
 
 	// Lance X dé(s) à 6 faces et retourne un tableau d'entiers contenant les résultats
