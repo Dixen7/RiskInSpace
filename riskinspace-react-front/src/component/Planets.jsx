@@ -116,6 +116,12 @@ class Planets extends Component {
 
     attack(e){
       console.log('attack');
+      return <form>
+        <input type="hidden" value="toto"/>
+        <select>
+        <option>Sélectionner une planète attaquante</option>
+        </select>
+      </form>;
     }
 
     placeShip(e){

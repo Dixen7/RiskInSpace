@@ -103,11 +103,7 @@ public class RiskInSpaceController {
 
 	@GetMapping("/")
 	public List<Species> home() {
-		List<Player> players = playerRepo.findAll();
-		for(int i = 0; i < players.size(); i++) {
-			Player player = playerRepo.getOne(i);
-			playerRepo.delete(player);
-		}
+	
 		return speciesService.findAll();
 
 	}

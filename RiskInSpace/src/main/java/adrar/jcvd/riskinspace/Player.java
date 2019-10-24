@@ -2,6 +2,7 @@ package adrar.jcvd.riskinspace;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -28,7 +29,8 @@ public class Player {
 	private int playerMoney;
 	@JsonBackReference
 	@OneToMany(mappedBy="planetOwner")
-	private List<Planet> planets ;
+	private List<Planet> planets = new ArrayList<Planet>() ;
+	
 	
 	
 	public Player() {}
