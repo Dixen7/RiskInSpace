@@ -16,14 +16,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-//@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="planetId")
+
 public class Planet {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int planetId;
 	private int planetShipsNbr;
 	private String planetName;
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne()
 	@JoinColumn(name ="planet_owner")
 	@JsonManagedReference
 	private Player planetOwner;

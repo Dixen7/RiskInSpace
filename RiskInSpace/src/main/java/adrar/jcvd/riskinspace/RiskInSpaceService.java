@@ -47,21 +47,21 @@ public class RiskInSpaceService {
 
 	//Attribut les planètes aux joueurs et place 1 troupe sur celles-ci
 	public void placeShipInitial(List<Planet> planetList, Player player1, Player player2) {
-		List<Planet> copyplanetList = planetList;
-		for(int i = 0; i < 15; i++) {
-			int randomIndex = (int) Math.ceil(Math.random()*copyplanetList.size()-1);
-			Planet randomPlanet = copyplanetList.get(randomIndex);
 
-			randomPlanet.setPlanetOwner(player1);
+		for(int i = 0; i < 15; i++) {
+			int randomIndex = (int) Math.ceil(Math.random()*planetList.size()-1);
+			Planet randomPlanet = planetList.get(randomIndex);
+
+			player1.getPlanets().add(randomPlanet);
 			randomPlanet.setPlanetShipsNbr(1);
 			planetRepo.save(randomPlanet);
-			copyplanetList.remove(randomPlanet);
+			planetList.remove(randomPlanet);
 		}
 		ArrayList<Planet> planetListPlayer2 = new ArrayList<Planet>();
-		planetListPlayer2.addAll(copyplanetList);
+		planetListPlayer2.addAll(planetList);
 		for(int j = 0; j<planetListPlayer2.size(); j++) {
 			Planet pla = planetListPlayer2.get(j);
-			pla.setPlanetOwner(player2);
+			player2.getPlanets().add(pla);
 			pla.setPlanetShipsNbr(1);
 			planetRepo.save(pla);
 			
