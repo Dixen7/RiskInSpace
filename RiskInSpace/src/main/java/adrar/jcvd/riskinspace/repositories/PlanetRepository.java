@@ -13,4 +13,6 @@ public interface PlanetRepository extends JpaRepository<Planet, Integer> {
 	
 	public List<Planet> findAllByPlanetOwner(Player p);
 
+	
+
 }

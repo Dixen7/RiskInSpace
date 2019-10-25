@@ -41,7 +41,7 @@ public class RiskInSpaceApplicationTests {
 		Planet planetAtt = new Planet();
 		Planet planetDef = new Planet();
 
-		fight.fight(3, 2, 3, 2, planetAtt, planetDef);
+		fight.fight(3, 2, planetAtt, planetDef);
 
 		riskService.shipsPerTurn(player1);
 

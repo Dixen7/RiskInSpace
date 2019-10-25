@@ -22,14 +22,16 @@ public class Fight {
 
 
 
-	public void fight(int nbrAttDice, int nbrDefDice, int planetShipsAttNbr, int planetShipsDefNbr, Planet planetAtt, Planet planetDef) {
-		System.out.println("troupes sur la planète: " + planetShipsAttNbr + " de l'attaquant | " + planetShipsDefNbr + " du défenseur");
+	public void fight(int nbrAttDice, int nbrDefDice, Planet planetAtt, Planet planetDef) {
+		System.out.println("troupes sur la planète: " + planetAtt.getPlanetShipsNbr() + " de l'attaquant | " + planetDef.getPlanetShipsNbr() + " du défenseur");
 		System.out.println("troupes : " + nbrAttDice + " de l'attaquant | " + nbrDefDice + " du défenseur");
 		int[] resFight = compareDice(rollDice(nbrAttDice), rollDice(nbrDefDice));
 		nbrAttDice -= resFight[0];
 		nbrDefDice -= resFight[1];
-		planetShipsAttNbr -= resFight[0];
-		planetShipsDefNbr -= resFight[1];
+		int nbrTotalAtt = planetAtt.getPlanetShipsNbr();
+		int nbrTotalDef = planetDef.getPlanetShipsNbr();
+		planetAtt.setPlanetShipsNbr(nbrTotalAtt -= resFight[0]);
+		planetDef.setPlanetShipsNbr(nbrTotalDef -= resFight[1]);
 		System.out.println("troupes : " + nbrAttDice + " de l'attaquant | " + nbrDefDice + " du défenseur");
 		if(nbrAttDice <= 0) {
 			System.out.println("L'attaquant n'a plus de troupes");
@@ -37,7 +39,7 @@ public class Fight {
 			System.out.println("Le défenseur n'a plus de troupes");
 		}
 		
-		if (planetShipsDefNbr <= 0) {
+		if (planetDef.getPlanetShipsNbr() <= 0) {
 			System.out.println("Le défenseur n'a plus de troupes, le territoire a été vaincu par l'attaquant");
 			System.out.println("owner planetAtt avant = " + planetAtt.getPlanetOwner());
 			System.out.println("owner planetDef avant = " + planetDef.getPlanetOwner());

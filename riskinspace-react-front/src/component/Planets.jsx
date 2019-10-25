@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import RiskinspaceService from '../service/RiskinspaceService';
 import {Button,Modal} from 'react-bootstrap';
+import axios from 'axios'
 
 class Planets extends Component {
 
@@ -14,6 +15,7 @@ class Planets extends Component {
         planetsPlayer1:0,
         planetsPlayer2:0,
         currentPlayer:'',
+        shipCount:0,
       };
     }
 
@@ -43,6 +45,7 @@ class Planets extends Component {
           this.setState({planetsPlayer2:response.data.countPlanetPlayer2})
           this.setState({player1Species:response.data.player1.species.speciesName})
           this.setState({player2Species:response.data.player2.species.speciesName})
+          this.setState({shipCount:response.data.shipCount})
         }
       )
     }
@@ -84,7 +87,7 @@ class Planets extends Component {
             {this.state.planets.map(planet => {
               return (
                 <Planet
-                 id={planet.planetId} name={planet.planetName} key={planet.planetId} owner={planet.planetOwner.playerName} nbships={planet.planetShipsNbr} currentPlayer={this.state.currentPlayer}
+                 id={planet.planetId} name={planet.planetName} key={planet.planetId} owner={planet.planetOwner.playerName} nbships={planet.planetShipsNbr} currentPlayer={this.state.currentPlayer} shipCount={this.state.shipCount}
                 />
               );
             })}
@@ -105,9 +108,13 @@ class Planets extends Component {
         this.state = {
           show:false,
           currentPlayer:props.currentPlayer,
-          planetOwner:props.owner
+          planetOwner:props.owner,
+          shipCount:props.shipCount,
+          planetId:props.id
         }
     }
+
+ 
 
     handleClose(e){
        e.stopPropagation();
@@ -128,8 +135,19 @@ class Planets extends Component {
       </form>;
     }
 
-    placeShip(e){
+    placeShip = (e) =>{
       console.log('placeShip');
+      this.setState({ [e.target.name]: e.target.value });
+      let planet = {
+        "planetId": parseInt(this.state.planetId)
+      };
+      axios.post('http://localhost:8080/gamephase', planet)
+		  .then(function (response) {
+        this.setState({shipCount: this.state.shipCount - 1})
+		  })
+		  .catch(function (error) {
+		    console.log(error);
+		  });
     }
 
     render() {
@@ -150,13 +168,14 @@ class Planets extends Component {
           <div className="planet__atmosphere">
             <div className="planet__surface"></div>
           </div>
+          <input type="hidden" id={"planetId-"+this.props.id} name="planetId" value={this.props.id} />
         </div>
         {/* <div className="card__info">
           <h2 className="info__title">{this.props.name}</h2>
           </div> */}
           <Modal show={this.state.show} animation={false}>
-            <Modal.Title>{this.props.name}</Modal.Title>
-            <Modal.Body><br/>Proprietaire : {this.props.owner} <br/>Nb de vaisseaux : {this.props.nbships}</Modal.Body>
+              <Modal.Title>{this.props.name}</Modal.Title>
+            <Modal.Body><br/>Proprietaire : {this.props.owner} <br/>Nb de vaisseaux : {this.props.nbships}<br/>Nd de vaisseaux restants a placer : {this.props.shipCount}</Modal.Body>
             <Modal.Footer>
               <Button variant="primary" onClick={action}>
                 {text}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import RiskinspaceService from '../service/RiskinspaceService';
-import axios from 'axios'
+import axios from 'axios';
 import robot from '../../src/spaaace.png'
 class CreatePlayer extends Component {
 
