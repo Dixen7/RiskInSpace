@@ -84,7 +84,7 @@ public class RiskInSpaceController {
 		}
 
 
-		fight.fight(nbrAttDice, nbrDefDice, planetAtt.getPlanetShipsNbr(), planetDef.getPlanetShipsNbr(), planetAtt, planetDef);
+		fight.fight(nbrAttDice, nbrDefDice, planetAtt, planetDef);
 
 		riskService.moveShips(planetAtt, player1, 20);
 
@@ -146,7 +146,7 @@ public class RiskInSpaceController {
 		if((diceAttacker >= 1 && diceAttacker <= 3) && (diceDefender >= 1 && diceDefender <=2)  ) {
 			try{
 				Fight fight = new Fight();
-				fight.fight(diceAttacker, diceAttacker, planetAtt.getPlanetShipsNbr(), planetDef.getPlanetShipsNbr(), planetAtt, planetDef);
+				fight.fight(diceAttacker, diceAttacker, planetAtt, planetDef);
 			} 
 			catch (Exception e) {
 			}
@@ -208,6 +208,6 @@ public class RiskInSpaceController {
 		
 		riskService.renamePlanets(planetList);
 		riskService.placeShipInitial(planetList, player1, player2);
-		GamePhase();
+//		GamePhase();
 	}
 }

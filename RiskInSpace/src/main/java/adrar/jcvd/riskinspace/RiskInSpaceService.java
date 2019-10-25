@@ -64,13 +64,15 @@ public class RiskInSpaceService {
 			pla.setPlanetOwner(player2);
 			pla.setPlanetShipsNbr(1);
 			planetRepo.save(pla);
+			
 		}
-		
+
 		System.out.println();
-		System.out.println("planetes du j1");
+		System.out.println();
+		System.out.println("planètes du j1");
 		System.out.println(player1.getPlanets());
 		System.out.println();
-		System.out.println("planetes du j2");
+		System.out.println("planètes du j2");
 		System.out.println(player2.getPlanets());
 	}	
 
@@ -89,19 +91,7 @@ public class RiskInSpaceService {
 
 	//methode placement de troupes sur les planettes 
 	public void placeShipsPlayer(Player player, Planet planet) {
-		// compteur de vaisseaux par joueur
-
-		List<Planet> planetListPlayer = planetRepo.findAllByPlanetOwner(player);
-		Planet planetChoose = planet;
-		
-		System.out.println();
-		System.out.println("et là, c'est le drâme");
-		
-		int shipsCount = 5;
-		
-		shipChose(shipsCount, planet);
-		
-		
+		shipChose(1, planet);
 	}
 
 
@@ -129,15 +119,14 @@ public class RiskInSpaceService {
 		placeShipsPlayer(player, planet);
 	}
 
-	
+
 
 	// méthode pour 
 	public void shipChose(int shipsCount, Planet planetChoose) {
 		int planetShip = planetChoose.getPlanetShipsNbr();
 		planetChoose.setPlanetShipsNbr(planetShip + shipsCount);
-		
-		System.out.println();
-		System.out.println("planète choisie: " + planetChoose);
+
+		System.out.println("nbr de vaisseaux de la planète : " + planetShip);
 	}
 
 
@@ -151,7 +140,7 @@ public class RiskInSpaceService {
 			}
 		}
 	}
-	
+
 	public void checkVictoryCondition(Player player) {
 		List<Planet> planetListPlayer = planetRepo.findAllByPlanetOwner(player);
 		if(planetListPlayer.size() <= 0) {
@@ -160,60 +149,68 @@ public class RiskInSpaceService {
 			System.out.println(player+" Gagne.");
 		}
 	}
-	
+
 	public enum PhaseDeJeu {
 		PLACEMENT,
 		COMBAT,
 		DEPLACEMENT;
 	}
-	
+
 	PhaseDeJeu etat = PhaseDeJeu.PLACEMENT;
-	
+
 	public void moteurDeJeu() {
 		List<Player> players = playerRepo.findAll(new Sort(Sort.Direction.DESC, "playerId"));
 		Player player = players.get(0);
-		Planet planet = player.getPlanets().get(5);
-				
-		switch (etat) {
-		
+
+
+		switch (etat){
+
 		case PLACEMENT:
 			etat = PhaseDeJeu.COMBAT;
-			
+
 			System.out.println();
 			System.out.println("Début placement");
-			
-			placeShipsPlayer(player, planet);
+
+			int shipsCount = shipsPerTurn(player);
+
+			if (shipsCount >= 0) {
+				Planet planet = player.getPlanets().get(5);
+				placeShipsPlayer(player, planet);
+				System.out.println("planète choisie: " + planet);
+				System.out.println("Nombre de troupes à placer: " + shipsCount);
+				shipsCount--;
+				etat = PhaseDeJeu.PLACEMENT;
+			}
 			break;
-			
-			
-			
+
+
+
 		case COMBAT:
 			etat = PhaseDeJeu.DEPLACEMENT;
-			
 			System.out.println();
 			System.out.println("Début combat");
-			
-			fight.fight(0, 0, 0, 0, null, null);
+			fight.fight(8, 6, null, null);
 			break;
-			
-			
-			
+
+
+
 		case DEPLACEMENT:
 			etat = PhaseDeJeu.PLACEMENT;
-			
+
 			System.out.println();
 			System.out.println("Début deplacement");
-			
+
 			moveShips(null, null, 0);
 			break;
 
-			
-			
+
+
 		default:
 			System.out.println("t'es pas sensé pouvoir aller ici");
 			moteurDeJeu();
 			break;
 		}
+		moteurDeJeu();
 	}
 }
 

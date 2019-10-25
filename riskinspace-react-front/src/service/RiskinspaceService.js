@@ -10,6 +10,7 @@ class RiskinspaceService {
     planet() {
         return axios.get(`${API_URL}/planet`);
     }
+    
 }
 
 export default new RiskinspaceService()
