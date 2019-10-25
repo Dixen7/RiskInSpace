@@ -53,6 +53,7 @@ public class RiskInSpaceService {
 			Planet randomPlanet = planetList.get(randomIndex);
 
 			player1.getPlanets().add(randomPlanet);
+			randomPlanet.setPlanetOwner(player1);
 			randomPlanet.setPlanetShipsNbr(1);
 			planetRepo.save(randomPlanet);
 			planetList.remove(randomPlanet);
@@ -62,6 +63,7 @@ public class RiskInSpaceService {
 		for(int j = 0; j<planetListPlayer2.size(); j++) {
 			Planet pla = planetListPlayer2.get(j);
 			player2.getPlanets().add(pla);
+			pla.setPlanetOwner(player2);
 			pla.setPlanetShipsNbr(1);
 			planetRepo.save(pla);
 			
@@ -158,7 +160,7 @@ public class RiskInSpaceService {
 
 	PhaseDeJeu etat = PhaseDeJeu.PLACEMENT;
 
-	public void moteurDeJeu() {
+	public void moteurDeJeu(Planet planet) {
 		List<Player> players = playerRepo.findAll(new Sort(Sort.Direction.DESC, "playerId"));
 		Player player = players.get(0);
 
@@ -166,21 +168,22 @@ public class RiskInSpaceService {
 		switch (etat){
 
 		case PLACEMENT:
-			etat = PhaseDeJeu.COMBAT;
+			//etat = PhaseDeJeu.COMBAT;
 
 			System.out.println();
 			System.out.println("Début placement");
 
 			int shipsCount = shipsPerTurn(player);
 
-			if (shipsCount >= 0) {
-				Planet planet = player.getPlanets().get(5);
+			while (shipsCount >= 0) {
+				//planet = player.getPlanets().get(5);
 				placeShipsPlayer(player, planet);
 				System.out.println("planète choisie: " + planet);
 				System.out.println("Nombre de troupes à placer: " + shipsCount);
 				shipsCount--;
-				etat = PhaseDeJeu.PLACEMENT;
+				
 			}
+			
 			break;
 
 
@@ -190,7 +193,6 @@ public class RiskInSpaceService {
 			System.out.println();
 			System.out.println("Début combat");
 			fight.fight(8, 6, null, null);
-			break;
 
 
 
@@ -201,16 +203,14 @@ public class RiskInSpaceService {
 			System.out.println("Début deplacement");
 
 			moveShips(null, null, 0);
-			break;
 
 
 
 		default:
 			System.out.println("t'es pas sensé pouvoir aller ici");
-			moteurDeJeu();
+			moteurDeJeu(planet);
 			break;
 		}
-		moteurDeJeu();
 	}
 }
 
