@@ -19,7 +19,6 @@ body{
   width: 100%;
   height: 100%;
   font-family: SpaceQuest;
- 
 }
 
 .joueur1{
@@ -32,7 +31,6 @@ body{
   top: 70px;
   padding-left:10px;
   font-family: Arial, Helvetica, sans-serif;
-  
 }
 
 .joueur1 h2, .joueur2 h2{
@@ -132,126 +130,130 @@ form{
 
 :root {
 
+  --planet-color: yellow;
+
+
+
   --tilt-1: rotate(10deg);
   --day-1: 180;
-  --color-1: #b3caff;
+  --color-1: var(--planet-color, #b3caff);
 
   --tilt-2: rotate(10deg);
   --day-2: 180;
-  --color-2: #b3caff;
-
+  --color-2: var(--planet-color, #b3caff);
   --tilt-3: rotate(10deg);
   --day-3: 180;
-  --color-3: #b3caff;
+  --color-3: var(--planet-color, #b3caff);
 
   --tilt-4: rotate(10deg);
   --day-4: 180;
-  --color-4: #b3caff;
+  --color-4: var(--planet-color, #b3caff);
 
   --tilt-5: rotate(10deg);
   --day-5: 180;
-  --color-5: #b3caff;
+  --color-5: var(--planet-color, #b3caff);
 
   --tilt-6: rotate(10deg);
   --day-6: 180;
-  --color-6: #b3caff;
+  --color-6: var(--planet-color, #b3caff);
 
   --tilt-7: rotate(10deg);
   --day-7: 180;
-  --color-7: #b3caff;
+  --color-7: var(--planet-color, #b3caff);
 
   --tilt-8: rotate(10deg);
   --day-8: 180;
-  --color-8: #b3caff;
+  --color-8: var(--planet-color, #b3caff);
 
   --tilt-9: rotate(10deg);
   --day-9: 180;
-  --color-9: #b3caff;
+  --color-9: var(--planet-color, #b3caff);
 
   --tilt-10: rotate(10deg);
   --day-10: 180;
-  --color-10: #b3caff;
+  --color-10: var(--planet-color, #b3caff);
 
   --tilt-11: rotate(10deg);
   --day-11: 180;
-  --color-11: #b3caff;
+  --color-11: var(--planet-color, #b3caff);
 
   --tilt-12: rotate(10deg);
   --day-12: 180;
-  --color-12: #b3caff;
+  --color-12: var(--planet-color, #b3caff);
 
   --tilt-13: rotate(10deg);
   --day-13: 180;
-  --color-13: #b3caff;
+  --color-13: var(--planet-color, #b3caff);
 
   --tilt-14: rotate(10deg);
   --day-14: 180;
-  --color-14: #b3caff;
+  --color-14: var(--planet-color, #b3caff);
 
   --tilt-15: rotate(10deg);
   --day-15: 180;
-  --color-15: #b3caff;
+  --color-15: var(--planet-color, #b3caff);
 
   --tilt-16: rotate(10deg);
   --day-16: 180;
-  --color-16: #b3caff;
+  --color-16: var(--planet-color, #b3caff);
 
   --tilt-17: rotate(10deg);
   --day-17: 180;
-  --color-17: #b3caff;
+  --color-17: var(--planet-color, #b3caff);
 
   --tilt-18: rotate(10deg);
   --day-18: 180;
-  --color-18: #b3caff;
+  --color-18: var(--planet-color, #b3caff);
 
   --tilt-19: rotate(10deg);
   --day-19: 180;
-  --color-19: #b3caff;
+  --color-19: var(--planet-color, #b3caff);
 
   --tilt-20: rotate(10deg);
   --day-20: 180;
-  --color-20: #b3caff;
+  --color-20: var(--planet-color, #b3caff);
 
   --tilt-21: rotate(10deg);
   --day-21: 180;
-  --color-21: #b3caff;
+  --color-21: var(--planet-color, #b3caff);
 
   --tilt-22: rotate(10deg);
   --day-22: 180;
-  --color-22: #b3caff;
+  --color-22: var(--planet-color, #b3caff);
 
   --tilt-23: rotate(10deg);
   --day-23: 180;
-  --color-23: #b3caff;
+  --color-23: var(--planet-color, #b3caff);
 
   --tilt-24: rotate(10deg);
   --day-24: 180;
-  --color-24: #b3caff;
+  --color-24: var(--planet-color, #b3caff);
 
   --tilt-25: rotate(10deg);
   --day-25: 180;
-  --color-25: #b3caff;
+  --color-25: var(--planet-color, #b3caff);
 
   --tilt-26: rotate(10deg);
   --day-26: 180;
-  --color-26: #b3caff;
+  --color-26: var(--planet-color, #b3caff);
 
   --tilt-27: rotate(10deg);
   --day-27: 180;
-  --color-27: #b3caff;
+  --color-27: var(--planet-color, #b3caff);
 
   --tilt-28: rotate(10deg);
   --day-28: 180;
-  --color-28: #b3caff;
+  --color-28: var(--planet-color, #b3caff);
 
   --tilt-29: rotate(10deg);
   --day-29: 180;
-  --color-29: #b3caff;
+  --color-29: var(--planet-color, #b3caff);
 
   --tilt-30: rotate(10deg);
   --day-30: 180;
-  --color-30: #b3caff;
+  --color-30: var(--planet-color, #b3caff);
  }
+
  @keyframes planetRotate {
   0% {
     background-position: 0% center;
@@ -271,10 +273,10 @@ form{
 
 
  .card--1 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-1);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-1);
  }
  .card--1 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-1);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-1);
  }
  .card--1 .planet__surface {
   background-image: url(
@@ -326,12 +328,12 @@ form{
 
 
  .card--2 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-2);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-2);
   height: 50px;
   width: 50px;
  }
  .card--2 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-2);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-2);
  }
  .card--2 .planet__surface {
   background-image: url(
@@ -360,10 +362,10 @@ form{
 
 
  .card--3 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-3);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-3);
  }
  .card--3 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-3);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-3);
  }
  .card--3 .planet__surface {
   background-image: url(
@@ -390,12 +392,12 @@ form{
 
 
  .card--4 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-4);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-4);
   height: 100px;
   width: 100px;
  }
  .card--4 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-4);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-4);
  }
  .card--4 .planet__surface {
   background-image: url(
@@ -424,10 +426,10 @@ form{
 
 
  .card--5 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-5);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-5);
  }
  .card--5 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-5);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-5);
  }
  .card--5 .planet__surface {
   background-image: url(
@@ -457,12 +459,12 @@ form{
 
 
  .card--6 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-6);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-6);
   height: 50px;
   width: 50px;
  }
  .card--6 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-6);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-6);
  }
  .card--6 .planet__surface {
   background-image: url(
@@ -490,10 +492,10 @@ form{
 
 
  .card--7 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-7);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-7);
  }
  .card--7 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-7);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-7);
  }
  .card--7 .planet__surface {
   background-image: url(
@@ -521,12 +523,12 @@ form{
 
 
 .card--8 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-8);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-8);
   height: 60px;
   width: 60px;
  }
  .card--8 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-8);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-8);
  }
  .card--8 .planet__surface {
   background-image: url(
@@ -554,12 +556,12 @@ form{
 
 
 .card--9 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-9);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-9);
   height: 90px;
   width: 90px;
  }
  .card--9 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-9);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-9);
  }
  .card--9 .planet__surface {
   background-image: url(
@@ -587,12 +589,12 @@ form{
 
 
 .card--10 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-10);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-10);
   height: 77px;
   width: 77px;
  }
  .card--10 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-10);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-10);
  }
  .card--10 .planet__surface {
   background-image: url(
@@ -620,12 +622,12 @@ form{
 
 
 .card--11 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-11);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-11);
   height: 70px;
   width: 70px;
  }
  .card--11 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-11);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-11);
  }
  .card--11 .planet__surface {
   background-image: url(
@@ -653,12 +655,12 @@ form{
 
 
 .card--12 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-12);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-12);
   height: 80px;
   width: 80px;
  }
  .card--12 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-12);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-12);
  }
  .card--12 .planet__surface {
   background-image: url(
@@ -686,12 +688,12 @@ form{
 
 
 .card--13 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-13);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-13);
   height: 140px;
   width: 140px;
  }
  .card--13 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-13);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-13);
  }
  .card--13 .planet__surface {
   background-image: url(
@@ -719,12 +721,12 @@ form{
 
 
 .card--14 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-14);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-14);
   height: 60px;
   width: 60px;
  }
  .card--14 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-14);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-14);
  }
  .card--14 .planet__surface {
   background-image: url(
@@ -752,12 +754,12 @@ form{
 
 
 .card--15 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-15);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-15);
   height: 90px;
   width: 90px;
  }
  .card--15 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-15);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-15);
  }
  .card--15 .planet__surface {
   background-image: url(
@@ -785,12 +787,12 @@ form{
 
 
 .card--16 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-16);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-16);
   height: 100px;
   width: 100px;
  }
  .card--16 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-16);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-16);
  }
  .card--16 .planet__surface {
   background-image: url(
@@ -818,12 +820,12 @@ form{
 
 
 .card--17 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-17);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-17);
   height: 50px;
   width: 50px;
  }
  .card--17 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-17);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-17);
  }
  .card--17 .planet__surface {
   background-image: url(
@@ -851,12 +853,12 @@ form{
 
 
 .card--18 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-18);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-18);
   height: 70px;
   width: 70px;
  }
  .card--18 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-18);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-18);
  }
  .card--18 .planet__surface {
   background-image: url(
@@ -884,12 +886,12 @@ form{
 
 
 .card--19 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-19);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-19);
   height: 90px;
   width: 90px;
  }
  .card--19 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-19);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-19);
  }
  .card--19 .planet__surface {
   background-image: url(
@@ -917,12 +919,12 @@ form{
 
 
 .card--20 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-20);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-20);
   height: 40px;
   width: 40px;
  }
  .card--20 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-20);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-20);
  }
  .card--20 .planet__surface {
   background-image: url(
@@ -950,12 +952,12 @@ form{
 
 
 .card--21 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-21);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-21);
   height: 80px;
   width: 80px;
  }
  .card--21 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-21);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-21);
  }
  .card--21 .planet__surface {
   background-image: url(
@@ -983,12 +985,12 @@ form{
 
 
 .card--22 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-22);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-22);
   height: 70px;
   width: 70px;
  }
  .card--22 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-22);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-22);
  }
  .card--22 .planet__surface {
   background-image: url(
@@ -1016,12 +1018,12 @@ form{
 
 
 .card--23 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-23);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-23);
   height: 150px;
   width: 150px;
  }
  .card--23 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-23);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-23);
  }
  .card--23 .planet__surface {
   background-image: url(
@@ -1049,12 +1051,12 @@ form{
 
 
 .card--24 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-24);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-24);
   height: 80px;
   width: 80px;
  }
  .card--24 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-24);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-24);
  }
  .card--24 .planet__surface {
   background-image: url(
@@ -1082,12 +1084,12 @@ form{
 
 
 .card--25 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-25);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-25);
   height: 90px;
   width: 90px;
  }
  .card--25 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-25);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-25);
  }
  .card--25 .planet__surface {
   background-image: url(
@@ -1115,12 +1117,12 @@ form{
 
 
 .card--26 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-26);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-26);
   height: 60px;
   width: 60px;
  }
  .card--26 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-26);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-26);
  }
  .card--26 .planet__surface {
   background-image: url(
@@ -1148,12 +1150,12 @@ form{
 
 
 .card--27 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-27);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-27);
   height: 110px;
   width: 110px;
  }
  .card--27 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-27);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-27);
  }
  .card--27 .planet__surface {
   background-image: url(
@@ -1181,12 +1183,12 @@ form{
 
 
 .card--28 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-28);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-28);
   height: 90px;
   width: 90px;
  }
  .card--28 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-28);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-28);
  }
  .card--28 .planet__surface {
   background-image: url(
@@ -1214,12 +1216,12 @@ form{
 
 
 .card--29 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-29);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-29);
   height: 50px;
   width: 50px;
  }
  .card--29 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-29);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-29);
  }
  .card--29 .planet__surface {
   background-image: url(
@@ -1247,12 +1249,12 @@ form{
 
 
 .card--30 .planet__atmosphere {
-  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -5px 0px 10px -4px var(--color-30);
+  box-shadow: inset 10px 0px 12px -2px rgba(255, 255, 255, 0.3), inset -30px 0px 30px 0px black, -2px 0px 20px 0px var(--color-30);
   height: 70px;
   width: 70px;
  }
  .card--30 .planet__atmosphere:hover {
-  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -5px 0px 10px -4px var(--color-30);
+  box-shadow: inset 5px 0px 20px -2px rgba(255, 255, 255, 0.329), inset -50px 0px 30px 0px rgba(68, 68, 68, 0.301), -2px 0px 20px 0px var(--color-30);
  }
  .card--30 .planet__surface {
   background-image: url(
@@ -1275,9 +1277,6 @@ form{
   grid-area: 18 / 26 / 19 / 27;
 }
 
-  /* width: 290px;
-} */
-
 .modal {
   position: fixed;
   top: 0;
@@ -1294,4 +1293,3 @@ form{
   left:50%;
   transform: translate(-50%,-50%);
 }
-

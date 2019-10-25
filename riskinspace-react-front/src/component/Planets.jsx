@@ -5,7 +5,6 @@ import {Button,Modal} from 'react-bootstrap';
 
 class Planets extends Component {
 
-
     constructor() {
       super();
       this.state = {
@@ -16,12 +15,19 @@ class Planets extends Component {
         planetsPlayer2:0,
         currentPlayer:'',
       };
-      
-
     }
 
     componentDidMount() {
       this.refresh();
+    }
+
+    changecolor() {
+      let root = document.documentElement;
+      if (Planet.props.currentPlayer == Planet.props.owner) {
+        root.style.setProperty('--planet-color', 'green');
+      } else {
+        root.style.setProperty('--planet-color', 'red');
+      }
     }
 
     refresh() {
@@ -29,7 +35,7 @@ class Planets extends Component {
       .then(
         response => {
           console.log(response);
-          this.setState({ planets: response.data.planets })
+          this.setState({planets: response.data.planets})
           this.setState({player1:response.data.player1})
           this.setState({player2:response.data.player2})
           this.setState({currentPlayer:this.state.player1.playerName})
@@ -56,10 +62,11 @@ class Planets extends Component {
             <p>Race : {this.state.player1Species}</p>
             <p>Nb Planètes : {this.state.planetsPlayer1}</p>
           </div>
+
           <div className="tour">
-            <h3>Tour de </h3>
-            <p>{this.state.currentPlayer}</p>
+            <h3>Tour de {this.state.currentPlayer}</h3>
           </div>
+
           <div className="joueur2">
             <h2>{this.state.player2.playerName}</h2>
             <p>Race : {this.state.player2Species}</p>
@@ -72,23 +79,20 @@ class Planets extends Component {
           </button>
             <button className="risk-button" id="button2" onClick={this.changePlayer}>Fin de tour</button>
           </div>
+
           <div className="grid-container">
             {this.state.planets.map(planet => {
               return (
                 <Planet
                  id={planet.planetId} name={planet.planetName} key={planet.planetId} owner={planet.planetOwner.playerName} nbships={planet.planetShipsNbr} currentPlayer={this.state.currentPlayer}
                 />
-
               );
             })}
           </div>
 
         </div>
-        
-
       );
     }
-
   }
 
   class Planet extends Component {
@@ -129,33 +133,29 @@ class Planets extends Component {
     }
 
     render() {
-
       let text;
       let action;
+
       if(this.props.currentPlayer != this.props.owner){
-        text = "Attack";
+        text = "Attaquer";
         action = this.attack;
       } else {
-        text = "placer Troupe";
+        text = "Placer troupes";
         action = this.placeShip;
       }
-
-
 
       return (
         <article className={'card card--'+this.props.id} onClick={this.handleShow}>
         <div className="card__planet">
           <div className="planet__atmosphere">
             <div className="planet__surface"></div>
-
-
           </div>
         </div>
         {/* <div className="card__info">
           <h2 className="info__title">{this.props.name}</h2>
           </div> */}
           <Modal show={this.state.show} animation={false}>
-              <Modal.Title>{this.props.name}</Modal.Title>
+            <Modal.Title>{this.props.name}</Modal.Title>
             <Modal.Body><br/>Proprietaire : {this.props.owner} <br/>Nb de vaisseaux : {this.props.nbships}</Modal.Body>
             <Modal.Footer>
               <Button variant="primary" onClick={action}>
@@ -167,11 +167,10 @@ class Planets extends Component {
             </Modal.Footer>
           </Modal>
        </article>
-
       );
     }
   }
-   
+
 
 
   export default Planets
