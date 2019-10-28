@@ -58,6 +58,10 @@ class Planets extends Component {
       alert("bravo");
     }
 
+    changePlayer(){
+      
+    }
+
     render() {
 
       return (
@@ -103,6 +107,10 @@ class Planets extends Component {
     }
 
   }
+
+
+
+
 
   class Planet extends Component {
 
@@ -210,6 +218,8 @@ class Planets extends Component {
     }
   }
 
+
+  
 
 
   export default Planets

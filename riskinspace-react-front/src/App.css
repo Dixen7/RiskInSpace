@@ -130,7 +130,7 @@ form{
 
 :root {
 
-  --planet-color: yellow;
+  --planet-color: rgba(100, 100, 100, 0.5);
 
 
 

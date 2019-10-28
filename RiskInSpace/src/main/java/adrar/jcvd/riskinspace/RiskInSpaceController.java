@@ -109,6 +109,7 @@ public class RiskInSpaceController {
 
 	}
 
+
 	@GetMapping("/planet")
 	public ResponseEntity<?> planet() {
 		List<Planet> planets = planetRepo.findAll(new Sort(Sort.Direction.ASC, "planetId")); 
@@ -224,6 +225,8 @@ public class RiskInSpaceController {
 
 	@GetMapping("/start")
 	public void gameStart() {
+		boolean tourJoueur1 = false;
+		tourJoueur1 = riskService.changePlayer(tourJoueur1);
 		List<Player> players = playerRepo.findAll(new Sort(Sort.Direction.DESC, "playerId"));
 		List<Planet> planetList =  planetRepo.findAll();
 		Player player1 = players.get(1);
