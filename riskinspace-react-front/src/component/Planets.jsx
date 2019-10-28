@@ -7,9 +7,6 @@ import axios from 'axios';
 
 class Planets extends Component {
 
-
-
-
     constructor() {
       super();
       let shipCount;
@@ -59,7 +56,7 @@ class Planets extends Component {
     }
 
     changePlayer(){
-      
+
     }
 
     render() {
@@ -109,9 +106,6 @@ class Planets extends Component {
   }
 
 
-
-
-
   class Planet extends Component {
 
     constructor(props){
@@ -128,9 +122,7 @@ class Planets extends Component {
           nbShips:props.nbships
         }
 
-
     }
-
 
 
     handleClose(e){
@@ -157,12 +149,13 @@ class Planets extends Component {
       console.log(this.state);
       this.setState({ [e.target.name]: e.target.value });
       this.setState({ shipCount: this.state.shipCount - 1 })
+      localStorage.setItem("shipCount",parseInt(this.state.shipCount - 1));
       this.setState({nbShips : this.state.nbShips + 1})
       let planet = {
         "planetId": parseInt(this.state.planetId),
         "shipCount":parseInt(this.state.shipCount),
       };
-      localStorage.setItem("shipCount",parseInt(this.state.shipCount));
+
       console.log(this.state.shipCount);
       console.log(localStorage.getItem("shipCount"));
 
@@ -198,7 +191,7 @@ class Planets extends Component {
           <input type="hidden" id={"planetId-"+this.props.id} name="planetId" value={this.props.id} />
         </div>
         <div className="card__info">
-          <p className="info__title" style={{'font-size':'10px'}} >{this.props.name}</p>
+          <p className="info__title" style={{'fontSize':'10px'}} >{this.props.name}</p>
           </div>
           <Modal show={this.state.show} animation={false}>
               <Modal.Title>{this.props.name}</Modal.Title>
@@ -218,8 +211,6 @@ class Planets extends Component {
     }
   }
 
-
-  
 
 
   export default Planets

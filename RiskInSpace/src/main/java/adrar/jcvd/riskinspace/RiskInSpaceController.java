@@ -174,9 +174,11 @@ public class RiskInSpaceController {
 				//planet = player.getPlanets().get(5);
 				riskService.placeShipsPlayer(player, planet);
 				System.out.println("planète choisie: " + planet);
-				System.out.println("Nombre de troupes à placer: " + shipsCount);
+				
 				shipsCount--;
-				planet.setPlanetShipsNbr(planet.getPlanetShipsNbr() + 1);
+				//planet.setPlanetShipsNbr(planet.getPlanetShipsNbr() + 1);
+				System.out.println("Nombre de troupes à placer: " + shipsCount);
+				System.out.println("nbr de vaisseaux de la planète : " + planet.getPlanetShipsNbr());
 				planetRepo.save(planet);
 				
 			}
