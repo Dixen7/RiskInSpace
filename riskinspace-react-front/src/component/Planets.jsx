@@ -16,7 +16,7 @@ class Planets extends Component {
         planetsPlayer1:0,
         planetsPlayer2:0,
         currentPlayer:'',
-        shipCount:0,
+        shipCount:0
       };
       
 
@@ -41,6 +41,7 @@ class Planets extends Component {
           this.setState({player2Species:response.data.player2.species.speciesName})
           this.setState({shipCount:response.data.shipCount})
         }
+        
       )
     }
 
@@ -105,9 +106,10 @@ class Planets extends Component {
           show:false,
           currentPlayer:props.currentPlayer,
           planetOwner:props.owner,
-          shipCount:props.shipCount,
-          planetId:props.id
+          planetId:props.id,
+          shipCount:props.shipCount
         }
+        
     }
 
  
@@ -133,13 +135,18 @@ class Planets extends Component {
 
     placeShip = (e) =>{
       console.log('placeShip');
+      console.log(this.state);
+      console.log(parseInt(this.state.shipCount));
       this.setState({ [e.target.name]: e.target.value });
+
       let planet = {
-        "planetId": parseInt(this.state.planetId)
+        "planetId": parseInt(this.state.planetId),
       };
+      var a = this;
       axios.post('http://localhost:8080/gamephase', planet)
 		  .then(function (response) {
-        this.setState({shipCount: this.state.shipCount - 1})
+        a.setState({shipCount: a.state.shipCount - 1})
+        console.log(a);
 		  })
 		  .catch(function (error) {
 		    console.log(error);
