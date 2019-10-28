@@ -117,13 +117,14 @@ public class RiskInSpaceController {
 		Player player2 = players.get(0);
 		int countPlanetPlayer1 = planetRepo.findAllByPlanetOwner(player1).size();
 		int countPlanetPlayer2 = planetRepo.findAllByPlanetOwner(player2).size();
+		int shipCount = 25;
 		HashMap<String, Object> hmap = new HashMap<String, Object>();
 		hmap.put("planets", planets);
 		hmap.put("player1", player1);
 		hmap.put("player2", player2);
 		hmap.put("countPlanetPlayer1", countPlanetPlayer1);
 		hmap.put("countPlanetPlayer2", countPlanetPlayer2);
-		hmap.put("shipCount", 25);
+		hmap.put("shipCount", shipCount);
 		return new ResponseEntity<HashMap<String, Object>>(hmap, HttpStatus.OK);
 
 	}
