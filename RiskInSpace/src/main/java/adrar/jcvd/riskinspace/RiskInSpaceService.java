@@ -151,6 +151,22 @@ public class RiskInSpaceService {
 			System.out.println(player+" Gagne.");
 		}
 	}
+	
+	
+	public boolean changePlayer(boolean tourJoueur1) {
+		
+		if (tourJoueur1 == true) {
+			tourJoueur1 = false;
+		}
+		else {
+			tourJoueur1 = true;
+		}
+		return tourJoueur1;
+	}
+	
+	
+	
+	
 
 	public enum PhaseDeJeu {
 		PLACEMENT,
