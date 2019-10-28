@@ -2,9 +2,12 @@ package adrar.jcvd.riskinspace;
 
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
@@ -235,6 +238,23 @@ public class RiskInSpaceController {
 		boolean newJoueur = riskService.changePlayer(tourjoueur);
 		
 		return newJoueur;
+	}
+	
+	@PostMapping("/getplanetsNear")
+	public ArrayList<Planet> planetsNear(@RequestBody String req) throws ParseException
+	{
+		System.out.println(req);
+		Object obj = new JSONParser().parse(req);
+		JSONObject jo = (JSONObject) obj; 
+		int planetId = ((Long) jo.get("planetId")).intValue();
+		Planet planet = planetRepo.getOne(planetId);
+		Set <Planet> planets = planet.getPlanets();
+		Set <Planet> planetsNear = planet.getPlanetsNear();
+		ArrayList <Planet> allPlanetsNear = new ArrayList <Planet>();
+		allPlanetsNear.addAll(planets);
+		allPlanetsNear.addAll(planetsNear);
+		
+		return allPlanetsNear;
 	}
 	
 

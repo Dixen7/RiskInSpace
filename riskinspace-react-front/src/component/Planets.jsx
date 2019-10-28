@@ -143,6 +143,9 @@ class Planets extends Component {
 
     }
 
+    /*selectAttacker(e){
+
+    }*/
 
     handleClose(e){
        e.stopPropagation();
@@ -155,12 +158,7 @@ class Planets extends Component {
 
     attack(e){
       console.log('attack');
-      return <form>
-        <input type="hidden" value="toto"/>
-        <select>
-        <option>Sélectionner une planète attaquante</option>
-        </select>
-      </form>;
+      //alert(props.planetsNear);
     }
 
     placeShip = (e) =>{
@@ -216,6 +214,9 @@ class Planets extends Component {
               <Modal.Title>{this.props.name}</Modal.Title>
             <Modal.Body><br/>Proprietaire : {this.props.owner} <br/>Nb de vaisseaux : {this.state.nbShips}<br/>Nd de vaisseaux restants a placer : {this.state.shipCount}</Modal.Body>
             <Modal.Footer>
+              <select>
+
+              </select>
               <Button variant="primary" onClick={action}>
                 {text}
               </Button>
