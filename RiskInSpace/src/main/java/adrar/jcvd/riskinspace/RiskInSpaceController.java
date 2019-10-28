@@ -154,11 +154,12 @@ public class RiskInSpaceController {
 	
 
 	@PostMapping("/gamephase")
-	public void placement (@RequestBody String req) throws ParseException {
+	public int placement (@RequestBody String req) throws ParseException {
 		System.out.println(req);
 		Object obj = new JSONParser().parse(req);
 		JSONObject jo = (JSONObject) obj;
 		int planetId = ((Long) jo.get("planetId")).intValue();
+		int shipNumber = ((Long) jo.get("shipCount")).intValue();
 		Planet planet = planetRepo.getOne(planetId);
 		List<Player> players = playerRepo.findAll(new Sort(Sort.Direction.DESC, "playerId"));
 		Player player = players.get(0);
@@ -166,16 +167,20 @@ public class RiskInSpaceController {
 			System.out.println();
 			System.out.println("Début placement");
 
-			int shipsCount = riskService.shipsPerTurn(player);
-
-			while (shipsCount >= 0) {
+			//int shipsCount = riskService.shipsPerTurn(player);
+			int shipsCount = shipNumber;
+			if (shipsCount >= 0) {
 				//planet = player.getPlanets().get(5);
 				riskService.placeShipsPlayer(player, planet);
 				System.out.println("planète choisie: " + planet);
 				System.out.println("Nombre de troupes à placer: " + shipsCount);
 				shipsCount--;
+				planet.setPlanetShipsNbr(planet.getPlanetShipsNbr() + 1);
+				planetRepo.save(planet);
 				
 			}
+			
+			return shipsCount;
 			
 	}
 

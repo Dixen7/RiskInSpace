@@ -2,13 +2,22 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import RiskinspaceService from '../service/RiskinspaceService';
 import {Button,Modal} from 'react-bootstrap';
-import axios from 'axios'
+import axios from 'axios';
+
 
 class Planets extends Component {
 
 
+
+
     constructor() {
       super();
+      let shipCount;
+      if(!localStorage.getItem("shipCount")){
+        shipCount = 25;
+      }else{
+        shipCount = parseInt(localStorage.getItem("shipCount"));
+      }
       this.state = {
         planets: [],
         player1:'',
@@ -16,7 +25,7 @@ class Planets extends Component {
         planetsPlayer1:0,
         planetsPlayer2:0,
         currentPlayer:'',
-        shipCount:0
+        shipCount:shipCount
       };
 
 
@@ -39,7 +48,7 @@ class Planets extends Component {
           this.setState({planetsPlayer2:response.data.countPlanetPlayer2})
           this.setState({player1Species:response.data.player1.species.speciesName})
           this.setState({player2Species:response.data.player2.species.speciesName})
-          this.setState({shipCount:response.data.shipCount})
+          //this.setState({shipCount:response.data.shipCount})
         }
 
       )
@@ -80,7 +89,7 @@ class Planets extends Component {
             {this.state.planets.map(planet => {
               return (
                 <Planet
-                 id={planet.planetId} name={planet.planetName} key={planet.planetId} owner={planet.planetOwner.playerName} nbships={planet.planetShipsNbr} currentPlayer={this.state.currentPlayer} shipCount={this.state.shipCount}
+                 id={planet.planetId} name={planet.planetName} key={planet.planetId} owner={planet.planetOwner.playerName} nbships={planet.planetShipsNbr} currentPlayer={this.state.currentPlayer} shipCount={this.state.shipCount} {...this.state}
                 />
 
               );
@@ -107,8 +116,10 @@ class Planets extends Component {
           currentPlayer:props.currentPlayer,
           planetOwner:props.owner,
           planetId:props.id,
-          shipCount:props.shipCount
+          shipCount:props.shipCount,
+          nbShips:props.nbships
         }
+
 
     }
 
@@ -136,17 +147,20 @@ class Planets extends Component {
     placeShip = (e) =>{
       console.log('placeShip');
       console.log(this.state);
-      console.log(parseInt(this.state.shipCount));
       this.setState({ [e.target.name]: e.target.value });
-
+      this.setState({ shipCount: this.state.shipCount - 1 })
+      this.setState({nbShips : this.state.nbShips + 1})
       let planet = {
         "planetId": parseInt(this.state.planetId),
+        "shipCount":parseInt(this.state.shipCount),
       };
-      var a = this;
+      localStorage.setItem("shipCount",parseInt(this.state.shipCount));
+      console.log(this.state.shipCount);
+      console.log(localStorage.getItem("shipCount"));
+
       axios.post('http://localhost:8080/gamephase', planet)
 		  .then(function (response) {
-        a.setState({shipCount: a.state.shipCount - 1})
-        console.log(a);
+        console.log(response);
 		  })
 		  .catch(function (error) {
 		    console.log(error);
@@ -165,8 +179,6 @@ class Planets extends Component {
         action = this.placeShip;
       }
 
-
-
       return (
         <article className={'card card--'+this.props.id} onClick={this.handleShow}>
         <div className="card__planet">
@@ -177,12 +189,12 @@ class Planets extends Component {
           </div>
           <input type="hidden" id={"planetId-"+this.props.id} name="planetId" value={this.props.id} />
         </div>
-        {/* <div className="card__info">
-          <h2 className="info__title">{this.props.name}</h2>
-          </div> */}
+        <div className="card__info">
+          <p className="info__title" style={{'font-size':'10px'}} >{this.props.name}</p>
+          </div>
           <Modal show={this.state.show} animation={false}>
               <Modal.Title>{this.props.name}</Modal.Title>
-            <Modal.Body><br/>Proprietaire : {this.props.owner} <br/>Nb de vaisseaux : {this.props.nbships}<br/>Nd de vaisseaux restants a placer : {this.props.shipCount}</Modal.Body>
+            <Modal.Body><br/>Proprietaire : {this.props.owner} <br/>Nb de vaisseaux : {this.state.nbShips}<br/>Nd de vaisseaux restants a placer : {this.state.shipCount}</Modal.Body>
             <Modal.Footer>
               <Button variant="primary" onClick={action}>
                 {text}
