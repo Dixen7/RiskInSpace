@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -84,7 +85,7 @@ public class RiskInSpaceController {
 		}
 
 
-		fight.fight(nbrAttDice, nbrDefDice, planetAtt.getPlanetShipsNbr(), planetDef.getPlanetShipsNbr(), planetAtt, planetDef);
+		fight.fight(nbrAttDice, nbrDefDice, planetAtt, planetDef);
 
 		riskService.moveShips(planetAtt, player1, 20);
 
@@ -122,6 +123,7 @@ public class RiskInSpaceController {
 		hmap.put("player2", player2);
 		hmap.put("countPlanetPlayer1", countPlanetPlayer1);
 		hmap.put("countPlanetPlayer2", countPlanetPlayer2);
+		hmap.put("shipCount", 25);
 		return new ResponseEntity<HashMap<String, Object>>(hmap, HttpStatus.OK);
 
 	}
@@ -142,18 +144,46 @@ public class RiskInSpaceController {
 		if((diceAttacker >= 1 && diceAttacker <= 3) && (diceDefender >= 1 && diceDefender <=2)  ) {
 			try{
 				Fight fight = new Fight();
-				fight.fight(diceAttacker, diceAttacker, planetAtt.getPlanetShipsNbr(), planetDef.getPlanetShipsNbr(), planetAtt, planetDef);
+				fight.fight(diceAttacker, diceAttacker, planetAtt, planetDef);
 			} 
 			catch (Exception e) {
 			}
 		}	
 	}
+	
 
-	@GetMapping("/gamephase")
-	public void GamePhase() {
-		riskService.moteurDeJeu();
+	@PostMapping("/gamephase")
+	public void placement (@RequestBody String req) throws ParseException {
+		System.out.println(req);
+		Object obj = new JSONParser().parse(req);
+		JSONObject jo = (JSONObject) obj;
+		int planetId = ((Long) jo.get("planetId")).intValue();
+		Planet planet = planetRepo.getOne(planetId);
+		List<Player> players = playerRepo.findAll(new Sort(Sort.Direction.DESC, "playerId"));
+		Player player = players.get(0);
+
+			System.out.println();
+			System.out.println("Début placement");
+
+			int shipsCount = riskService.shipsPerTurn(player);
+
+			while (shipsCount >= 0) {
+				//planet = player.getPlanets().get(5);
+				riskService.placeShipsPlayer(player, planet);
+				System.out.println("planète choisie: " + planet);
+				System.out.println("Nombre de troupes à placer: " + shipsCount);
+				shipsCount--;
+				
+			}
+			
 	}
 
+	/*@GetMapping("/gamephase")
+	public void GamePhase(@RequestParam String id) {
+		Planet planet = planetRepo.getOne(Integer.parseInt(id)); 
+		riskService.moteurDeJeu(planet);
+	}*/
+	
 
 
 	//@RequestMapping(value="/",method = RequestMethod.POST) 
@@ -204,6 +234,6 @@ public class RiskInSpaceController {
 		
 		riskService.renamePlanets(planetList);
 		riskService.placeShipInitial(planetList, player1, player2);
-		GamePhase();
+		//GamePhase();
 	}
 }
