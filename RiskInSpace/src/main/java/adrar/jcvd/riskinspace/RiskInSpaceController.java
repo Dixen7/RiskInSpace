@@ -224,6 +224,19 @@ public class RiskInSpaceController {
 		}
 		gameStart();
 	}
+	
+	@PostMapping("/changeplayer")
+	public boolean changePlayer(@RequestBody String req) throws ParseException {
+		System.out.println(req);
+		Object obj = new JSONParser().parse(req);
+		JSONObject jo = (JSONObject) obj; 
+		boolean tourjoueur =  (boolean) jo.get("tourJoueur");
+		System.out.println(tourjoueur);
+		boolean newJoueur = riskService.changePlayer(tourjoueur);
+		
+		return newJoueur;
+	}
+	
 
 	@GetMapping("/start")
 	public void gameStart() {

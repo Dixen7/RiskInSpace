@@ -22,7 +22,8 @@ class Planets extends Component {
         planetsPlayer1:0,
         planetsPlayer2:0,
         currentPlayer:'',
-        shipCount:shipCount
+        shipCount:shipCount,
+        tourJoueur:false
       };
 
 
@@ -55,8 +56,26 @@ class Planets extends Component {
       alert("bravo");
     }
 
-    changePlayer(){
+    changePlayer = (e) => {
 
+      let tourJoueur = {
+  			"tourJoueur": this.state.tourJoueur,
+      };
+
+      console.log(this.state.tourJoueur);
+      axios.post(`http://localhost:8080/changeplayer`, tourJoueur)
+      .then(
+        response => {
+          console.log(response);
+          this.setState({tourJoueur:response.data});
+          if(this.state.tourJoueur == true){
+            this.setState({currentPlayer:this.state.player2.playerName});
+          }else{
+            this.setState({currentPlayer:this.state.player1.playerName});
+          }
+          console.log(this.state.tourJoueur);
+        }
+      )
     }
 
     render() {
