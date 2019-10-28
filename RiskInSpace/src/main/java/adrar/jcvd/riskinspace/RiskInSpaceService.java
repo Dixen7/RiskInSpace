@@ -53,6 +53,7 @@ public class RiskInSpaceService {
 			Planet randomPlanet = planetList.get(randomIndex);
 
 			player1.getPlanets().add(randomPlanet);
+			randomPlanet.setPlanetOwner(player1);
 			randomPlanet.setPlanetShipsNbr(1);
 			planetRepo.save(randomPlanet);
 			planetList.remove(randomPlanet);
@@ -62,6 +63,7 @@ public class RiskInSpaceService {
 		for(int j = 0; j<planetListPlayer2.size(); j++) {
 			Planet pla = planetListPlayer2.get(j);
 			player2.getPlanets().add(pla);
+			pla.setPlanetOwner(player2);
 			pla.setPlanetShipsNbr(1);
 			planetRepo.save(pla);
 		}
