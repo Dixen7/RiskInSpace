@@ -138,7 +138,8 @@ class Planets extends Component {
           planetOwner:props.owner,
           planetId:props.id,
           shipCount:props.shipCount,
-          nbShips:props.nbships
+          nbShips:props.nbships,
+          planetsNear:''
         }
 
     }
@@ -156,9 +157,19 @@ class Planets extends Component {
       this.setState({show:true});
     }
 
-    attack(e){
+    attack = (e) => {
       console.log('attack');
-      //alert(props.planetsNear);
+      let planet = {
+        "planetId" : parseInt(this.state.planetId)
+      }
+      axios.post('http://localhost:8080/getplanetsNear', planet)
+      .then(
+        response => {
+          console.log(response);
+
+        }
+      )
+
     }
 
     placeShip = (e) =>{
@@ -185,17 +196,39 @@ class Planets extends Component {
 		  });
     }
 
+    afficherAttacker = () =>{
+      return(
+        <select>
+          <option>Toto</option>
+        </select>
+      )
+    }
+
+
+
     render() {
 
       let text;
       let action;
+      let select = false;
+      let selectAttacker = "";
+      if (select){
+        selectAttacker = <afficherAttacker />
+
+      }else{
+        selectAttacker = "";
+      }
+
       if(this.props.currentPlayer != this.props.owner){
         text = "Attack";
         action = this.attack;
+        select = true;
       } else {
         text = "placer Troupe";
         action = this.placeShip;
+        select = false;
       }
+
 
       return (
         <article className={'card card--'+this.props.id} onClick={this.handleShow}>
@@ -214,9 +247,7 @@ class Planets extends Component {
               <Modal.Title>{this.props.name}</Modal.Title>
             <Modal.Body><br/>Proprietaire : {this.props.owner} <br/>Nb de vaisseaux : {this.state.nbShips}<br/>Nd de vaisseaux restants a placer : {this.state.shipCount}</Modal.Body>
             <Modal.Footer>
-              <select>
-
-              </select>
+              {selectAttacker}
               <Button variant="primary" onClick={action}>
                 {text}
               </Button>
@@ -230,6 +261,22 @@ class Planets extends Component {
       );
     }
   }
+
+  function AttackForm(){
+      const isSelectAttack = false;
+
+      if(isSelectAttack == true){
+        return(<div>
+          <select>
+          <option>
+          Toto
+          </option>
+          </select>
+          </div>
+        )
+
+      }
+    }
 
 
 

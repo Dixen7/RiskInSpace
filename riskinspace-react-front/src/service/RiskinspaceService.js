@@ -15,7 +15,9 @@ class RiskinspaceService {
         return axios.get(`${API_URL}/gamephase`);
     }
 
-  
+    attack(){
+        return axios.get(`${API_URL}/getplanetsNear`);
+    }
 
 }
 

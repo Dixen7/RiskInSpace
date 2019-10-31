@@ -5,6 +5,7 @@ package adrar.jcvd.riskinspace;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -241,20 +242,58 @@ public class RiskInSpaceController {
 	}
 	
 	@PostMapping("/getplanetsNear")
-	public ArrayList<Planet> planetsNear(@RequestBody String req) throws ParseException
+	public void planetsNear(@RequestBody String req) throws ParseException
 	{
 		System.out.println(req);
 		Object obj = new JSONParser().parse(req);
 		JSONObject jo = (JSONObject) obj; 
 		int planetId = ((Long) jo.get("planetId")).intValue();
 		Planet planet = planetRepo.getOne(planetId);
-		Set <Planet> planets = planet.getPlanets();
-		Set <Planet> planetsNear = planet.getPlanetsNear();
-		ArrayList <Planet> allPlanetsNear = new ArrayList <Planet>();
-		allPlanetsNear.addAll(planets);
-		allPlanetsNear.addAll(planetsNear);
+		ArrayList<Planet> allPlanetsNear = new ArrayList<Planet>();
+		allPlanetsNear.addAll(planet.getPlanets());
+		allPlanetsNear.addAll(planet.getPlanetsNear());
+		ArrayList<Planet> planetsNearEnemy = new ArrayList<Planet>();
+		for (int i = 0; i < allPlanetsNear.size(); i++) {
+			if (planet.getPlanetOwner() != allPlanetsNear.get(i).getPlanetOwner()) {
+				planetsNearEnemy.add(allPlanetsNear.get(i));
+			}
+		}
+		System.out.println(planetsNearEnemy);
 		
-		return allPlanetsNear;
+		//FIGHT
+		Planet planetDef = planet;
+		Random rand = new Random();
+
+		Planet planetAtt = planetsNearEnemy.get(rand.nextInt(planetsNearEnemy.size()));
+		System.out.println(planetAtt);
+		
+		int nbrAttDice = -1, nbrDefDice = -1;
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("FIGHT !");
+		System.out.println();
+
+		System.out.println("Attaquant, choisissez le nombre de dés (entre 1 et 3)");
+		while( nbrAttDice < 0 || nbrAttDice > 3) {
+			nbrAttDice = sc.nextInt();
+		}
+
+		System.out.println("Défenseur, choisissez le nombre de dés (entre 1 et 2)");
+		while( nbrDefDice < 0 || nbrDefDice > 2) {
+			nbrDefDice = sc.nextInt();
+		}
+		
+		
+		
+		Fight fight = new Fight();
+
+		fight.fight(nbrAttDice, nbrDefDice, planetAtt, planetDef);
+		//END FIGHT
+		
+		
+		//return planetsNearEnemy;
+		
+
 	}
 	
 

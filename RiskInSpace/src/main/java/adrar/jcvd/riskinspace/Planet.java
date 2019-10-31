@@ -34,11 +34,11 @@ public class Planet {
 	@JoinTable(name="frontiers",
 	joinColumns={@JoinColumn(name="planet_id1")},
 	inverseJoinColumns={@JoinColumn(name="planet_id2")})
-	private Set<Planet> planetsInitial = new HashSet<Planet>();
+	public Set<Planet> planetsInitial = new HashSet<Planet>();
 
 	@JsonIgnore
 	@ManyToMany(mappedBy="planetsInitial")
-	private Set<Planet> planetsNear = new HashSet<Planet>();
+	public Set<Planet> planetsNear = new HashSet<Planet>();
 
 	public Planet() {}
 
